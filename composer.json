@@ -1,5 +1,5 @@
 {
-    "name": "voku/portable-utf8",
+    "name": "jesse-greathouse/portable-utf8",
     "description": "Portable UTF-8 library - performance optimized (unicode) string functions for php.",
     "type": "library",
     "keywords": [
@@ -10,7 +10,7 @@
         "utf-8",
         "utf8"
     ],
-    "homepage": "https://github.com/voku/portable-utf8",
+    "homepage": "https://github.com/jesse-greathouse/portable-utf8",
     "license": "(Apache-2.0 or GPL-2.0)",
     "authors": [
         {
@@ -24,11 +24,15 @@
         {
             "name": "Lars Moelleken",
             "homepage": "http://www.moelleken.org/"
+        },
+        {
+            "name": "Jesse Greathouse",
+            "homepage": "https://github.com/jesse-greathouse"
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "symfony/polyfill-php72": "~1.0",
+        "php": ">=8.1.0",
+        "symfony/polyfill-php81": "~1.0",
         "symfony/polyfill-iconv": "~1.0",
         "symfony/polyfill-intl-grapheme": "~1.0",
         "symfony/polyfill-intl-normalizer": "~1.0",
