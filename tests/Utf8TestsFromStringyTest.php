@@ -3530,7 +3530,7 @@ d
      */
     public function testTidy($expected, $str)
     {
-        $result = UTF8::normalize_msword($str);
+        $result = UTF8::normalizeMsWord($str);
 
         static::assertSame($expected, $result);
     }

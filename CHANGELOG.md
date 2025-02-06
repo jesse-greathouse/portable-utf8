@@ -64,7 +64,7 @@ Removed:
 - Bootup::filterRequestInputs();
 - Bootup::filterRequestUri();
 - UTF8::GRAPHEME_CLUSTER_RX
-- UTF8::chr_to_int() (please use UTF8::chr_to_decimal())
+- UTF8::chr_to_int() (please use UTF8::chrToDecimal())
 - UTF8::hasBom() (please use UTF8::hasBom())
 - UTF8::html_decode() (please use UTF8::html_entity_decode())
 - UTF8::int_to_chr() (please use UTF8::decimal_to_chr())
@@ -80,7 +80,7 @@ Removed:
 - UTF8::lcword() (please use UTF8::lcfirst())
 - UTF8::lowerCaseFirst() (please use UTF8::lcfirst())
 - UTF8::normalizeEncoding() (please use UTF8::normalize_encoding())
-- UTF8::removeBOM() (please use UTF8::remove_bom())
+- UTF8::removeBOM() (please use UTF8::removeBom())
 - UTF8::split() (please use UTF8::strSplit())
 - UTF8::str_begins() (please use UTF8::str_starts_with())
 - UTF8::str_ends() (please use UTF8::str_ends_with())
@@ -101,7 +101,7 @@ Removed:
 - UTF8::toUTF8() (please use UTF8::to_utf8())
 - UTF8::ucword() (please use UTF8::ucfirst())
 - UTF8::urldecode_fix_win1252_chars() (please use UTF8::urldecode())
-- UTF8::utf8_fix_win1252_chars() (please use UTF8::fix_simple_utf8())
+- UTF8::utf8_fix_win1252_chars() (please use UTF8::fixSimpleUtf8())
 
 Fixed:
 - "UTF8::is_binary()" -> fix for strict usage
@@ -114,11 +114,11 @@ Fixed:
 
 ### 5.4.50 (2020-11-12)
 
-- "UTF8::normalize_whitespace()" -> can now also normalize "control characters" if needed
+- "UTF8::normalizeWhitespace()" -> can now also normalize "control characters" if needed
 
 ### 5.4.49 (2020-11-12)
 
-- "UTF8::remove_invisible_characters()" -> can now also remove "control characters" if needed
+- "UTF8::removeInvisibleCharacters()" -> can now also remove "control characters" if needed
 - "UTF8::is_printable()" -> fix for non-printable control characters
 
 ### 5.4.48 (2020-11-07)
@@ -277,7 +277,7 @@ Fixed:
 
 ### 5.4.23 (2019-09-27)
 
-- improve performance from "UTF8::chr_to_decimal()" (now we use iconv if it's available)
+- improve performance from "UTF8::chrToDecimal()" (now we use iconv if it's available)
 - improve performance from "UTF8::html_entity_decode()" (code cleanup, remove dead code)
 
 ### 5.4.22 (2019-09-26)
@@ -349,7 +349,7 @@ Fixed:
 ### 5.4.8 (2019-06-08)
 
 - fix typo in "win1252_to_utf8.php"
-- optimize "UTF8::fix_simple_utf8()"
+- optimize "UTF8::fixSimpleUtf8()"
 
 ### 5.4.7 (2019-05-28)
 
@@ -459,7 +459,7 @@ Fixed:
 - more fixes for "mbstring_func_overload"
 
 ### 5.2.4 (2018-09-11)
-- optimize performance for "UTF8::remove_bom()"
+- optimize performance for "UTF8::removeBom()"
 - optimize performance for "UTF8::is_binary()"
 - fix tests with "mbstring_func_overload"
 

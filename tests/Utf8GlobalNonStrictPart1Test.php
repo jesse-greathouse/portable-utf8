@@ -288,7 +288,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::chr_size_list($actual));
+            static::assertSame($expected, UTF8::chrSizeList($actual));
         }
     }
 
@@ -301,8 +301,8 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::chr_to_decimal($before));
-            static::assertSame($after, UTF8::chr_to_decimal(UTF8::decimal_to_chr(UTF8::chr_to_decimal($before))));
+            static::assertSame($after, UTF8::chrToDecimal($before));
+            static::assertSame($after, UTF8::chrToDecimal(UTF8::decimal_to_chr(UTF8::chrToDecimal($before))));
         }
     }
 
@@ -319,22 +319,22 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::chr_to_hex(UTF8::hex_to_chr(UTF8::chr_to_hex($before))), 'tested: ' . $before);
+            static::assertSame($after, UTF8::chrToHex(UTF8::hex_to_chr(UTF8::chrToHex($before))), 'tested: ' . $before);
         }
 
         // ---
 
-        static::assertSame('U+2764', UTF8::chr_to_hex('❤'));
-        static::assertSame('U+00a7', UTF8::chr_to_hex('§'));
+        static::assertSame('U+2764', UTF8::chrToHex('❤'));
+        static::assertSame('U+00a7', UTF8::chrToHex('§'));
 
         // ---
 
-        static::assertSame('U+0000', UTF8::chr_to_hex(UTF8::hex_to_chr(UTF8::chr_to_hex(''))));
+        static::assertSame('U+0000', UTF8::chrToHex(UTF8::hex_to_chr(UTF8::chrToHex(''))));
     }
 
     public function testChunkSplit()
     {
-        $result = UTF8::chunk_split('ABC-ÖÄÜ-中文空白-κόσμε', 3);
+        $result = UTF8::chunkSplit('ABC-ÖÄÜ-中文空白-κόσμε', 3);
         $expected = "ABC\r\n-ÖÄ\r\nÜ-中\r\n文空白\r\n-κό\r\nσμε";
 
         static::assertSame($expected, $result);
@@ -342,7 +342,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
     public function testNormalizeLineEnding()
     {
-        $resultTmp = UTF8::chunk_split("\n\r" . 'ABC-ÖÄÜ-中文空白-κόσμε' . "\n", 3);
+        $resultTmp = UTF8::chunkSplit("\n\r" . 'ABC-ÖÄÜ-中文空白-κόσμε' . "\n", 3);
         $expected = "\n\nA\nBC-\nÖÄÜ\n-中文\n空白-\nκόσ\nμε\n";
 
         $result = UTF8::normalize_line_ending($resultTmp);
@@ -1362,7 +1362,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
             }
 
             foreach ($testArray as $before => $after) {
-                static::assertSame($after, UTF8::fix_simple_utf8($before), 'tested: ' . $before);
+                static::assertSame($after, UTF8::fixSimpleUtf8($before), 'tested: ' . $before);
             }
         }
     }
@@ -1427,7 +1427,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         }
 
         foreach ($tests as $after => $before) {
-            static::assertSame($after, UTF8::int_to_hex($before), 'tested: ' . $before);
+            static::assertSame($after, UTF8::intToHex($before), 'tested: ' . $before);
         }
 
         // --- fail (hex_to_int)
@@ -2591,7 +2591,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::normalize_msword($before));
+            static::assertSame($after, UTF8::normalizeMsWord($before));
         }
     }
 
@@ -2617,18 +2617,18 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
             }
 
             foreach ($tests as $before => $after) {
-                static::assertSame($after, UTF8::normalize_whitespace($before));
+                static::assertSame($after, UTF8::normalizeWhitespace($before));
             }
         }
 
         // replace "non breaking space"
-        static::assertSame('abc- -öäü- -', UTF8::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC"));
+        static::assertSame('abc- -öäü- -', UTF8::normalizeWhitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC"));
 
         // keep "non breaking space"
-        static::assertSame("abc-\xc2\xa0-öäü- -", UTF8::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true));
+        static::assertSame("abc-\xc2\xa0-öäü- -", UTF8::normalizeWhitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true));
 
         // ... and keep "bidirectional text chars"
-        static::assertSame("abc-\xc2\xa0-öäü- -\xE2\x80\xAC", UTF8::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true, true));
+        static::assertSame("abc-\xc2\xa0-öäü- -\xE2\x80\xAC", UTF8::normalizeWhitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true, true));
     }
 
     public function testOrd()
@@ -2892,7 +2892,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         for ($i = 0; $i <= 2; ++$i) { // keep this loop for simple performance tests
             foreach ($testBom as $count => &$test) {
-                $test = UTF8::remove_bom($test);
+                $test = UTF8::removeBom($test);
 
                 static::assertSame(
                     'Μπορώ να φάω σπασμένα γυαλιά χωρίς να πάθω τίποτα',
@@ -2908,7 +2908,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         for ($i = 0; $i <= 2; ++$i) { // keep this loop for simple performance tests
             foreach ($testBom as $count => &$test) {
-                $test = UTF8::remove_bom($test);
+                $test = UTF8::removeBom($test);
 
                 static::assertSame(
                     'Μπορώ να φάω σπασμένα γυαλιά χωρίς να πάθω τίποτα',
@@ -2960,14 +2960,14 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::remove_invisible_characters($before), 'error by ' . $before);
+            static::assertSame($after, UTF8::removeInvisibleCharacters($before), 'error by ' . $before);
         }
 
-        static::assertSame('%*ł€! ‎|  ', UTF8::remove_invisible_characters('%*ł€! ‎|  '));
-        static::assertSame('%*ł€! |' . "\n " . "\t", UTF8::remove_invisible_characters('%*ł€! ‎|  ' . "\t", false, '', false));
+        static::assertSame('%*ł€! ‎|  ', UTF8::removeInvisibleCharacters('%*ł€! ‎|  '));
+        static::assertSame('%*ł€! |' . "\n " . "\t", UTF8::removeInvisibleCharacters('%*ł€! ‎|  ' . "\t", false, '', false));
 
-        static::assertSame('κόσ?με 	%00 | tes%20öäü%20\u00edtest', UTF8::remove_invisible_characters("κόσ\0με 	%00 | tes%20öäü%20\u00edtest", false, '?'));
-        static::assertSame('κόσμε 	 | tes%20öäü%20\u00edtest', UTF8::remove_invisible_characters("κόσ\0με 	%00 | tes%20öäü%20\u00edtest", true, ''));
+        static::assertSame('κόσ?με 	%00 | tes%20öäü%20\u00edtest', UTF8::removeInvisibleCharacters("κόσ\0με 	%00 | tes%20öäü%20\u00edtest", false, '?'));
+        static::assertSame('κόσμε 	 | tes%20öäü%20\u00edtest', UTF8::removeInvisibleCharacters("κόσ\0με 	%00 | tes%20öäü%20\u00edtest", true, ''));
     }
 
     public function testReplaceDiamondQuestionMark()
@@ -2985,7 +2985,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         $counter = 0;
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::replace_diamond_question_mark($before, ''), 'tested: ' . $before . ' | counter: ' . $counter);
+            static::assertSame($after, UTF8::replaceDiamondQuestionMark($before, ''), 'tested: ' . $before . ' | counter: ' . $counter);
             ++$counter;
         }
 
@@ -3014,21 +3014,21 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         $counter = 0;
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::replace_diamond_question_mark($before, ''), 'tested: ' . $before . ' | counter: ' . $counter);
+            static::assertSame($after, UTF8::replaceDiamondQuestionMark($before, ''), 'tested: ' . $before . ' | counter: ' . $counter);
             ++$counter;
         }
 
         // ---
 
         if (UTF8::mbstring_loaded()) { // only with "mbstring"
-            static::assertSame('Iñtërnâtiônàlizætiøn??Iñtërnâtiônàlizætiøn', UTF8::replace_diamond_question_mark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', true));
+            static::assertSame('Iñtërnâtiônàlizætiøn??Iñtërnâtiônàlizætiøn', UTF8::replaceDiamondQuestionMark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', true));
         } else {
-            static::assertSame('IñtërnâtiônàlizætiønIñtërnâtiônàlizætiøn', UTF8::replace_diamond_question_mark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', true));
+            static::assertSame('IñtërnâtiônàlizætiønIñtërnâtiônàlizætiøn', UTF8::replaceDiamondQuestionMark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', true));
         }
 
         // ---
 
-        static::assertSame("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", UTF8::replace_diamond_question_mark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', false));
+        static::assertSame("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", UTF8::replaceDiamondQuestionMark("Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn", '?', false));
     }
 
     public function testRtrim()

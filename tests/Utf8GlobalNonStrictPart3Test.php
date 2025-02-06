@@ -699,7 +699,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::fix_simple_utf8($before));
+            static::assertSame($after, UTF8::fixSimpleUtf8($before));
         }
     }
 

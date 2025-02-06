@@ -156,11 +156,11 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#checkforsupport-truenull">checkForSupport</a>
 </td><td><a href="#chrint-code_point-string-encoding-stringnull">chr</a>
 </td><td><a href="#chrMapcallablestring-string-callback-string-str-string">chrMap</a>
-</td></tr><tr><td><a href="#chr_size_liststring-str-int">chr_size_list</a>
-</td><td><a href="#chr_to_decimalstring-char-int">chr_to_decimal</a>
-</td><td><a href="#chr_to_hexintstring-char-string-prefix-string">chr_to_hex</a>
-</td><td><a href="#chunk_splitstring-str-int-chunk_length-string-end-string">chunk_split</a>
-</td></tr><tr><td><a href="#cleanstring-str-bool-remove_bom-bool-normalize_whitespace-bool-normalize_msword-bool-keep_non_breaking_space-bool-replace_diamond_question_mark-bool-remove_invisible_characters-bool-remove_invisible_characters_url_encoded-string">clean</a>
+</td></tr><tr><td><a href="#chrSizeListstring-str-int">chrSizeList</a>
+</td><td><a href="#chrToDecimalstring-char-int">chrToDecimal</a>
+</td><td><a href="#chrToHexintstring-char-string-prefix-string">chrToHex</a>
+</td><td><a href="#chunkSplitstring-str-int-chunk_length-string-end-string">chunkSplit</a>
+</td></tr><tr><td><a href="#cleanstring-str-bool-removeBom-bool-normalizeWhitespace-bool-normalizeMsWord-bool-keep_non_breaking_space-bool-replaceDiamondQuestionMark-bool-removeInvisibleCharacters-bool-removeInvisibleCharacters_url_encoded-string">clean</a>
 </td><td><a href="#cleanupstring-str-string">cleanup</a>
 </td><td><a href="#codepointsstringstring-arg-bool-use_u_style-intstring">codepoints</a>
 </td><td><a href="#collapse_whitespacestring-str-string">collapse_whitespace</a>
@@ -186,7 +186,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#finfo_loaded-bool">finfo_loaded</a>
 </td></tr><tr><td><a href="#first_charstring-str-int-n-string-encoding-string">first_char</a>
 </td><td><a href="#fits_insidestring-str-int-box_size-bool">fits_inside</a>
-</td><td><a href="#fix_simple_utf8string-str-string">fix_simple_utf8</a>
+</td><td><a href="#fixSimpleUtf8string-str-string">fixSimpleUtf8</a>
 </td><td><a href="#fix_utf8stringstring-str-stringstring">fix_utf8</a>
 </td></tr><tr><td><a href="#getchardirectionstring-char-string">getCharDirection</a>
 </td><td><a href="#getsupportinfostringnull-key-mixed">getSupportInfo</a>
@@ -206,7 +206,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#htmlentitiesstring-str-int-flags-string-encoding-bool-double_encode-string">htmlentities</a>
 </td></tr><tr><td><a href="#htmlspecialcharsstring-str-int-flags-string-encoding-bool-double_encode-string">htmlspecialchars</a>
 </td><td><a href="#iconv_loaded-bool">iconv_loaded</a>
-</td><td><a href="#int_to_hexint-int-string-prefix-string">int_to_hex</a>
+</td><td><a href="#intToHexint-int-string-prefix-string">intToHex</a>
 </td><td><a href="#intlchar_loaded-bool">intlChar_loaded</a>
 </td></tr><tr><td><a href="#intl_loaded-bool">intl_loaded</a>
 </td><td><a href="#is_alphastring-str-bool">is_alpha</a>
@@ -243,26 +243,26 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td></tr><tr><td><a href="#minstringstring-arg-stringnull">min</a>
 </td><td><a href="#normalize_encodingmixed-encoding-mixed-fallback-mixedstring">normalize_encoding</a>
 </td><td><a href="#normalize_line_endingstring-str-stringstring-replacer-string">normalize_line_ending</a>
-</td><td><a href="#normalize_mswordstring-str-string">normalize_msword</a>
-</td></tr><tr><td><a href="#normalize_whitespacestring-str-bool-keep_non_breaking_space-bool-keep_bidi_unicode_controls-bool-normalize_control_characters-string">normalize_whitespace</a>
+</td><td><a href="#normalizeMsWordstring-str-string">normalizeMsWord</a>
+</td></tr><tr><td><a href="#normalizeWhitespacestring-str-bool-keep_non_breaking_space-bool-keep_bidi_unicode_controls-bool-normalize_control_characters-string">normalizeWhitespace</a>
 </td><td><a href="#ordstring-chr-string-encoding-int">ord</a>
 </td><td><a href="#parse_strstring-str-array-result-bool-clean_utf8-bool">parse_str</a>
 </td><td><a href="#pcre_utf8_support-bool">pcre_utf8_support</a>
 </td></tr><tr><td><a href="#rangeintstring-var1-intstring-var2-bool-use_ctype-string-encoding-floatint-step-liststring">range</a>
 </td><td><a href="#rawurldecodestring-str-bool-multi_decode-string">rawurldecode</a>
 </td><td><a href="#regex_replacestring-str-string-pattern-string-replacement-string-options-string-delimiter-string">regex_replace</a>
-</td><td><a href="#remove_bomstring-str-string">remove_bom</a>
+</td><td><a href="#removeBomstring-str-string">removeBom</a>
 </td></tr><tr><td><a href="#remove_duplicatesstring-str-stringstring-what-string">remove_duplicates</a>
 </td><td><a href="#remove_htmlstring-str-string-allowable_tags-string">remove_html</a>
 </td><td><a href="#remove_html_breaksstring-str-string-replacement-string">remove_html_breaks</a>
 </td><td><a href="#remove_ileftstring-str-string-substring-string-encoding-string">remove_ileft</a>
-</td></tr><tr><td><a href="#remove_invisible_charactersstring-str-bool-url_encoded-string-replacement-bool-keep_basic_control_characters-string">remove_invisible_characters</a>
+</td></tr><tr><td><a href="#removeInvisibleCharactersstring-str-bool-url_encoded-string-replacement-bool-keep_basic_control_characters-string">removeInvisibleCharacters</a>
 </td><td><a href="#remove_irightstring-str-string-substring-string-encoding-string">remove_iright</a>
 </td><td><a href="#remove_leftstring-str-string-substring-string-encoding-string">remove_left</a>
 </td><td><a href="#remove_rightstring-str-string-substring-string-encoding-string">remove_right</a>
 </td></tr><tr><td><a href="#replacestring-str-string-search-string-replacement-bool-case_sensitive-string">replace</a>
 </td><td><a href="#replace_allstring-str-string-search-stringstring-replacement-bool-case_sensitive-string">replace_all</a>
-</td><td><a href="#replace_diamond_question_markstring-str-string-replacement_char-bool-process_invalid_utf8_chars-string">replace_diamond_question_mark</a>
+</td><td><a href="#replaceDiamondQuestionMarkstring-str-string-replacement_char-bool-process_invalid_utf8_chars-string">replaceDiamondQuestionMark</a>
 </td><td><a href="#rtrimstring-str-stringnull-chars-string">rtrim</a>
 </td></tr><tr><td><a href="#showsupportbool-useecho-stringvoid">showSupport</a>
 </td><td><a href="#single_chr_html_encodestring-char-bool-keep_ascii_chars-string-encoding-string">single_chr_html_encode</a>
@@ -585,7 +585,7 @@ EXAMPLE: <code>UTF8::chrMap([UTF8::class, 'strtolower'], 'Κόσμε'); // ['κ
 
 --------
 
-## chr_size_list(string $str): int[]
+## chrSizeList(string $str): int[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Generates an array of byte length of each character of a Unicode string.
 
@@ -594,7 +594,7 @@ Generates an array of byte length of each character of a Unicode string.
 3 byte => U+0800  - U+FFFF
 4 byte => U+10000 - U+10FFFF
 
-EXAMPLE: <code>UTF8::chr_size_list('中文空白-test'); // [3, 3, 3, 3, 1, 1, 1, 1, 1]</code>
+EXAMPLE: <code>UTF8::chrSizeList('中文空白-test'); // [3, 3, 3, 3, 1, 1, 1, 1, 1]</code>
 
 **Parameters:**
 - `T $str <p>The original unicode string.</p>`
@@ -604,13 +604,13 @@ EXAMPLE: <code>UTF8::chr_size_list('中文空白-test'); // [3, 3, 3, 3, 1, 1, 1
 
 --------
 
-## chr_to_decimal(string $char): int
+## chrToDecimal(string $char): int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Get a decimal code representation of a specific character.
 
 INFO: opposite to UTF8::decimal_to_chr()
 
-EXAMPLE: <code>UTF8::chr_to_decimal('§'); // 0xa7</code>
+EXAMPLE: <code>UTF8::chrToDecimal('§'); // 0xa7</code>
 
 **Parameters:**
 - `string $char <p>The input character.</p>`
@@ -620,11 +620,11 @@ EXAMPLE: <code>UTF8::chr_to_decimal('§'); // 0xa7</code>
 
 --------
 
-## chr_to_hex(int|string $char, string $prefix): string
+## chrToHex(int|string $char, string $prefix): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Get hexadecimal code point (U+xxxx) of a UTF-8 encoded character.
 
-EXAMPLE: <code>UTF8::chr_to_hex('§'); // U+00a7</code>
+EXAMPLE: <code>UTF8::chrToHex('§'); // U+00a7</code>
 
 **Parameters:**
 - `int|string $char <p>The input character</p>`
@@ -635,11 +635,11 @@ EXAMPLE: <code>UTF8::chr_to_hex('§'); // U+00a7</code>
 
 --------
 
-## chunk_split(string $str, int $chunk_length, string $end): string
+## chunkSplit(string $str, int $chunk_length, string $end): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Splits a string into smaller chunks and multiple lines, using the specified line ending character.
 
-EXAMPLE: <code>UTF8::chunk_split('ABC-ÖÄÜ-中文空白-κόσμε', 3); // "ABC\r\n-ÖÄ\r\nÜ-中\r\n文空白\r\n-κό\r\nσμε"</code>
+EXAMPLE: <code>UTF8::chunkSplit('ABC-ÖÄÜ-中文空白-κόσμε', 3); // "ABC\r\n-ÖÄ\r\nÜ-中\r\n文空白\r\n-κό\r\nσμε"</code>
 
 **Parameters:**
 - `T $str <p>The original string to be split.</p>`
@@ -651,7 +651,7 @@ EXAMPLE: <code>UTF8::chunk_split('ABC-ÖÄÜ-中文空白-κόσμε', 3); // "
 
 --------
 
-## clean(string $str, bool $remove_bom, bool $normalize_whitespace, bool $normalize_msword, bool $keep_non_breaking_space, bool $replace_diamond_question_mark, bool $remove_invisible_characters, bool $remove_invisible_characters_url_encoded): string
+## clean(string $str, bool $removeBom, bool $normalizeWhitespace, bool $normalizeMsWord, bool $keep_non_breaking_space, bool $replaceDiamondQuestionMark, bool $removeInvisibleCharacters, bool $removeInvisibleCharacters_url_encoded): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Accepts a string and removes all non-UTF-8 characters from it + extras if needed.
 
@@ -659,22 +659,22 @@ EXAMPLE: <code>UTF8::clean("\xEF\xBB\xBF„Abcdef\xc2\xa0\x20…” — 😃 - D
 
 **Parameters:**
 - `string $str <p>The string to be sanitized.</p>`
-- `bool $remove_bom [optional] <p>Set to true, if you need to remove
+- `bool $removeBom [optional] <p>Set to true, if you need to remove
 UTF-BOM.</p>`
-- `bool $normalize_whitespace [optional] <p>Set to true, if you need to normalize the
+- `bool $normalizeWhitespace [optional] <p>Set to true, if you need to normalize the
 whitespace.</p>`
-- `bool $normalize_msword [optional] <p>Set to true, if you need to normalize MS
+- `bool $normalizeMsWord [optional] <p>Set to true, if you need to normalize MS
 Word chars e.g.: "…"
 => "..."</p>`
 - `bool $keep_non_breaking_space [optional] <p>Set to true, to keep non-breaking-spaces,
 in
 combination with
-$normalize_whitespace</p>`
-- `bool $replace_diamond_question_mark [optional] <p>Set to true, if you need to remove diamond
+$normalizeWhitespace</p>`
+- `bool $replaceDiamondQuestionMark [optional] <p>Set to true, if you need to remove diamond
 question mark e.g.: "�"</p>`
-- `bool $remove_invisible_characters [optional] <p>Set to false, if you not want to remove
+- `bool $removeInvisibleCharacters [optional] <p>Set to false, if you not want to remove
 invisible characters e.g.: "\0"</p>`
-- `bool $remove_invisible_characters_url_encoded [optional] <p>Set to true, if you not want to remove
+- `bool $removeInvisibleCharacters_url_encoded [optional] <p>Set to true, if you not want to remove
 invisible url encoded characters e.g.: "%0B"<br> WARNING:
 maybe contains false-positives e.g. aa%0Baa -> aaaa.
 </p>`
@@ -1265,13 +1265,13 @@ EXAMPLE: <code>UTF8::fits_inside('κόσμε', 6); // false</code>
 
 --------
 
-## fix_simple_utf8(string $str): string
+## fixSimpleUtf8(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Try to fix simple broken UTF-8 strings.
 
 INFO: Take a look at "UTF8::fix_utf8()" if you need a more advanced fix for broken UTF-8 strings.
 
-EXAMPLE: <code>UTF8::fix_simple_utf8('DÃ¼sseldorf'); // 'Düsseldorf'</code>
+EXAMPLE: <code>UTF8::fixSimpleUtf8('DÃ¼sseldorf'); // 'Düsseldorf'</code>
 
 If you received an UTF-8 string that was converted from Windows-1252 as it was ISO-8859-1
 (ignoring Windows-1252 chars from 80 to 9F) use this function to fix it.
@@ -1424,7 +1424,7 @@ Returns true if the string contains whitespace, false otherwise.
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts a hexadecimal value into a UTF-8 character.
 
-INFO: opposite to UTF8::chr_to_hex()
+INFO: opposite to UTF8::chrToHex()
 
 EXAMPLE: <code>UTF8::hex_to_chr('U+00a7'); // '§'</code>
 
@@ -1440,7 +1440,7 @@ EXAMPLE: <code>UTF8::hex_to_chr('U+00a7'); // '§'</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts hexadecimal U+xxxx code point representation to integer.
 
-INFO: opposite to UTF8::int_to_hex()
+INFO: opposite to UTF8::intToHex()
 
 EXAMPLE: <code>UTF8::hex_to_int('U+00f1'); // 241</code>
 
@@ -1806,13 +1806,13 @@ __nothing__
 
 --------
 
-## int_to_hex(int $int, string $prefix): string
+## intToHex(int $int, string $prefix): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts Integer to hexadecimal U+xxxx code point representation.
 
 INFO: opposite to UTF8::hex_to_int()
 
-EXAMPLE: <code>UTF8::int_to_hex(241); // 'U+00f1'</code>
+EXAMPLE: <code>UTF8::intToHex(241); // 'U+00f1'</code>
 
 **Parameters:**
 - `int $int <p>The integer to be converted to hexadecimal code point.</p>`
@@ -2412,11 +2412,11 @@ here.</p>`
 
 --------
 
-## normalize_msword(string $str): string
+## normalizeMsWord(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Normalize some MS Word special characters.
 
-EXAMPLE: <code>UTF8::normalize_msword('„Abcdef…”'); // '"Abcdef..."'</code>
+EXAMPLE: <code>UTF8::normalizeMsWord('„Abcdef…”'); // '"Abcdef..."'</code>
 
 **Parameters:**
 - `string $str <p>The string to be normalized.</p>`
@@ -2426,11 +2426,11 @@ EXAMPLE: <code>UTF8::normalize_msword('„Abcdef…”'); // '"Abcdef..."'</code
 
 --------
 
-## normalize_whitespace(string $str, bool $keep_non_breaking_space, bool $keep_bidi_unicode_controls, bool $normalize_control_characters): string
+## normalizeWhitespace(string $str, bool $keep_non_breaking_space, bool $keep_bidi_unicode_controls, bool $normalize_control_characters): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Normalize the whitespace.
 
-EXAMPLE: <code>UTF8::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true); // "abc-\xc2\xa0-öäü- -"</code>
+EXAMPLE: <code>UTF8::normalizeWhitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true); // "abc-\xc2\xa0-öäü- -"</code>
 
 **Parameters:**
 - `string $str <p>The string to be normalized.</p>`
@@ -2565,11 +2565,11 @@ Replaces all occurrences of $pattern in $str by $replacement.
 
 --------
 
-## remove_bom(string $str): string
+## removeBom(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove the BOM from UTF-8 / UTF-16 / UTF-32 strings.
 
-EXAMPLE: <code>UTF8::remove_bom("\xEF\xBB\xBFΜπορώ να"); // 'Μπορώ να'</code>
+EXAMPLE: <code>UTF8::removeBom("\xEF\xBB\xBFΜπορώ να"); // 'Μπορώ να'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -2636,13 +2636,13 @@ Returns a new string with the prefix $substring removed, if present and case-ins
 
 --------
 
-## remove_invisible_characters(string $str, bool $url_encoded, string $replacement, bool $keep_basic_control_characters): string
+## removeInvisibleCharacters(string $str, bool $url_encoded, string $replacement, bool $keep_basic_control_characters): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove invisible characters from a string.
 
 e.g.: This prevents sandwiching null characters getSubstringBetween ascii characters, like Java\0script.
 
-EXAMPLE: <code>UTF8::remove_invisible_characters("κόσ\0με"); // 'κόσμε'</code>
+EXAMPLE: <code>UTF8::removeInvisibleCharacters("κόσ\0με"); // 'κόσμε'</code>
 
 copy&past from https://github.com/bcit-ci/CodeIgniter/blob/develop/system/core/Common.php
 
@@ -2734,11 +2734,11 @@ Replaces all occurrences of $search in $str by $replacement.
 
 --------
 
-## replace_diamond_question_mark(string $str, string $replacement_char, bool $process_invalid_utf8_chars): string
+## replaceDiamondQuestionMark(string $str, string $replacement_char, bool $process_invalid_utf8_chars): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replace the diamond question mark (�) and invalid-UTF8 chars with the replacement.
 
-EXAMPLE: <code>UTF8::replace_diamond_question_mark('中文空白�', ''); // '中文空白'</code>
+EXAMPLE: <code>UTF8::replaceDiamondQuestionMark('中文空白�', ''); // '中文空白'</code>
 
 **Parameters:**
 - `string $str <p>The input string</p>`

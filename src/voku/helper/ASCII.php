@@ -443,15 +443,15 @@ final class ASCII
      * Accepts a string and removes all non-UTF-8 characters from it + extras if needed.
      *
      * @param string $str                         <p>The string to be sanitized.</p>
-     * @param bool   $normalize_whitespace        [optional] <p>Set to true, if you need to normalize the
+     * @param bool   $normalizeWhitespace        [optional] <p>Set to true, if you need to normalize the
      *                                            whitespace.</p>
-     * @param bool   $normalize_msword            [optional] <p>Set to true, if you need to normalize MS Word chars
+     * @param bool   $normalizeMsWord            [optional] <p>Set to true, if you need to normalize MS Word chars
      *                                            e.g.: "…"
      *                                            => "..."</p>
      * @param bool   $keep_non_breaking_space     [optional] <p>Set to true, to keep non-breaking-spaces, in
      *                                            combination with
-     *                                            $normalize_whitespace</p>
-     * @param bool   $remove_invisible_characters [optional] <p>Set to false, if you not want to remove invisible
+     *                                            $normalizeWhitespace</p>
+     * @param bool   $removeInvisibleCharacters [optional] <p>Set to false, if you not want to remove invisible
      *                                            characters e.g.: "\0"</p>
      *
      * @psalm-pure
@@ -461,10 +461,10 @@ final class ASCII
      */
     public static function clean(
         string $str,
-        bool $normalize_whitespace = true,
+        bool $normalizeWhitespace = true,
         bool $keep_non_breaking_space = false,
-        bool $normalize_msword = true,
-        bool $remove_invisible_characters = true
+        bool $normalizeMsWord = true,
+        bool $removeInvisibleCharacters = true
     ): string {
         // http://stackoverflow.com/questions/1401317/remove-non-utf8-characters-from-string
         // caused connection reset problem on larger strings
@@ -482,16 +482,16 @@ final class ASCII
         /x';
         $str = (string) \preg_replace($regex, '$1', $str);
 
-        if ($normalize_whitespace) {
-            $str = self::normalize_whitespace($str, $keep_non_breaking_space);
+        if ($normalizeWhitespace) {
+            $str = self::normalizeWhitespace($str, $keep_non_breaking_space);
         }
 
-        if ($normalize_msword) {
-            $str = self::normalize_msword($str);
+        if ($normalizeMsWord) {
+            $str = self::normalizeMsWord($str);
         }
 
-        if ($remove_invisible_characters) {
-            $str = self::remove_invisible_characters($str);
+        if ($removeInvisibleCharacters) {
+            $str = self::removeInvisibleCharacters($str);
         }
 
         return $str;
@@ -529,71 +529,66 @@ final class ASCII
      * equivalents.
      *
      * EXAMPLE: <code>
-     * ASCII::normalize_msword('„Abcdef…”'); // '"Abcdef..."'
+     * ASCII::normalizeMsWord('„Abcdef…”'); // '"Abcdef..."'
      * </code>
      *
-     * @param string $str <p>The string to be normalized.</p>
+     * @param string $str The string to be normalized.
      *
      * @psalm-pure
      *
-     * @return string
-     *                <p>A string with normalized characters for commonly used chars in Word documents.</p>
+     * @return string A string with normalized characters for commonly used chars in Word documents.
      */
-    public static function normalize_msword(string $str): string
+    public static function normalizeMsWord(string $str): string
     {
         if ($str === '') {
             return '';
         }
 
-        static $MSWORD_CACHE = ['orig' => [], 'replace' => []];
+        static $msWordCache = ['orig' => [], 'replace' => []];
 
-        if (empty($MSWORD_CACHE['orig'])) {
+        if (empty($msWordCache['orig'])) {
             self::prepareAsciiMaps();
 
             $map = self::$ASCII_MAPS[self::EXTRA_MSWORD_CHARS_LANGUAGE_CODE] ?? [];
 
-            $MSWORD_CACHE = [
-                'orig'    => \array_keys($map),
-                'replace' => \array_values($map),
+            $msWordCache = [
+                'orig'    => array_keys($map),
+                'replace' => array_values($map),
             ];
         }
 
-        return \str_replace($MSWORD_CACHE['orig'], $MSWORD_CACHE['replace'], $str);
+        return str_replace($msWordCache['orig'], $msWordCache['replace'], $str);
     }
 
+
     /**
-     * Normalize the whitespace.
+     * Normalizes the whitespace in a string by converting control characters and handling non-breaking spaces.
      *
-     * EXAMPLE: <code>
-     * ASCII::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true); // "abc-\xc2\xa0-öäü- -"
-     * </code>
-     *
-     * @param string $str                          <p>The string to be normalized.</p>
-     * @param bool   $keepNonBreakingSpace         [optional] <p>Set to true, to keep non-breaking-spaces.</p>
-     * @param bool   $keepBidiUnicodeControls      [optional] <p>Set to true, to keep non-printable (for the web)
-     *                                             bidirectional text chars.</p>
-     * @param bool   $normalize_control_characters [optional] <p>Set to true, to convert e.g. LINE-, PARAGRAPH-SEPARATOR with "\n" and LINE TABULATION with "\t".</p>
+     * @param string $str The input string to normalize.
+     * @param bool $keepNonBreakingSpace Whether to keep non-breaking spaces (default: false).
+     * @param bool $keepBidiUnicodeControls Whether to keep bidirectional Unicode controls (default: false).
+     * @param bool $normalizeControlCharacters Whether to convert control characters (default: false).
      *
      * @psalm-pure
      *
-     * @return string
-     *                <p>A string with normalized whitespace.</p>
+     * @return string A string with normalized whitespace.
      */
-    public static function normalize_whitespace(
+    public static function normalizeWhitespace(
         string $str,
         bool $keepNonBreakingSpace = false,
         bool $keepBidiUnicodeControls = false,
-        bool $normalize_control_characters = false
+        bool $normalizeControlCharacters = false
     ): string {
         if ($str === '') {
             return '';
         }
 
-        static $WHITESPACE_CACHE = [];
+        static $whitespaceCache = [];
         $cacheKey = (int) $keepNonBreakingSpace;
 
-        if ($normalize_control_characters) {
-            $str = \str_replace(
+        // Normalize control characters if requested
+        if ($normalizeControlCharacters) {
+            $str = str_replace(
                 [
                     "\x0d\x0c",     // 'END OF LINE'
                     "\xe2\x80\xa8", // 'LINE SEPARATOR'
@@ -612,75 +607,76 @@ final class ASCII
             );
         }
 
-        if (!isset($WHITESPACE_CACHE[$cacheKey])) {
+        // Retrieve or build whitespace map cache
+        if (!isset($whitespaceCache[$cacheKey])) {
             self::prepareAsciiMaps();
 
-            $WHITESPACE_CACHE[$cacheKey] = self::$ASCII_MAPS[self::EXTRA_WHITESPACE_CHARS_LANGUAGE_CODE] ?? [];
+            // Cache the whitespace characters based on whether non-breaking space is kept
+            $whitespaceCache[$cacheKey] = self::$ASCII_MAPS[self::EXTRA_WHITESPACE_CHARS_LANGUAGE_CODE] ?? [];
 
+            // If non-breaking space is to be kept, remove it from the cache
             if ($keepNonBreakingSpace) {
-                unset($WHITESPACE_CACHE[$cacheKey]["\xc2\xa0"]);
+                unset($whitespaceCache[$cacheKey]["\xc2\xa0"]);
             }
 
-            $WHITESPACE_CACHE[$cacheKey] = array_keys($WHITESPACE_CACHE[$cacheKey]);
+            // Convert cached characters to an array of their keys (characters)
+            $whitespaceCache[$cacheKey] = array_keys($whitespaceCache[$cacheKey]);
         }
 
+        // Remove bidirectional Unicode controls if necessary
         if (!$keepBidiUnicodeControls) {
-            static $BIDI_UNICODE_CONTROLS_CACHE = null;
+            static $bidiUnicodeControlsCache = null;
 
-            if ($BIDI_UNICODE_CONTROLS_CACHE === null) {
-                $BIDI_UNICODE_CONTROLS_CACHE = self::$BIDI_UNI_CODE_CONTROLS_TABLE;
+            if ($bidiUnicodeControlsCache === null) {
+                $bidiUnicodeControlsCache = self::$BIDI_UNI_CODE_CONTROLS_TABLE;
             }
 
-            $str = \str_replace($BIDI_UNICODE_CONTROLS_CACHE, '', $str);
+            $str = str_replace($bidiUnicodeControlsCache, '', $str);
         }
 
-        return \str_replace($WHITESPACE_CACHE[$cacheKey], ' ', $str);
+        // Replace whitespace characters with spaces
+        return str_replace($whitespaceCache[$cacheKey], ' ', $str);
     }
 
     /**
-     * Remove invisible characters from a string.
+     * Removes invisible characters from a string to prevent malicious code injection.
      *
-     * This prevents malicious code injection through null bytes or other control characters.
-     *
-     * copy&past from https://github.com/bcit-ci/CodeIgniter/blob/develop/system/core/Common.php
-     *
-     * @param string $str
-     * @param bool   $url_encoded
-     * @param string $replacement
-     * @param bool   $keep_basic_control_characters
+     * @param string $str The input string.
+     * @param bool $urlEncoded Whether to remove URL-encoded control characters (default: false).
+     *                         WARNING: May cause false positives (e.g., 'aa%0Baa' → 'aaaa').
+     * @param string $replacement The character used for replacement (default: '').
+     * @param bool $keepBasicControlCharacters Whether to keep basic control characters like [LRM] or [LSEP] (default: true).
      *
      * @psalm-pure
      *
-     * @return string
+     * @return string A sanitized string without invisible characters.
      */
-    public static function remove_invisible_characters(
+    public static function removeInvisibleCharacters(
         string $str,
-        bool $url_encoded = false,
+        bool $urlEncoded = false,
         string $replacement = '',
-        bool $keep_basic_control_characters = true
+        bool $keepBasicControlCharacters = true
     ): string {
-        // init
-        $non_displayables = [];
+        $patterns = [];
 
-        // every control character except:
-        // - newline (dec 10),
-        // - carriage return (dec 13),
-        // - horizontal tab (dec 09)
-        if ($url_encoded) {
-            $non_displayables[] = '/%0[0-8bcefBCEF]/'; // url encoded 00-08, 11, 12, 14, 15
-            $non_displayables[] = '/%1[0-9a-fA-F]/'; // url encoded 16-31
+        // Remove URL-encoded control characters if enabled
+        if ($urlEncoded) {
+            $patterns[] = '/%0[0-8bcefBCEF]/'; // URL-encoded 00-08, 11, 12, 14, 15
+            $patterns[] = '/%1[0-9a-fA-F]/';   // URL-encoded 16-31
         }
 
-        if ($keep_basic_control_characters) {
-            $non_displayables[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S'; // 00-08, 11, 12, 14-31, 127
+        // Remove ASCII control characters (except basic ones if enabled)
+        if ($keepBasicControlCharacters) {
+            $patterns[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S'; // ASCII 00-08, 11, 12, 14-31, 127
         } else {
-            $str = self::normalize_whitespace($str, false, false, true);
-            $non_displayables[] = '/[^\P{C}\s]/u';
+            $str = self::normalizeWhitespace($str, false, false, true);
+            $patterns[] = '/[^\P{C}\s]/u'; // Unicode control characters
         }
 
+        // Iteratively remove matching patterns
         do {
-            $str = (string) \preg_replace($non_displayables, $replacement, $str, -1, $count);
-        } while ($count !== 0);
+            $str = preg_replace($patterns, $replacement, $str, -1, $count);
+        } while ($count > 0);
 
         return $str;
     }
