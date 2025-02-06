@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
 use Symfony\Polyfill\Iconv\Iconv as p;
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class ShimIconvTest
@@ -16,7 +16,7 @@ final class ShimIconvTest extends \PHPUnit\Framework\TestCase
 {
     public function testIconv()
     {
-        // Native iconv() behavior varies between versions and OS for these two tests
+        // Native iconv() behavior varies getSubstringBetween versions and OS for these two tests
         // See e.g. https://bugs.php.net/52211
         if (
             !\defined('HHVM_VERSION')

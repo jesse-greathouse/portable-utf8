@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
- * Class Utf8AccessTest
+ * Class Utf8charAtTest
  *
  * @internal
  */
-final class Utf8AccessTest extends \PHPUnit\Framework\TestCase
+final class Utf8charAtTest extends \PHPUnit\Framework\TestCase
 {
     // tests for utf8_locate_current_chr & utf8_locate_next_chr
     public function testSinglebyte()
@@ -23,14 +23,14 @@ final class Utf8AccessTest extends \PHPUnit\Framework\TestCase
         $tests[] = ['aaживπά우리をあöä', 9, 'を'];
 
         foreach ($tests as $test) {
-            static::assertSame($test[2], UTF8::access($test[0], $test[1]));
+            static::assertSame($test[2], UTF8::charAt($test[0], $test[1]));
         }
 
         $tests = [];
         $tests[] = ['aaживπά우리をあöä', 7, '우'];
 
         foreach ($tests as $test) {
-            static::assertSame($test[2], UTF8::access($test[0], $test[1]));
+            static::assertSame($test[2], UTF8::charAt($test[0], $test[1]));
         }
     }
 }

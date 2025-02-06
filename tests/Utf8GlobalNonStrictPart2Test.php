@@ -2,10 +2,10 @@
 
 declare(strict_types=0);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\Bootup;
-use voku\helper\UTF8;
+use jessegreathouse\helper\Bootup;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class Utf8GlobalNonStrictPart2Test
@@ -601,13 +601,13 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
 
         static::assertSame(1, UTF8::strrpos('11--', '1-', 0, 'UTF-8', false));
         static::assertSame(2, UTF8::strrpos('-11--', '1-', 0, 'UTF-8', false));
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(UTF8::strrpos('한국어', '', 0, 'UTF-8', false));
         } else {
             static::assertSame(3, UTF8::strrpos('한국어', '', 0, 'UTF-8', false));
         }
         static::assertSame(1, UTF8::strrpos('한국어', '국', 0, 'UTF8', true));
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(UTF8::strrpos('한국어', ''));
         } else {
             static::assertSame(3, UTF8::strrpos('한국어', ''));
@@ -1094,19 +1094,19 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
 
         // ---
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             static::assertFalse(@\substr_count('', ''));
             static::assertFalse(UTF8::substr_count('', ''));
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             static::assertFalse(@\substr_count('', '', 1));
             static::assertFalse(UTF8::substr_count('', '', 1));
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertNull(@\substr_count('', '', 1, 1));
@@ -1116,11 +1116,11 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
             }
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(UTF8::substr_count('', '', 1, 1));
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertNull(@\substr_count('', 'test', 1, 1));
@@ -1134,7 +1134,7 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
         static::assertSame(0, UTF8::substr_count('  ', 'test', 1, 1));
         static::assertSame(0, \substr_count('  ', 'test', 1, 1));
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertNull(@\substr_count('test', '', 1, 1));

@@ -2,11 +2,11 @@
 
 declare(strict_types=0);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
 use Normalizer as n;
 use Symfony\Polyfill\Intl\Grapheme\Grapheme as p;
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class ShimIntlTest
@@ -31,7 +31,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
 
     public function testGraphemeExtract()
     {
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(p::grapheme_extract('abc', 1, -1));
         }
 
@@ -89,7 +89,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
         //self::assertSame( false, grapheme_substr($c,  1, -4) );
         static::assertSame('j', \grapheme_substr($c, -2, -1));
         static::assertSame('', \grapheme_substr($c, -2, -2));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame('', \grapheme_substr($c, 5, 0));
             static::assertSame('', \grapheme_substr($c, -5, 0));
         } else {
@@ -101,14 +101,14 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
         static::assertSame('jà', p::grapheme_substr($c, -2));
         static::assertSame('jà', p::grapheme_substr($c, -2, 3));
         static::assertSame('', p::grapheme_substr($c, -1, 0));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame('', p::grapheme_substr($c, 1, -4));
         } else {
             static::assertFalse(p::grapheme_substr($c, 1, -4));
         }
         static::assertSame('j', p::grapheme_substr($c, -2, -1));
         static::assertSame('', p::grapheme_substr($c, -2, -2));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame('', p::grapheme_substr($c, 5, 0));
             static::assertSame('', p::grapheme_substr($c, -5, 0));
         } else {
@@ -120,14 +120,14 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
         static::assertSame('jà', p::grapheme_substr($c, -2, 2147483647));
         static::assertSame('jà', p::grapheme_substr($c, -2, 3));
         static::assertSame('', p::grapheme_substr($c, -1, 0));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame('', p::grapheme_substr($c, 1, -4));
         } else {
             static::assertFalse(p::grapheme_substr($c, 1, -4));
         }
         static::assertSame('j', p::grapheme_substr($c, -2, -1));
         static::assertSame('', p::grapheme_substr($c, -2, -2));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame('', p::grapheme_substr($c, 5, 0));
             static::assertSame('', p::grapheme_substr($c, -5, 0));
         } else {
@@ -138,7 +138,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
 
     public function testGraphemeStrpos()
     {
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame(0, \grapheme_strpos('abc', ''));
             static::assertFalse(\grapheme_strpos('abc', 'd'));
             static::assertFalse(\grapheme_strpos('abc', 'a', 3));
@@ -161,7 +161,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
 
         static::assertSame(1, \grapheme_strpos('한국어', '국'));
         static::assertSame(3, \grapheme_stripos('DÉJÀ', 'à'));
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame(3, \grapheme_strrpos('한국어', '')); // ?
         } else {
             static::assertFalse(\grapheme_strrpos('한국어', ''));
@@ -169,7 +169,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
         static::assertSame(1, \grapheme_strrpos('한국어', '국'));
         static::assertSame(3, \grapheme_strripos('DÉJÀ', 'à'));
 
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame(0, p::grapheme_strpos('abc', ''));
         } else {
             static::assertFalse(p::grapheme_strpos('abc', ''));
@@ -191,7 +191,7 @@ final class ShimIntlTest extends \PHPUnit\Framework\TestCase
         static::assertSame(1, p::grapheme_strpos('한국어', '국'));
         static::assertSame(3, p::grapheme_stripos('DÉJÀ', 'à'));
 
-        if (\voku\helper\Bootup::is_php('8.0')) {
+        if (\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertSame(3, p::grapheme_strrpos('한국어', ''));
         } else {
             static::assertFalse(p::grapheme_strrpos('한국어', ''));

@@ -1,11 +1,11 @@
 includes:
     - phar://%currentWorkingDirectory%/vendor/phpstan/phpstan/phpstan.phar/conf/bleedingEdge.neon
-    - %currentWorkingDirectory%/vendor/voku/phpstan-rules/rules.neon
+    - %currentWorkingDirectory%/vendor/jessegreathouse/phpstan-rules/rules.neon
 parameters:
     level: 8
     paths:
         - %currentWorkingDirectory%/src/
-    voku:
+    jessegreathouse:
         classesNotInIfConditions: [
             AbstractValueObject
         ]
@@ -34,7 +34,7 @@ parameters:
     bootstrapFiles:
         - %currentWorkingDirectory%/bootstrap.php
     ignoreErrors:
-        - '#voku\\helper\\UTF8::substr_replace\(\) should return TSubstrReplace#'
+        - '#jessegreathouse\\helper\\UTF8::substr_replace\(\) should return TSubstrReplace#'
         - '#readonly property cannot have a default value#'
         - '#should return int<0, max>\|false but returns int\.#'
         - '#should return int<0, max>\|false but returns int\|false\.#'

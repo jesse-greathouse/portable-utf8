@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
 //use Normalizer as n;
 use Symfony\Polyfill\Intl\Normalizer\Normalizer as n;
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class ZNormalizationTest

@@ -34,7 +34,7 @@
 
 - optimize phpdocs
 - optimize "from"-encoding in "UTF8::encode()"
-- fix error handling in "UTF8::str_split()" for PHP >= 8.0
+- fix error handling in "UTF8::strSplit()" for PHP >= 8.0
 - fix error handling in "UTF8::str_capitalize_name_helper()" for PHP >= 8.0
 
 ### 6.0.5 (2022-08-10)
@@ -65,7 +65,7 @@ Removed:
 - Bootup::filterRequestUri();
 - UTF8::GRAPHEME_CLUSTER_RX
 - UTF8::chr_to_int() (please use UTF8::chr_to_decimal())
-- UTF8::hasBom() (please use UTF8::string_has_bom())
+- UTF8::hasBom() (please use UTF8::hasBom())
 - UTF8::html_decode() (please use UTF8::html_entity_decode())
 - UTF8::int_to_chr() (please use UTF8::decimal_to_chr())
 - UTF8::isAscii() (please use UTF8::is_ascii())
@@ -81,7 +81,7 @@ Removed:
 - UTF8::lowerCaseFirst() (please use UTF8::lcfirst())
 - UTF8::normalizeEncoding() (please use UTF8::normalize_encoding())
 - UTF8::removeBOM() (please use UTF8::remove_bom())
-- UTF8::split() (please use UTF8::str_split())
+- UTF8::split() (please use UTF8::strSplit())
 - UTF8::str_begins() (please use UTF8::str_starts_with())
 - UTF8::str_ends() (please use UTF8::str_ends_with())
 - UTF8::str_ibegins() (please use UTF8::str_istarts_with())
@@ -186,8 +186,8 @@ Fixed:
 - fix "UTF8::get_unique_string()" -> use "mt_rand" as fallback
 - fix "UTF8::strtr()" -> now it works also with arrays
 - fix phpdoc for "UTF8::normalize_line_ending()"
-- fix phpdoc for "UTF8::split()" & "UTF8::str_split()"
-- add "UTF8::str_split_array()"
+- fix phpdoc for "UTF8::split()" & "UTF8::strSplit()"
+- add "UTF8::strSplitArray()"
 - add "UTF8::stripos_in_byte()"
 - add "UTF8::emoji_from_country_code()"
 - add many new tests
@@ -241,7 +241,7 @@ Fixed:
 
 ### 5.4.28 (2019-11-17)
 
-- use "mb_str_split" with PHP >= 7.4 + mbstring support (performance++)
+- use "mb_strSplit" with PHP >= 7.4 + mbstring support (performance++)
 - improve performance from "UTF8::string()" (use UTF8::html_entity_decode() for the full string)
 - fix errors reported by phpstan (level 7) / psalm
 
@@ -366,7 +366,7 @@ Fixed:
 ### 5.4.4 (2019-04-15)
 
 - optimize performance for UTF8::rawurldecode() and UTF8::urldecode()
-- optimize "UTF8::str_split_pattern()" with limit usage
+- optimize "UTF8::strSplit_pattern()" with limit usage
 - fix warnings detected by psalm && phpstan && phpstorm
 
 ### 5.4.3 (2019-03-05)

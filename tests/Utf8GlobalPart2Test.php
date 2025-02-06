@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\Bootup;
-use voku\helper\UTF8;
+use jessegreathouse\helper\Bootup;
+use jessegreathouse\helper\UTF8;
 
 /**
  * @internal
@@ -205,7 +205,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         $text = 'This is a Simple text.';
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             static::assertFalse(@\strpbrk($text, ''));
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
@@ -289,7 +289,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
             // php compatible tests
 
-            if (!\voku\helper\Bootup::is_php('8.0')) {
+            if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertFalse(@\strpos('abc', ''));
                 static::assertFalse(UTF8::strpos('abc', ''));
@@ -512,7 +512,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         static::assertSame(1, UTF8::strrpos('11--', '1-', 0, 'UTF-8', false));
         static::assertSame(2, UTF8::strrpos('-11--', '1-', 0, 'UTF-8', false));
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(UTF8::strrpos('한국어', '', 0, 'UTF-8', false));
             static::assertFalse(UTF8::strrpos('한국어', ''));
         } else {
@@ -905,13 +905,13 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
     {
         // php compatible tests
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
             static::assertFalse(@\substr_count('', ''));
             static::assertFalse(UTF8::substr_count('', ''));
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertFalse(@\substr_count('', '', '1')); // offset (int) is encoding (string) :/
@@ -923,7 +923,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         static::assertFalse(UTF8::substr_count('', '', 1));
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertFalse(@\substr_count('', '', ''));  // offset (int) is encoding (string) :/
@@ -935,7 +935,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         static::assertFalse(UTF8::substr_count('', '', 1, 1));
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertFalse(@\substr_count('', 'test', '1')); // offset (int) is encoding (string) + last parameter is not available :/
@@ -947,7 +947,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         static::assertSame(0, UTF8::substr_count('', 'test', 1, 1));
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
                 static::assertFalse(@\substr_count('test', '', '1')); // offset (int) is encoding (string) + last parameter is not available :/

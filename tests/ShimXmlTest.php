@@ -2,10 +2,10 @@
 
 declare(strict_types=0);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
 use Symfony\Polyfill\Php72\Php72 as p;
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class ShimXmlTest

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class Utf8StrriposTest
@@ -15,7 +15,7 @@ final class Utf8StrriposTest extends \PHPUnit\Framework\TestCase
 {
     public function testUtf8()
     {
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(\strripos('', ''));
             static::assertFalse(\strripos(' ', ''));
         } else {
@@ -23,7 +23,7 @@ final class Utf8StrriposTest extends \PHPUnit\Framework\TestCase
             static::assertSame(1, \strripos(' ', ''));
         }
         static::assertFalse(\strripos('', ' '));
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             static::assertFalse(\strripos('DJ', ''));
         } else {
             static::assertSame(2, \strripos('DJ', ''));

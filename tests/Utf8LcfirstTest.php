@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\UTF8 as u;
+use jessegreathouse\helper\UTF8 as u;
 
 /**
  * Class Utf8LcfirstTest

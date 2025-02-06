@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class Utf8TestsFromStringyTest
@@ -50,7 +50,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
     /**
      * @return \Iterator
      */
-    public function betweenProvider(): \Iterator
+    public function getSubstringBetweenProvider(): \Iterator
     {
         yield ['', 'foo', '{', '}'];
         yield ['', '{foo', '{', '}'];
@@ -1157,7 +1157,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         yield ['foo bar', 'foo bar', 'oo'];
         yield ['foo bar', 'foo bar', 'oo bar'];
         yield ['oo bar', 'foo bar', UTF8::first_char('foo bar', 1), 'UTF-8'];
-        yield ['oo bar', 'foo bar', UTF8::char_at('foo bar', 0), 'UTF-8'];
+        yield ['oo bar', 'foo bar', UTF8::charAt('foo bar', 0), 'UTF-8'];
         yield ['fòô bàř', 'fòô bàř', '', 'UTF-8'];
         yield ['òô bàř', 'fòô bàř', 'f', 'UTF-8'];
         yield ['bàř', 'fòô bàř', 'fòô ', 'UTF-8'];
@@ -1176,7 +1176,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         yield ['foo bar', 'foo bar', 'ba'];
         yield ['foo bar', 'foo bar', 'foo ba'];
         yield ['foo ba', 'foo bar', UTF8::str_last_char('foo bar', 1), 'UTF-8'];
-        yield ['foo ba', 'foo bar', UTF8::char_at('foo bar', 6), 'UTF-8'];
+        yield ['foo ba', 'foo bar', UTF8::charAt('foo bar', 6), 'UTF-8'];
         yield ['fòô bàř', 'fòô bàř', '', 'UTF-8'];
         yield ['fòô bà', 'fòô bàř', 'ř', 'UTF-8'];
         yield ['fòô', 'fòô bàř', ' bàř', 'UTF-8'];
@@ -1813,7 +1813,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testAt($expected, $str, $index, $encoding = '')
     {
-        $result = UTF8::char_at($str, $index, $encoding);
+        $result = UTF8::charAt($str, $index, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -1912,7 +1912,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider betweenProvider()
+     * @dataProvider getSubstringBetweenProvider()
      *
      * @param          $expected
      * @param          $str
@@ -1923,7 +1923,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testBetween($expected, $str, $start, $end, $offset = 0, $encoding = '')
     {
-        $result = UTF8::between($str, $start, $end, $offset, $encoding);
+        $result = UTF8::getSubstringBetween($str, $start, $end, $offset, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2025,7 +2025,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testCountSubstr($expected, $str, $substring, $caseSensitive = true, $encoding = '')
     {
-        $result = UTF8::substr_count_simple($str, $substring, $caseSensitive, $encoding);
+        $result = UTF8::countSubstring($str, $substring, $caseSensitive, $encoding);
         static::assertSame($expected, $result, 'tested:' . $str);
     }
 
@@ -3299,7 +3299,7 @@ d
      */
     public function testSplit($expected, $str, $pattern, $limit = -1)
     {
-        $result = UTF8::str_split_pattern($str, $pattern, $limit);
+        $result = UTF8::strSplit_pattern($str, $pattern, $limit);
 
         static::assertTrue(\is_array($result));
         foreach ($result as $string) {

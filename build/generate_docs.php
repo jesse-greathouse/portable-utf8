@@ -3,8 +3,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/vendor/autoload.php';
 
-$readmeText = (new \voku\PhpReadmeHelper\GenerateApi())->generate(
-    __DIR__ . '/../src/voku/helper/UTF8.php',
+$readmeText = (new \jessegreathouse\PhpReadmeHelper\GenerateApi())->generate(
+    __DIR__ . '/../src/jessegreathouse/helper/UTF8.php',
     __DIR__ . '/docs/base.md'
 );
 

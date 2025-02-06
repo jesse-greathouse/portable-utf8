@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\UTF8;
-use voku\helper\UTF8 as u;
+use jessegreathouse\helper\UTF8;
+use jessegreathouse\helper\UTF8 as u;
 
 /**
  * Class Utf8StristrTest
@@ -56,7 +56,7 @@ final class Utf8StristrTest extends \PHPUnit\Framework\TestCase
 
     public function testEmptySearch()
     {
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             $str = 'iñtërnâtiônàlizætiøn';
             $search = '';
             static::assertFalse(u::stristr($str, $search));
@@ -68,7 +68,7 @@ final class Utf8StristrTest extends \PHPUnit\Framework\TestCase
 
         // ---
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             $str = 'iñtërnâtiônàlizætiøn';
             $search = '';
             static::assertFalse(UTF8::stristr($str, $search));
@@ -90,7 +90,7 @@ final class Utf8StristrTest extends \PHPUnit\Framework\TestCase
 
         // ---
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             $str = 'int';
             $search = null;
             static::assertFalse(UTF8::stristr($str, (string) $search));
@@ -100,7 +100,7 @@ final class Utf8StristrTest extends \PHPUnit\Framework\TestCase
             static::assertSame($str, UTF8::stristr($str, (string) $search));
         }
 
-        if (!\voku\helper\Bootup::is_php('8.0')) {
+        if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             $str = 'int';
             $search = null;
             /** @noinspection PhpUsageOfSilenceOperatorInspection */

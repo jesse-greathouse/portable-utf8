@@ -1,15 +1,15 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
-[![Build Status](https://github.com/voku/portable-utf8/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/voku/portable-utf8/actions)
-[![Build status](https://ci.appveyor.com/api/projects/status/gnejjnk7qplr7f5t/branch/master?svg=true)](https://ci.appveyor.com/project/voku/portable-utf8/branch/master)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvoku%2Fportable-utf8.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvoku%2Fportable-utf8?ref=badge_shield)
-[![codecov.io](https://codecov.io/github/voku/portable-utf8/coverage.svg?branch=master)](https://codecov.io/github/voku/portable-utf8?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/997c9bb10d1c4791967bdf2e42013e8e)](https://www.codacy.com/app/voku/portable-utf8)
-[![Latest Stable Version](https://poser.pugx.org/voku/portable-utf8/v/stable)](https://packagist.org/packages/voku/portable-utf8) 
-[![Total Downloads](https://poser.pugx.org/voku/portable-utf8/downloads)](https://packagist.org/packages/voku/portable-utf8)
-[![License](https://poser.pugx.org/voku/portable-utf8/license)](https://packagist.org/packages/voku/portable-utf8)
+[![Build Status](https://github.com/jessegreathouse/portable-utf8/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/jessegreathouse/portable-utf8/actions)
+[![Build status](https://ci.appveyor.com/api/projects/status/gnejjnk7qplr7f5t/branch/master?svg=true)](https://ci.appveyor.com/project/jessegreathouse/portable-utf8/branch/master)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjessegreathouse%2Fportable-utf8.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjessegreathouse%2Fportable-utf8?ref=badge_shield)
+[![codecov.io](https://codecov.io/github/jessegreathouse/portable-utf8/coverage.svg?branch=master)](https://codecov.io/github/jessegreathouse/portable-utf8?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/997c9bb10d1c4791967bdf2e42013e8e)](https://www.codacy.com/app/jessegreathouse/portable-utf8)
+[![Latest Stable Version](https://poser.pugx.org/jessegreathouse/portable-utf8/v/stable)](https://packagist.org/packages/jessegreathouse/portable-utf8) 
+[![Total Downloads](https://poser.pugx.org/jessegreathouse/portable-utf8/downloads)](https://packagist.org/packages/jessegreathouse/portable-utf8)
+[![License](https://poser.pugx.org/jessegreathouse/portable-utf8/license)](https://packagist.org/packages/jessegreathouse/portable-utf8)
 [![Donate to this project using PayPal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/moelleken)
-[![Donate to this project using Patreon](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/voku)
+[![Donate to this project using Patreon](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/jessegreathouse)
 
 # 🉑 Portable UTF-8
 
@@ -51,7 +51,7 @@ Here you can test some basic functions from this library and you can compare som
 
 ## Alternative
 
-If you like a more Object Oriented Way to edit strings, then you can take a look at [voku/Stringy](https://github.com/voku/Stringy), it's a fork of "danielstjules/Stringy" but it used the "Portable UTF-8"-Class and some extra methods. 
+If you like a more Object Oriented Way to edit strings, then you can take a look at [jessegreathouse/Stringy](https://github.com/jessegreathouse/Stringy), it's a fork of "danielstjules/Stringy" but it used the "Portable UTF-8"-Class and some extra methods. 
 
 ```php
 // Standard library
@@ -64,11 +64,11 @@ mb_strtoupper('fòôbàř');    // 'FÒÔBÀŘ'
 mb_strlen('fòôbàř');        // '6'
 
 // Portable UTF-8
-use voku\helper\UTF8;
+use jessegreathouse\helper\UTF8;
 UTF8::strtoupper('fòôbàř');    // 'FÒÔBÀŘ'
 UTF8::strlen('fòôbàř');        // '6'
 
-// voku/Stringy
+// jessegreathouse/Stringy
 use Stringy\Stringy as S;
 $stringy = S::create('fòôbàř');
 $stringy->toUpperCase();    // 'FÒÔBÀŘ'
@@ -78,7 +78,7 @@ $stringy->length();         // '6'
 
 ## Install "Portable UTF-8" via "composer require"
 ```shell
-composer require voku/portable-utf8
+composer require jessegreathouse/portable-utf8
 ```
 
 If your project do not need some of the Symfony polyfills please use the `replace` section of your `composer.json`. 
@@ -160,9 +160,9 @@ The API from the "UTF8"-Class is written as small static methods that will match
 
 ## Class methods
 
-%__functions_index__voku\helper\UTF8__%
+%__functions_index__jessegreathouse\helper\UTF8__%
 
-%__functions_list__voku\helper\UTF8__%
+%__functions_list__jessegreathouse\helper\UTF8__%
 
 
 ## Unit Test
@@ -181,11 +181,11 @@ composer install
 
 ### Support
 
-For support and donations please visit [GitHub](https://github.com/voku/portable-utf8/) | [Issues](https://github.com/voku/portable-utf8/issues) | [PayPal](https://paypal.me/moelleken) | [Patreon](https://www.patreon.com/voku).
+For support and donations please visit [GitHub](https://github.com/jessegreathouse/portable-utf8/) | [Issues](https://github.com/jessegreathouse/portable-utf8/issues) | [PayPal](https://paypal.me/moelleken) | [Patreon](https://www.patreon.com/jessegreathouse).
 
-For status updates and release announcements please visit [Releases](https://github.com/voku/portable-utf8/releases) | [Twitter](https://twitter.com/suckup_de) | [Patreon](https://www.patreon.com/voku/posts).
+For status updates and release announcements please visit [Releases](https://github.com/jessegreathouse/portable-utf8/releases) | [Twitter](https://twitter.com/suckup_de) | [Patreon](https://www.patreon.com/jessegreathouse/posts).
 
-For professional support please contact [me](https://about.me/voku).
+For professional support please contact [me](https://about.me/jessegreathouse).
 
 ### Thanks
 
@@ -207,4 +207,4 @@ long run. As such, contributions such as unit tests, bug reports, comments or
 patches licensed under both licenses are really welcomed.
 
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvoku%2Fportable-utf8.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvoku%2Fportable-utf8?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjessegreathouse%2Fportable-utf8.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjessegreathouse%2Fportable-utf8?ref=badge_large)

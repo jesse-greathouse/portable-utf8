@@ -2,7 +2,7 @@
 
 declare(strict_types=0);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
 /**
  * Class HhvmTest

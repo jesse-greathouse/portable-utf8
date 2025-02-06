@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\Bootup;
-use voku\helper\UTF8;
+use jessegreathouse\helper\Bootup;
+use jessegreathouse\helper\UTF8;
 
 /**
  * @internal
@@ -90,7 +90,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         foreach ($testArray as $actualString => $testDataArray) {
             foreach ($testDataArray as $stringPos => $expectedString) {
-                static::assertSame($expectedString, UTF8::access($actualString, $stringPos), 'tested: ' . $actualString);
+                static::assertSame($expectedString, UTF8::charAt($actualString, $stringPos), 'tested: ' . $actualString);
             }
         }
     }
@@ -132,7 +132,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             'Κόσμε' => 'g',
         ];
 
-        $result = UTF8::array_change_key_case($array, \CASE_UPPER);
+        $result = UTF8::changeArrayKeyCase($array, \CASE_UPPER);
 
         $expected = [
             'FOO'   => 'e',
@@ -158,7 +158,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             'TEST-ẞ' => 'i',
         ];
 
-        $result = UTF8::array_change_key_case($array, \CASE_LOWER);
+        $result = UTF8::changeArrayKeyCase($array, \CASE_LOWER);
 
         $expected = [
             'foo'    => 'e',
@@ -2869,8 +2869,8 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
                 'error by ' . $count
             );
 
-            $test = UTF8::add_bom_to_string($test);
-            static::assertTrue(UTF8::string_has_bom($test));
+            $test = UTF8::addBomToString($test);
+            static::assertTrue(UTF8::hasBom($test));
         }
         unset($test);
     }
@@ -2958,7 +2958,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             "this is an invalid char '\xe9' here" => "this is an invalid char '' here",
             // invalid ASCII string
             "Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn" => 'IñtërnâtiônàlizætiønIñtërnâtiônàlizætiøn',
-            // invalid id between two and three
+            // invalid id getSubstringBetween two and three
             "Iñtërnâtiônàlizætiøn\xf8\xa1\xa1\xa1\xa1Iñtërnâtiônàlizætiøn" => 'IñtërnâtiônàlizætiønIñtërnâtiônàlizætiøn',
             //  invalid five octet sequence
             "Iñtërnâtiônàlizætiøn\xe2\x82\x28Iñtërnâtiônàlizætiøn" => 'Iñtërnâtiônàlizætiøn(Iñtërnâtiônàlizætiøn',
@@ -3136,19 +3136,19 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
                     '空',
                     '白',
                 ],
-                UTF8::str_split('中文空白')
+                UTF8::strSplit('中文空白')
             );
             static::assertSame(
                 [
                     '中文',
                     '空白',
                 ],
-                UTF8::str_split('中文空白', 2)
+                UTF8::strSplit('中文空白', 2)
             );
-            static::assertSame(['中文空白'], UTF8::str_split('中文空白', 4));
-            static::assertSame(['中文空白'], UTF8::str_split('中文空白', 8));
+            static::assertSame(['中文空白'], UTF8::strSplit('中文空白', 4));
+            static::assertSame(['中文空白'], UTF8::strSplit('中文空白', 8));
 
-            static::assertSame(['1234'], UTF8::str_split(1234, 8));
+            static::assertSame(['1234'], UTF8::strSplit(1234, 8));
         }
     }
 
@@ -3482,8 +3482,8 @@ abc	áßç	क際👽 	क際👽
             static::assertSame(
                 [],
                 \array_diff(
-                    UTF8::str_split($test),
-                    UTF8::str_split(UTF8::str_shuffle($test))
+                    UTF8::strSplit($test),
+                    UTF8::strSplit(UTF8::str_shuffle($test))
                 ),
                 'tested: ' . $test
             );
@@ -3617,7 +3617,7 @@ abc	áßç	क際👽 	क際👽
         }
 
         foreach ($tests as $before => $after) {
-            static::assertSame((string) $before, UTF8::binary_to_str(UTF8::str_to_binary($before)), 'tested: ' . $before);
+            static::assertSame((string) $before, UTF8::binaryToString(UTF8::str_to_binary($before)), 'tested: ' . $before);
         }
     }
 
@@ -3664,37 +3664,37 @@ abc	áßç	क際👽 	क際👽
     {
         static::assertSame(
             [0 => '12', 1 => '34'],
-            UTF8::str_split(1234, 2)
+            UTF8::strSplit(1234, 2)
         );
 
         static::assertSame(
             [[0 => '12', 1 => '34']],
-            UTF8::str_split_array([1234], 2)
+            UTF8::strSplitArray([1234], 2)
         );
 
         static::assertSame(
             [['1', '2', '3', '4']],
-            UTF8::str_split_array([1234], 1)
+            UTF8::strSplitArray([1234], 1)
         );
 
         static::assertSame(
             [[]],
-            UTF8::str_split_array([1234], 0)
+            UTF8::strSplitArray([1234], 0)
         );
 
         static::assertSame(
             [[]],
-            UTF8::str_split_array([1234], -1)
+            UTF8::strSplitArray([1234], -1)
         );
 
         static::assertSame(
             [0 => '12', 1 => '34'],
-            UTF8::str_split('1234', 2)
+            UTF8::strSplit('1234', 2)
         );
 
         static::assertSame(
             [[0 => '12', 1 => '34']],
-            UTF8::str_split_array(['1234'], 2)
+            UTF8::strSplitArray(['1234'], 2)
         );
 
         static::assertSame(
@@ -3702,12 +3702,12 @@ abc	áßç	क際👽 	क際👽
                 [0 => '12', 1 => '34'],
                 [0 => '56', 1 => '78'],
             ],
-            UTF8::str_split_array(['1234', '5678'], 2)
+            UTF8::strSplitArray(['1234', '5678'], 2)
         );
 
         static::assertSame(
             [],
-            UTF8::str_split('déjà', 0)
+            UTF8::strSplit('déjà', 0)
         );
 
         static::assertSame(
@@ -3717,14 +3717,14 @@ abc	áßç	क際👽 	क際👽
                 'j',
                 'à',
             ],
-            UTF8::str_split('déjà', 1)
+            UTF8::strSplit('déjà', 1)
         );
         static::assertSame(
             [
                 'dé',
                 'jà',
             ],
-            UTF8::str_split('déjà', 2)
+            UTF8::strSplit('déjà', 2)
         );
     }
 
@@ -3792,7 +3792,7 @@ abc	áßç	क際👽 	क際👽
         $testArray[$utf32_le_bom_only] = true;
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::string_has_bom($actual), 'error by ' . $actual);
+            static::assertSame($expected, UTF8::hasBom($actual), 'error by ' . $actual);
         }
     }
 
@@ -3872,14 +3872,14 @@ abc	áßç	क際👽 	क際👽
 
             static::assertFalse(UTF8::stripos('DÉJÀ', 'ä'));
             static::assertFalse(UTF8::stripos('DÉJÀ', ' '));
-            if (!\voku\helper\Bootup::is_php('8.0')) {
+            if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
                 static::assertFalse(UTF8::stripos('DÉJÀ', ''));
             } else {
                 static::assertSame(0, UTF8::stripos('DÉJÀ', ''));
             }
             static::assertFalse(UTF8::stripos('', 'ä'));
             static::assertFalse(UTF8::stripos('', ' '));
-            if (!\voku\helper\Bootup::is_php('8.0')) {
+            if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
                 static::assertFalse(UTF8::stripos('', ''));
             } else {
                 static::assertSame(0, UTF8::stripos('', ''));

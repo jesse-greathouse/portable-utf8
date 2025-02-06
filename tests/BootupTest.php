@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace voku\tests;
+namespace jessegreathouse\tests;
 
-use voku\helper\Bootup;
-use voku\helper\UTF8;
+use jessegreathouse\helper\Bootup;
+use jessegreathouse\helper\UTF8;
 
 /**
  * Class BootupTest
