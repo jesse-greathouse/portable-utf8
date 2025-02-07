@@ -33,22 +33,22 @@ final class ShimMbstringTest extends \PHPUnit\Framework\TestCase
         static::assertSame('UTF-8', p::mb_internal_encoding());
 
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        @p::mb_encode_mimeheader('');
-        static::assertTrue(true, 'mb_encode_mimeheader() is bugged. Please use iconv_mime_encode() instead');
+        @p::mb_encodeMimeHeader('');
+        static::assertTrue(true, 'mb_encodeMimeHeader() is bugged. Please use iconv_mime_encode() instead');
     }
 
     public function testmbConvertEncoding()
     {
-        static::assertSame(\utf8_decode('déjà'), p::mb_convert_encoding('déjà', 'Windows-1252'));
+        static::assertSame(\utf8Decode('déjà'), p::mb_convert_encoding('déjà', 'Windows-1252'));
         static::assertSame(\base64_encode('déjà'), p::mb_convert_encoding('déjà', 'Base64'));
         static::assertSame('&#23455;<&>d&eacute;j&agrave;', p::mb_convert_encoding('実<&>déjà', 'Html-entities'));
         static::assertSame('déjà', p::mb_convert_encoding(\base64_encode('déjà'), 'Utf-8', 'Base64'));
         static::assertSame('déjà', p::mb_convert_encoding('d&eacute;j&#224;', 'Utf-8', 'Html-entities'));
-        static::assertSame('déjà', p::mb_convert_encoding(\utf8_decode('déjà'), 'Utf-8', 'ASCII,ISO-2022-JP,UTF-8,ISO-8859-1'));
+        static::assertSame('déjà', p::mb_convert_encoding(\utf8Decode('déjà'), 'Utf-8', 'ASCII,ISO-2022-JP,UTF-8,ISO-8859-1'));
         static::assertSame(
             'déjà',
             p::mb_convert_encoding(
-                \utf8_decode('déjà'),
+                \utf8Decode('déjà'),
                 'Utf-8',
                 [
                     'ASCII',
@@ -278,6 +278,6 @@ final class ShimMbstringTest extends \PHPUnit\Framework\TestCase
     {
         static::assertSame(3, p::mb_strwidth("\0実"));
         static::assertSame(4, p::mb_strwidth('déjà'));
-        static::assertSame(4, p::mb_strwidth(\utf8_decode('déjà'), 'CP1252'));
+        static::assertSame(4, p::mb_strwidth(\utf8Decode('déjà'), 'CP1252'));
     }
 }

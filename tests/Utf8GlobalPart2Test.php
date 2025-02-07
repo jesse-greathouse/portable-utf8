@@ -1287,11 +1287,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         for ($i = 0; $i <= 2; ++$i) { // keep this loop for simple performance tests
             foreach ($tests as $before => $after) {
-                static::assertSame($after, UTF8::to_utf8(UTF8::to_iso8859($before)));
+                static::assertSame($after, UTF8::toUtf8(UTF8::toIso8859($before)));
             }
         }
 
-        static::assertSame($tests, UTF8::to_utf8(UTF8::to_iso8859($tests)));
+        static::assertSame($tests, UTF8::toUtf8(UTF8::toIso8859($tests)));
     }
 
     private function reactivateNativeUtf8Support()

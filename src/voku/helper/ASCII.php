@@ -498,29 +498,21 @@ final class ASCII
     }
 
     /**
-     * Checks if a string is 7 bit ASCII.
+     * Checks if a string is 7-bit ASCII.
      *
      * EXAMPLE: <code>
-     * ASCII::is_ascii('白'); // false
+     * ASCII::isAscii('白'); // false
      * </code>
      *
-     * @param string $str <p>The string to check.</p>
+     * @param string $str The string to check.
      *
      * @psalm-pure
      *
-     * @return bool
-     *              <p>
-     *              <strong>true</strong> if it is ASCII<br>
-     *              <strong>false</strong> otherwise
-     *              </p>
+     * @return bool 
+     *         true if the string is ASCII, false otherwise.
      */
-    public static function is_ascii(string $str): bool
-    {
-        if ($str === '') {
-            return true;
-        }
-
-        return !\preg_match('/' . self::$REGEX_ASCII . '/', $str);
+    public static function isAscii(string $str): bool {
+        return $str === '' || !preg_match('/' . self::$REGEX_ASCII . '/', $str);
     }
 
     /**
@@ -1097,7 +1089,7 @@ final class ASCII
 
         // check if we only have ASCII, first (better performance)
         $str_tmp = $str;
-        if (self::is_ascii($str)) {
+        if (self::isAscii($str)) {
             return $str;
         }
 
@@ -1107,7 +1099,7 @@ final class ASCII
         if (
             $str_tmp !== $str
             &&
-            self::is_ascii($str)
+            self::isAscii($str)
         ) {
             return $str;
         }
@@ -1130,7 +1122,7 @@ final class ASCII
                 if (
                     $str_tmp !== $str
                     &&
-                    self::is_ascii($str_tmp)
+                    self::isAscii($str_tmp)
                 ) {
                     return $str_tmp;
                 }

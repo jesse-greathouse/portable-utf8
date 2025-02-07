@@ -60,18 +60,15 @@ class Bootup
      *
      * INFO: https://stackoverflow.com/a/69207369/1155858
      *
-     * @param string $str
+     * @param string $str The input string to be sanitized.
      *
-     * @return false|string
+     * @return false|string The sanitized string, or false on failure.
      */
-    public static function filter_sanitize_string_polyfill(string $str)
+    public static function filterSanitizeStringPolyfill(string $str)
     {
-        $str = \preg_replace('/\x00|<[^>]*>?/', '', $str);
-        if ($str === null) {
-            return false;
-        }
+        $cleanedStr = preg_replace('/\x00|<[^>]*>?/', '', $str);
 
-        return \str_replace(["'", '"'], ['&#39;', '&#34;'], $str);
+        return $cleanedStr !== null ? str_replace(["'", '"'], ['&#39;', '&#34;'], $cleanedStr) : false;
     }
 
     /**

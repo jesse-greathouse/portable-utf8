@@ -1156,7 +1156,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         yield ['bar', 'foo bar', 'foo '];
         yield ['foo bar', 'foo bar', 'oo'];
         yield ['foo bar', 'foo bar', 'oo bar'];
-        yield ['oo bar', 'foo bar', UTF8::first_char('foo bar', 1), 'UTF-8'];
+        yield ['oo bar', 'foo bar', UTF8::firstChar('foo bar', 1), 'UTF-8'];
         yield ['oo bar', 'foo bar', UTF8::charAt('foo bar', 0), 'UTF-8'];
         yield ['fòô bàř', 'fòô bàř', '', 'UTF-8'];
         yield ['òô bàř', 'fòô bàř', 'f', 'UTF-8'];
@@ -1966,7 +1966,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testCollapseWhitespace($expected, $str)
     {
-        $result = UTF8::collapse_whitespace($str);
+        $result = UTF8::collapseWhitespace($str);
 
         static::assertSame($expected, $result);
     }
@@ -2171,43 +2171,43 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testExpected) {
-            static::assertSame($testExpected, UTF8::extract_text($testString, 'foobar'), 'tested: ' . $testString);
+            static::assertSame($testExpected, UTF8::extractText($testString, 'foobar'), 'tested: ' . $testString);
         }
 
         // ----------------
 
         $testString = 'this is only a Fork of UTF8';
-        static::assertSame('…Fork of UTF8', UTF8::extract_text($testString, 'Fork', 0), 'tested: ' . $testString);
+        static::assertSame('…Fork of UTF8', UTF8::extractText($testString, 'Fork', 0), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'this is only a Fork of UTF8';
-        static::assertSame('…a Fork of UTF8', UTF8::extract_text($testString, 'Fork', 5), 'tested: ' . $testString);
+        static::assertSame('…a Fork of UTF8', UTF8::extractText($testString, 'Fork', 5), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'This is only a Fork of UTF8, take a look at the new features.';
-        static::assertSame('…Fork of UTF8…', UTF8::extract_text($testString, 'UTF8', 15), 'tested: ' . $testString);
+        static::assertSame('…Fork of UTF8…', UTF8::extractText($testString, 'UTF8', 15), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'This is only a Fork of UTF8, take a look at the new features.';
-        static::assertSame('…only a Fork of UTF8, take a look…', UTF8::extract_text($testString, 'UTF8'), 'tested: ' . $testString);
+        static::assertSame('…only a Fork of UTF8, take a look…', UTF8::extractText($testString, 'UTF8'), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'This is only a Fork of UTF8, take a look at the new features.';
-        static::assertSame('This is only a Fork of UTF8, take…', UTF8::extract_text($testString), 'tested: ' . $testString);
+        static::assertSame('This is only a Fork of UTF8, take…', UTF8::extractText($testString), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'This is only a Fork of UTF8, take a look at the new features.';
-        static::assertSame('This…', UTF8::extract_text($testString, '', 0), 'tested: ' . $testString);
+        static::assertSame('This…', UTF8::extractText($testString, '', 0), 'tested: ' . $testString);
 
         // ----------------
 
         $testString = 'This is only a Fork of UTF8, take a look at the new features.';
-        static::assertSame('…UTF8, take a look at the new features.', UTF8::extract_text($testString, 'UTF8', 0), 'tested: ' . $testString);
+        static::assertSame('…UTF8, take a look at the new features.', UTF8::extractText($testString, 'UTF8', 0), 'tested: ' . $testString);
 
         // ----------------
 
@@ -2221,7 +2221,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
 
         $searchString = 'garden';
         foreach ($testArray as $testString => $testExpected) {
-            $result = UTF8::extract_text($testString, $searchString);
+            $result = UTF8::extractText($testString, $searchString);
             $result = UTF8::replace($result, $searchString, '<strong>' . $searchString . '</strong>');
 
             static::assertSame($testExpected, $result, 'tested: ' . $testString);
@@ -2239,7 +2239,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
 
         $searchString = 'The fox is jumping in the garden';
         foreach ($testArray as $testString => $testExpected) {
-            $result = UTF8::extract_text($testString, $searchString);
+            $result = UTF8::extractText($testString, $searchString);
             $result = UTF8::replace($result, $searchString, '<strong>' . $searchString . '</strong>');
 
             static::assertSame($testExpected, $result, 'tested: ' . $testString);
@@ -2256,7 +2256,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testFirst($expected, $str, $n, $encoding = '')
     {
-        $result = UTF8::first_char($str, $n, $encoding);
+        $result = UTF8::firstChar($str, $n, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2334,7 +2334,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testHtmlDecode($expected, $str, $flags = \ENT_COMPAT, $encoding = '')
     {
-        $result = UTF8::html_entity_decode($str, $flags, $encoding);
+        $result = UTF8htmlEntityDecode($str, $flags, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3403,7 +3403,7 @@ d
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::css_stripe_media_queries($testString));
+            static::assertSame($testResult, UTF8::cssStripMediaQueries($testString));
         }
     }
 
@@ -3416,19 +3416,19 @@ d
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::css_identifier($testString));
+            static::assertSame($testResult, UTF8::cssIdentifier($testString));
         }
 
-        static::assertStringContainsString('auto-generated-css-', UTF8::css_identifier(UTF8::bom()));
-        static::assertStringContainsString('foo', UTF8::css_identifier('<p>foo</p>', [], true));
-        static::assertStringContainsString('auto-generated-css-', UTF8::css_identifier('<p></p>', [], true));
+        static::assertStringContainsString('auto-generated-css-', UTF8::cssIdentifier(UTF8::bom()));
+        static::assertStringContainsString('foo', UTF8::cssIdentifier('<p>foo</p>', [], true));
+        static::assertStringContainsString('auto-generated-css-', UTF8::cssIdentifier('<p></p>', [], true));
 
         if (\method_exists(__CLASS__, 'assertStringContainsString')) {
-            static::assertStringContainsString('auto-generated-css-', UTF8::css_identifier());
-            static::assertStringContainsString('auto-generated-css-', UTF8::css_identifier(' '));
+            static::assertStringContainsString('auto-generated-css-', UTF8::cssIdentifier());
+            static::assertStringContainsString('auto-generated-css-', UTF8::cssIdentifier(' '));
         } else {
-            static::assertContains('auto-generated-css-', UTF8::css_identifier());
-            static::assertContains('auto-generated-css-', UTF8::css_identifier(' '));
+            static::assertContains('auto-generated-css-', UTF8::cssIdentifier());
+            static::assertContains('auto-generated-css-', UTF8::cssIdentifier(' '));
         }
     }
 
@@ -4042,7 +4042,7 @@ d
      */
     public function testTestregexReplace($expected, $str, $pattern, $replacement, $options = 'msr', $delimiter = '/', $encoding = '')
     {
-        $result = UTF8::regex_replace($str, $pattern, $replacement, $options, $delimiter);
+        $result = UTF8::regexReplace($str, $pattern, $replacement, $options, $delimiter);
 
         static::assertSame($expected, $result);
     }

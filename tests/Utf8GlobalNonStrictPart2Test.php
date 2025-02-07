@@ -491,27 +491,27 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual) {
-            static::assertSame($actual, UTF8::emoji_decode(UTF8::emoji_encode($actual)), 'tested: ' . $actual);
+            static::assertSame($actual, UTF8::emojiDecode(UTF8::emojiEncode($actual)), 'tested: ' . $actual);
         }
 
         foreach ($testArray as $actual) {
-            static::assertSame($actual, UTF8::emoji_decode(UTF8::emoji_encode($actual, true), true), 'tested: ' . $actual);
+            static::assertSame($actual, UTF8::emojiDecode(UTF8::emojiEncode($actual, true), true), 'tested: ' . $actual);
         }
 
-        static::assertSame('foo CHARACTER_OGRE', UTF8::emoji_encode('foo 👹', false));
-        static::assertSame('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', UTF8::emoji_encode('foo 👹', true));
+        static::assertSame('foo CHARACTER_OGRE', UTF8::emojiEncode('foo 👹', false));
+        static::assertSame('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', UTF8::emojiEncode('foo 👹', true));
 
-        static::assertSame('foo 👹', UTF8::emoji_decode('foo CHARACTER_OGRE', false));
-        static::assertSame('foo 👹', UTF8::emoji_decode('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', true));
+        static::assertSame('foo 👹', UTF8::emojiDecode('foo CHARACTER_OGRE', false));
+        static::assertSame('foo 👹', UTF8::emojiDecode('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', true));
     }
 
     public function testEmojiFromCountryCode()
     {
-        static::assertSame('🇩🇪', UTF8::emoji_from_country_code('DE'));
-        static::assertSame('🇯🇵', UTF8::emoji_from_country_code('JP'));
-        static::assertSame('🇯🇵', UTF8::emoji_from_country_code('Jp'));
-        static::assertSame('', UTF8::emoji_from_country_code('J'));
-        static::assertSame('', UTF8::emoji_from_country_code(''));
+        static::assertSame('🇩🇪', UTF8::emojiFromCountryCode('DE'));
+        static::assertSame('🇯🇵', UTF8::emojiFromCountryCode('JP'));
+        static::assertSame('🇯🇵', UTF8::emojiFromCountryCode('Jp'));
+        static::assertSame('', UTF8::emojiFromCountryCode('J'));
+        static::assertSame('', UTF8::emojiFromCountryCode(''));
     }
 
     public function testStrrichr()
@@ -949,43 +949,43 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
     public function testEncodeMimeheader()
     {
         if (Bootup::is_php('7.1')) {
-            $text = UTF8::encode_mimeheader('💻 Issue 192 - Machine learning library for php.');
+            $text = UTF8::encodeMimeHeader('💻 Issue 192 - Machine learning library for php.');
             static::assertSame(': =?UTF-8?Q?=F0=9F=92=BB=20Issue=20192=20-=20Machine=20learning=20library?=' . "\r\n" . ' =?UTF-8?Q?=20for=20php.?=', $text);
-            static::assertSame(': 💻 Issue 192 - Machine learning library for php.', UTF8::decode_mimeheader($text));
+            static::assertSame(': 💻 Issue 192 - Machine learning library for php.', UTF8::decodeMimeHeader($text));
 
-            $text = UTF8::encode_mimeheader('Keld Jørn Simonsen <keld@example.com>');
+            $text = UTF8::encodeMimeHeader('Keld Jørn Simonsen <keld@example.com>');
             static::assertSame(': =?UTF-8?Q?Keld=20J=C3=B8rn=20Simonsen=20<keld@example.com>?=', $text);
-            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::decode_mimeheader($text));
+            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::decodeMimeHeader($text));
 
-            $text = UTF8::encode_mimeheader('Keld Jørn Simonsen <keld@example.com>', 'UTF-8', 'ISO-8859-1');
+            $text = UTF8::encodeMimeHeader('Keld Jørn Simonsen <keld@example.com>', 'UTF-8', 'ISO-8859-1');
             static::assertSame(': =?ISO-8859-1?Q?Keld=20J=F8rn=20Simonsen=20<keld@example.com>?=', $text);
-            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::utf8_encode(UTF8::decode_mimeheader($text, 'ISO-8859-1')));
+            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::utf8Encode(UTF8::decodeMimeHeader($text, 'ISO-8859-1')));
         } else {
-            $text = UTF8::encode_mimeheader('💻 Issue 192 - Machine learning library for php.');
+            $text = UTF8::encodeMimeHeader('💻 Issue 192 - Machine learning library for php.');
             static::assertSame(': =?UTF-8?Q?=F0=9F=92=BB=20Issue=20192=20-=20Mac?==?UTF-8?Q?hine?=' . "\r\n" . ' =?UTF-8?Q?=20learning=20library=20for?==?UTF-8?Q?=20php.?=', $text);
-            static::assertSame(': 💻 Issue 192 - Machine learning library for php.', UTF8::decode_mimeheader($text));
+            static::assertSame(': 💻 Issue 192 - Machine learning library for php.', UTF8::decodeMimeHeader($text));
 
-            $text = UTF8::encode_mimeheader('Keld Jørn Simonsen <keld@example.com>');
+            $text = UTF8::encodeMimeHeader('Keld Jørn Simonsen <keld@example.com>');
             static::assertSame(': =?UTF-8?Q?Keld=20J=C3=B8rn=20Simonsen=20?==?UTF-8?Q?<keld@?=' . "\r\n" . ' =?UTF-8?Q?example.com>?=', $text);
-            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::decode_mimeheader($text));
+            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::decodeMimeHeader($text));
 
-            $text = UTF8::encode_mimeheader('Keld Jørn Simonsen <keld@example.com>', 'UTF-8', 'ISO-8859-1');
+            $text = UTF8::encodeMimeHeader('Keld Jørn Simonsen <keld@example.com>', 'UTF-8', 'ISO-8859-1');
             static::assertSame(': =?ISO-8859-1?Q?Keld=20J=F8rn=20Simonsen=20?==?ISO-8859-1?Q?<kel?=' . "\r\n" . ' =?ISO-8859-1?Q?d@example.com>?=', $text);
-            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::utf8_encode(UTF8::decode_mimeheader($text, 'ISO-8859-1')));
+            static::assertSame(': Keld Jørn Simonsen <keld@example.com>', UTF8::utf8Encode(UTF8::decodeMimeHeader($text, 'ISO-8859-1')));
         }
     }
 
     public function testDecodeMimeheader()
     {
         $text = '=?ISO-8859-1?Q?Keld_J=F8rn_Simonsen?= <keld@example.com>';
-        static::assertSame('Keld Jørn Simonsen <keld@example.com>', UTF8::utf8_encode(UTF8::decode_mimeheader($text, 'ISO-8859-1')));
+        static::assertSame('Keld Jørn Simonsen <keld@example.com>', UTF8::utf8Encode(UTF8::decodeMimeHeader($text, 'ISO-8859-1')));
 
         $subject = 'Subject: =?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=';
-        static::assertSame('Subject: Prüfung Prüfung', UTF8::decode_mimeheader($subject, 'UTF-8'));
+        static::assertSame('Subject: Prüfung Prüfung', UTF8::decodeMimeHeader($subject, 'UTF-8'));
 
         $subject_utf8 = 'Subject: =?UTF-8?Q?=F0=9F=92=BB_Issue_192_-_Machine_learning_library_for?=
  =?UTF-8?Q?_php.?=';
-        static::assertSame('Subject: 💻 Issue 192 - Machine learning library for php.', UTF8::decode_mimeheader($subject_utf8));
+        static::assertSame('Subject: 💻 Issue 192 - Machine learning library for php.', UTF8::decodeMimeHeader($subject_utf8));
     }
 
     public function testSubstrInByte()
@@ -1425,10 +1425,10 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::to_utf8(UTF8::to_iso8859($before)));
+            static::assertSame($after, UTF8::toUtf8(UTF8::toIso8859($before)));
         }
 
-        static::assertSame($tests, UTF8::to_utf8(UTF8::to_iso8859($tests)));
+        static::assertSame($tests, UTF8::toUtf8(UTF8::toIso8859($tests)));
     }
 
     private function reactivateNativeUtf8Support()

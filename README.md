@@ -163,35 +163,35 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td></tr><tr><td><a href="#cleanstring-str-bool-removeBom-bool-normalizeWhitespace-bool-normalizeMsWord-bool-keep_non_breaking_space-bool-replaceDiamondQuestionMark-bool-removeInvisibleCharacters-bool-removeInvisibleCharacters_url_encoded-string">clean</a>
 </td><td><a href="#cleanupstring-str-string">cleanup</a>
 </td><td><a href="#codepointsstringstring-arg-bool-use_u_style-intstring">codepoints</a>
-</td><td><a href="#collapse_whitespacestring-str-string">collapse_whitespace</a>
-</td></tr><tr><td><a href="#count_charsstring-str-bool-clean_utf8-bool-try_to_use_mb_functions-int">count_chars</a>
-</td><td><a href="#css_identifierstring-str-string-filter-bool-strip_tags-bool-strtolower-string">css_identifier</a>
-</td><td><a href="#css_stripe_media_queriesstring-str-string">css_stripe_media_queries</a>
+</td><td><a href="#collapseWhitespacestring-str-string">collapseWhitespace</a>
+</td></tr><tr><td><a href="#countCharsstring-str-bool-clean_utf8-bool-try_to_use_mb_functions-int">countChars</a>
+</td><td><a href="#cssIdentifierstring-str-string-filter-bool-strip_tags-bool-strtolower-string">cssIdentifier</a>
+</td><td><a href="#cssStripMediaQueriesstring-str-string">cssStripMediaQueries</a>
 </td><td><a href="#ctype_loaded-bool">ctype_loaded</a>
-</td></tr><tr><td><a href="#decimal_to_chrintstring-int-string">decimal_to_chr</a>
-</td><td><a href="#decode_mimeheaderstring-str-string-encoding-falsestring">decode_mimeheader</a>
-</td><td><a href="#emoji_decodestring-str-bool-use_reversible_string_mappings-string">emoji_decode</a>
-</td><td><a href="#emoji_encodestring-str-bool-use_reversible_string_mappings-string">emoji_encode</a>
-</td></tr><tr><td><a href="#emoji_from_country_codestring-country_code_iso_3166_1-string">emoji_from_country_code</a>
+</td></tr><tr><td><a href="#decimalToChrintstring-int-string">decimalToChr</a>
+</td><td><a href="#decodeMimeHeaderstring-str-string-encoding-falsestring">decodeMimeHeader</a>
+</td><td><a href="#emojiDecodestring-str-bool-use_reversible_string_mappings-string">emojiDecode</a>
+</td><td><a href="#emojiEncodestring-str-bool-use_reversible_string_mappings-string">emojiEncode</a>
+</td></tr><tr><td><a href="#emojiFromCountryCodestring-country_code_iso_3166_1-string">emojiFromCountryCode</a>
 </td><td><a href="#encodestring-to_encoding-string-str-bool-auto_detect_the_from_encoding-string-from_encoding-string">encode</a>
-</td><td><a href="#encode_mimeheaderstring-str-string-from_charset-string-to_charset-string-transfer_encoding-string-linefeed-int-indent-falsestring">encode_mimeheader</a>
-</td><td><a href="#extract_textstring-str-string-search-intnull-length-string-replacer_for_skipped_text-string-encoding-string">extract_text</a>
-</td></tr><tr><td><a href="#file_get_contentsstring-filename-bool-use_include_path-resourcenull-context-intnull-offset-intnull-max_length-int-timeout-bool-convert_to_utf8-string-from_encoding-falsestring">file_get_contents</a>
-</td><td><a href="#file_has_bomstring-file_path-bool">file_has_bom</a>
+</td><td><a href="#encodeMimeHeaderstring-str-string-from_charset-string-to_charset-string-transfer_encoding-string-linefeed-int-indent-falsestring">encodeMimeHeader</a>
+</td><td><a href="#extractTextstring-str-string-search-intnull-length-string-replacer_for_skipped_text-string-encoding-string">extractText</a>
+</td></tr><tr><td><a href="#file_get_contentsstring-filename-bool-use_include_path-resourcenull-context-intnull-offset-intnull-max_length-int-timeout-bool-convert_toUtf8-string-from_encoding-falsestring">file_get_contents</a>
+</td><td><a href="#fileHasBomstring-file_path-bool">fileHasBom</a>
 </td><td><a href="#filterarrayobjectstring-var-int-normalization_form-string-leading_combining-mixed">filter</a>
 </td><td><a href="#filter_inputint-type-string-variable_name-int-filter-intintnull-options-mixed">filter_input</a>
 </td></tr><tr><td><a href="#filter_input_arrayint-type-arraynull-definition-bool-add_empty-arraystringmixedfalsenull">filter_input_array</a>
 </td><td><a href="#filter_varfloatintstringnull-variable-int-filter-intint-options-mixed">filter_var</a>
 </td><td><a href="#filter_var_arrayarray-data-arrayint-definition-bool-add_empty-arraystringmixedfalsenull">filter_var_array</a>
 </td><td><a href="#finfo_loaded-bool">finfo_loaded</a>
-</td></tr><tr><td><a href="#first_charstring-str-int-n-string-encoding-string">first_char</a>
+</td></tr><tr><td><a href="#firstCharstring-str-int-n-string-encoding-string">firstChar</a>
 </td><td><a href="#fits_insidestring-str-int-box_size-bool">fits_inside</a>
 </td><td><a href="#fixSimpleUtf8string-str-string">fixSimpleUtf8</a>
 </td><td><a href="#fix_utf8stringstring-str-stringstring">fix_utf8</a>
 </td></tr><tr><td><a href="#getchardirectionstring-char-string">getCharDirection</a>
 </td><td><a href="#getsupportinfostringnull-key-mixed">getSupportInfo</a>
 </td><td><a href="#geturlparamfromarraystring-param-array-data-mixed">getUrlParamFromArray</a>
-</td><td><a href="#get_file_typestring-str-array-fallback">get_file_type</a>
+</td><td><a href="#getFileTypestring-str-array-fallback">getFileType</a>
 </td></tr><tr><td><a href="#get_random_stringint-length-string-possible_chars-string-encoding-string">get_random_string</a>
 </td><td><a href="#get_unique_stringintstring-extra_entropy-bool-use_md5-non-empty-string">get_unique_string</a>
 </td><td><a href="#has_lowercasestring-str-bool">has_lowercase</a>
@@ -211,7 +211,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td></tr><tr><td><a href="#intl_loaded-bool">intl_loaded</a>
 </td><td><a href="#is_alphastring-str-bool">is_alpha</a>
 </td><td><a href="#is_alphanumericstring-str-bool">is_alphanumeric</a>
-</td><td><a href="#is_asciistring-str-bool">is_ascii</a>
+</td><td><a href="#isAsciistring-str-bool">isAscii</a>
 </td></tr><tr><td><a href="#is_base64stringnull-str-bool-empty_string_is_valid-bool">is_base64</a>
 </td><td><a href="#is_binaryintstring-input-bool-strict-bool">is_binary</a>
 </td><td><a href="#is_binary_filestring-file-bool">is_binary_file</a>
@@ -228,9 +228,9 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#is_uppercasestring-str-bool">is_uppercase</a>
 </td><td><a href="#is_urlstring-url-bool-disallow_localhost-bool">is_url</a>
 </td><td><a href="#is_utf8intstringstringnull-str-bool-strict-bool">is_utf8</a>
-</td></tr><tr><td><a href="#is_utf16string-str-bool-check_if_string_is_binary-falseint">is_utf16</a>
-</td><td><a href="#is_utf32string-str-bool-check_if_string_is_binary-falseint">is_utf32</a>
-</td><td><a href="#json_decodestring-json-bool-assoc-int-depth-int-options-mixed">json_decode</a>
+</td></tr><tr><td><a href="#isUtf16string-str-bool-check_if_string_is_binary-falseint">isUtf16</a>
+</td><td><a href="#isUtf32string-str-bool-check_if_string_is_binary-falseint">isUtf32</a>
+</td><td><a href="#jsonDecodestring-json-bool-assoc-int-depth-int-options-mixed">jsonDecode</a>
 </td><td><a href="#json_encodemixed-value-int-options-int-depth-falsestring">json_encode</a>
 </td></tr><tr><td><a href="#json_loaded-bool">json_loaded</a>
 </td><td><a href="#lcfirststring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">lcfirst</a>
@@ -242,7 +242,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#mbstring_loaded-bool">mbstring_loaded</a>
 </td></tr><tr><td><a href="#minstringstring-arg-stringnull">min</a>
 </td><td><a href="#normalize_encodingmixed-encoding-mixed-fallback-mixedstring">normalize_encoding</a>
-</td><td><a href="#normalize_line_endingstring-str-stringstring-replacer-string">normalize_line_ending</a>
+</td><td><a href="#normalizeLineEndingstring-str-stringstring-replacer-string">normalizeLineEnding</a>
 </td><td><a href="#normalizeMsWordstring-str-string">normalizeMsWord</a>
 </td></tr><tr><td><a href="#normalizeWhitespacestring-str-bool-keep_non_breaking_space-bool-keep_bidi_unicode_controls-bool-normalize_control_characters-string">normalizeWhitespace</a>
 </td><td><a href="#ordstring-chr-string-encoding-int">ord</a>
@@ -250,7 +250,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#pcre_utf8_support-bool">pcre_utf8_support</a>
 </td></tr><tr><td><a href="#rangeintstring-var1-intstring-var2-bool-use_ctype-string-encoding-floatint-step-liststring">range</a>
 </td><td><a href="#rawurldecodestring-str-bool-multi_decode-string">rawurldecode</a>
-</td><td><a href="#regex_replacestring-str-string-pattern-string-replacement-string-options-string-delimiter-string">regex_replace</a>
+</td><td><a href="#regexReplacestring-str-string-pattern-string-replacement-string-options-string-delimiter-string">regexReplace</a>
 </td><td><a href="#removeBomstring-str-string">removeBom</a>
 </td></tr><tr><td><a href="#remove_duplicatesstring-str-stringstring-what-string">remove_duplicates</a>
 </td><td><a href="#remove_htmlstring-str-string-allowable_tags-string">remove_html</a>
@@ -274,7 +274,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#str_contains_anystring-haystack-scalar-needles-bool-case_sensitive-bool">str_contains_any</a>
 </td></tr><tr><td><a href="#str_dasherizestring-str-string-encoding-string">str_dasherize</a>
 </td><td><a href="#str_delimitstring-str-string-delimiter-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">str_delimit</a>
-</td><td><a href="#str_detect_encodingstring-str-falsestring">str_detect_encoding</a>
+</td><td><a href="#detectStringEncodingstring-str-falsestring">detectStringEncoding</a>
 </td><td><a href="#str_ends_withstring-haystack-string-needle-bool">str_ends_with</a>
 </td></tr><tr><td><a href="#str_ends_with_anystring-str-string-substrings-bool">str_ends_with_any</a>
 </td><td><a href="#str_ensure_leftstring-str-string-substring">str_ensure_left</a>
@@ -392,15 +392,15 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#to_booleanboolfloatintstring-str-bool">to_boolean</a>
 </td><td><a href="#to_filenamestring-str-bool-use_transliterate-string-fallback_char-string">to_filename</a>
 </td><td><a href="#to_intstring-str-intnull">to_int</a>
-</td></tr><tr><td><a href="#to_iso8859stringstring-str-stringstring">to_iso8859</a>
+</td></tr><tr><td><a href="#toIso8859stringstring-str-stringstring">toIso8859</a>
 </td><td><a href="#to_stringfloatintobjectstringnull-input-stringnull">to_string</a>
-</td><td><a href="#to_utf8stringstring-str-bool-decode_html_entity_to_utf8-stringstring">to_utf8</a>
-</td><td><a href="#to_utf8_stringstring-str-bool-decode_html_entity_to_utf8-string">to_utf8_string</a>
+</td><td><a href="#toUtf8stringstring-str-bool-decode_html_entity_toUtf8-stringstring">toUtf8</a>
+</td><td><a href="#toUtf8Stringstring-str-bool-decode_html_entity_toUtf8-string">toUtf8String</a>
 </td></tr><tr><td><a href="#trimstring-str-stringnull-chars-string">trim</a>
 </td><td><a href="#ucfirststring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">ucfirst</a>
 </td><td><a href="#ucwordsstring-str-string-exceptions-string-char_list-string-encoding-bool-clean_utf8-string">ucwords</a>
 </td><td><a href="#urldecodestring-str-bool-multi_decode-string">urldecode</a>
-</td></tr><tr><td><a href="#utf8_decodestring-str-bool-keep_utf8_chars-string">utf8_decode</a>
+</td></tr><tr><td><a href="#utf8Decodestring-str-bool-keep_utf8_chars-string">utf8Decode</a>
 </td><td><a href="#utf8_encodestring-str-string">utf8_encode</a>
 </td><td><a href="#whitespace_table-string">whitespace_table</a>
 </td><td><a href="#words_limitstring-str-int-limit-string-str_add_on-string">words_limit</a>
@@ -608,7 +608,7 @@ EXAMPLE: <code>UTF8::chrSizeList('中文空白-test'); // [3, 3, 3, 3, 1, 1, 1, 
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Get a decimal code representation of a specific character.
 
-INFO: opposite to UTF8::decimal_to_chr()
+INFO: opposite to UTF8::decimalToChr()
 
 EXAMPLE: <code>UTF8::chrToDecimal('§'); // 0xa7</code>
 
@@ -724,7 +724,7 @@ string[] for $u_style === true<br>
 
 --------
 
-## collapse_whitespace(string $str): string
+## collapseWhitespace(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Trims the string and replaces consecutive whitespace characters with a
 single space. This includes tabs and newline characters, as well as
@@ -738,11 +738,11 @@ multibyte whitespace such as the thin space and ideographic space.
 
 --------
 
-## count_chars(string $str, bool $clean_utf8, bool $try_to_use_mb_functions): int[]
+## countChars(string $str, bool $clean_utf8, bool $try_to_use_mb_functions): int[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns count of characters used in a string.
 
-EXAMPLE: <code>UTF8::count_chars('κaκbκc'); // array('κ' => 3, 'a' => 1, 'b' => 1, 'c' => 1)</code>
+EXAMPLE: <code>UTF8::countChars('κaκbκc'); // array('κ' => 3, 'a' => 1, 'b' => 1, 'c' => 1)</code>
 
 **Parameters:**
 - `T $str <p>The input string.</p>`
@@ -755,11 +755,11 @@ their count as values.</p>`
 
 --------
 
-## css_identifier(string $str, string[] $filter, bool $strip_tags, bool $strtolower): string
+## cssIdentifier(string $str, string[] $filter, bool $strip_tags, bool $strtolower): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Create a valid CSS identifier for e.g. "class"- or "id"-attributes.
 
-EXAMPLE: <code>UTF8::css_identifier('123foo/bar!!!'); // _23foo-bar</code>
+EXAMPLE: <code>UTF8::cssIdentifier('123foo/bar!!!'); // _23foo-bar</code>
 
 copy&past from https://github.com/drupal/core/blob/8.8.x/lib/Drupal/Component/Utility/Html.php#L95
 
@@ -774,7 +774,7 @@ copy&past from https://github.com/drupal/core/blob/8.8.x/lib/Drupal/Component/Ut
 
 --------
 
-## css_stripe_media_queries(string $str): string
+## cssStripMediaQueries(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove css media-queries.
 
@@ -798,13 +798,13 @@ __nothing__
 
 --------
 
-## decimal_to_chr(int|string $int): string
+## decimalToChr(int|string $int): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts an int value into a UTF-8 character.
 
 INFO: opposite to UTF8::string()
 
-EXAMPLE: <code>UTF8::decimal_to_chr(931); // 'Σ'</code>
+EXAMPLE: <code>UTF8::decimalToChr(931); // 'Σ'</code>
 
 **Parameters:**
 - `int|string $int`
@@ -814,7 +814,7 @@ EXAMPLE: <code>UTF8::decimal_to_chr(931); // 'Σ'</code>
 
 --------
 
-## decode_mimeheader(string $str, string $encoding): false|string
+## decodeMimeHeader(string $str, string $encoding): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Decodes a MIME header field
 
@@ -828,53 +828,53 @@ or false if an error occurs during the decoding.</p>`
 
 --------
 
-## emoji_decode(string $str, bool $use_reversible_string_mappings): string
+## emojiDecode(string $str, bool $use_reversible_string_mappings): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
-Decodes a string which was encoded by "UTF8::emoji_encode()".
+Decodes a string which was encoded by "UTF8::emojiEncode()".
 
-INFO: opposite to UTF8::emoji_encode()
+INFO: opposite to UTF8::emojiEncode()
 
 EXAMPLE: <code>
-UTF8::emoji_decode('foo CHARACTER_OGRE', false); // 'foo 👹'
+UTF8::emojiDecode('foo CHARACTER_OGRE', false); // 'foo 👹'
 //
-UTF8::emoji_decode('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', true); // 'foo 👹'
+UTF8::emojiDecode('foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_', true); // 'foo 👹'
 </code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
 - `bool $use_reversible_string_mappings [optional] <p>
 When <b>TRUE</b>, we se a reversible string mapping
-getSubstringBetween "emoji_encode" and "emoji_decode".</p>`
+getSubstringBetween "emojiEncode" and "emojiDecode".</p>`
 
 **Return:**
 - `string`
 
 --------
 
-## emoji_encode(string $str, bool $use_reversible_string_mappings): string
+## emojiEncode(string $str, bool $use_reversible_string_mappings): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Encode a string with emoji chars into a non-emoji string.
 
-INFO: opposite to UTF8::emoji_decode()
+INFO: opposite to UTF8::emojiDecode()
 
 EXAMPLE: <code>
-UTF8::emoji_encode('foo 👹', false)); // 'foo CHARACTER_OGRE'
+UTF8::emojiEncode('foo 👹', false)); // 'foo CHARACTER_OGRE'
 //
-UTF8::emoji_encode('foo 👹', true)); // 'foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_'
+UTF8::emojiEncode('foo 👹', true)); // 'foo _-_PORTABLE_UTF8_-_308095726_-_627590803_-_8FTU_ELBATROP_-_'
 </code>
 
 **Parameters:**
 - `string $str <p>The input string</p>`
 - `bool $use_reversible_string_mappings [optional] <p>
 when <b>TRUE</b>, we use a reversible string mapping
-getSubstringBetween "emoji_encode" and "emoji_decode"</p>`
+getSubstringBetween "emojiEncode" and "emojiDecode"</p>`
 
 **Return:**
 - `string`
 
 --------
 
-## emoji_from_country_code(string $country_code_iso_3166_1): string
+## emojiFromCountryCode(string $country_code_iso_3166_1): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert any two-letter country code (ISO 3166-1) to the corresponding Emoji.
 
@@ -917,7 +917,7 @@ A empty string will trigger the autodetect anyway.</p>`
 
 --------
 
-## encode_mimeheader(string $str, string $from_charset, string $to_charset, string $transfer_encoding, string $linefeed, int $indent): false|string
+## encodeMimeHeader(string $str, string $from_charset, string $to_charset, string $transfer_encoding, string $linefeed, int $indent): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -935,7 +935,7 @@ or false if an error occurs during the encoding.</p>`
 
 --------
 
-## extract_text(string $str, string $search, int|null $length, string $replacer_for_skipped_text, string $encoding): string
+## extractText(string $str, string $search, int|null $length, string $replacer_for_skipped_text, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Create an extract from a sentence, so if the search-string was found, it tries to center in the output.
 
@@ -951,13 +951,13 @@ Create an extract from a sentence, so if the search-string was found, it tries t
 
 --------
 
-## file_get_contents(string $filename, bool $use_include_path, resource|null $context, int|null $offset, int|null $max_length, int $timeout, bool $convert_to_utf8, string $from_encoding): false|string
+## file_get_contents(string $filename, bool $use_include_path, resource|null $context, int|null $offset, int|null $max_length, int $timeout, bool $convert_toUtf8, string $from_encoding): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Reads entire file into a string.
 
-EXAMPLE: <code>UTF8::file_get_contents('utf16le.txt'); // ...</code>
+EXAMPLE: <code>UTF8::fileGetContents('utf16le.txt'); // ...</code>
 
-WARNING: Do not use UTF-8 Option ($convert_to_utf8) for binary files (e.g.: images) !!!
+WARNING: Do not use UTF-8 Option ($convert_toUtf8) for binary files (e.g.: images) !!!
 
 **Parameters:**
 - `string $filename <p>
@@ -983,7 +983,7 @@ Maximum length of data read. The default is to read until end
 of file is reached.
 </p>`
 - `int $timeout <p>The time in seconds for the timeout.</p>`
-- `bool $convert_to_utf8 <strong>WARNING!!!</strong> <p>Maybe you can't use this option for
+- `bool $convert_toUtf8 <strong>WARNING!!!</strong> <p>Maybe you can't use this option for
 some files, because they used non default utf-8 chars. Binary files
 like images or pdf will not be converted.</p>`
 - `string $from_encoding [optional] <p>e.g. 'UTF-16', 'UTF-8', 'ISO-8859-1', etc.<br>
@@ -994,11 +994,11 @@ A empty string will trigger the autodetect anyway.</p>`
 
 --------
 
-## file_has_bom(string $file_path): bool
+## fileHasBom(string $file_path): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Checks if a file starts with BOM (Byte Order Mark) character.
 
-EXAMPLE: <code>UTF8::file_has_bom('utf8_with_bom.txt'); // true</code>
+EXAMPLE: <code>UTF8::fileHasBom('utf8_with_bom.txt'); // true</code>
 
 **Parameters:**
 - `string $file_path <p>Path to a valid file.</p>`
@@ -1032,7 +1032,7 @@ Gets a specific external variable by name and optionally filters it.
 
 EXAMPLE: <code>
 // _GET['foo'] = 'bar';
-UTF8::filter_input(INPUT_GET, 'foo', FILTER_UNSAFE_RAW)); // 'bar'
+UTF8::filterInput(INPUT_GET, 'foo', FILTER_UNSAFE_RAW)); // 'bar'
 </code>
 
 **Parameters:**
@@ -1070,7 +1070,7 @@ Gets external variables and optionally filters them.
 
 EXAMPLE: <code>
 // _GET['foo'] = 'bar';
-UTF8::filter_input_array(INPUT_GET, array('foo' => 'FILTER_UNSAFE_RAW')); // array('bar')
+UTF8::filterInputArray(INPUT_GET, array('foo' => 'FILTER_UNSAFE_RAW')); // array('bar')
 </code>
 
 **Parameters:**
@@ -1113,7 +1113,7 @@ is not set and <b>NULL</b> if the filter fails.
 
 Filters a variable with a specified filter.
 
-EXAMPLE: <code>UTF8::filter_var('-ABC-中文空白-', FILTER_VALIDATE_URL); // false</code>
+EXAMPLE: <code>UTF8::filterVar('-ABC-中文空白-', FILTER_VALIDATE_URL); // false</code>
 
 **Parameters:**
 - `float|int|string|null $variable <p>
@@ -1189,7 +1189,7 @@ $data = [
     'email' => 'foo@bar.de'
 ];
 
-UTF8::filter_var_array($data, $filters, true); // ['name' => 'Κόσμε', 'age' => 18, 'email' => 'foo@bar.de']
+UTF8::filterVarArray($data, $filters, true); // ['name' => 'Κόσμε', 'age' => 18, 'email' => 'foo@bar.de']
 </code>
 
 **Parameters:**
@@ -1236,7 +1236,7 @@ __nothing__
 
 --------
 
-## first_char(string $str, int $n, string $encoding): string
+## firstChar(string $str, int $n, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns the first $n characters of the string.
 
@@ -1343,7 +1343,7 @@ EXAMPLE: <code>$array['foo'][123] = 'lall'; UTF8::getUrlParamFromArray('foo[123]
 
 --------
 
-## get_file_type(string $str, array $fallback): 
+## getFileType(string $str, array $fallback): 
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Warning: this method only works for some file-types (png, jpg)
          if you need more supported types, please use e.g. "finfo"
@@ -1458,7 +1458,7 @@ Converts a UTF-8 string to a series of HTML numbered entities.
 
 INFO: opposite to UTF8::html_decode()
 
-EXAMPLE: <code>UTF8::html_encode('中文空白'); // '&#20013;&#25991;&#31354;&#30333;'</code>
+EXAMPLE: <code>UTF8::htmlEncode('中文空白'); // '&#20013;&#25991;&#31354;&#30333;'</code>
 
 **Parameters:**
 - `T $str <p>The Unicode string to be encoded as numbered entities.</p>`
@@ -1482,9 +1482,9 @@ semicolons, so we are left with our own little solution here. Bummer.
 
 Convert all HTML entities to their applicable characters.
 
-INFO: opposite to UTF8::html_encode()
+INFO: opposite to UTF8::htmlEncode()
 
-EXAMPLE: <code>UTF8::html_entity_decode('&#20013;&#25991;&#31354;&#30333;'); // '中文空白'</code>
+EXAMPLE: <code>UTF8htmlEntityDecode('&#20013;&#25991;&#31354;&#30333;'); // '中文空白'</code>
 
 **Parameters:**
 - `T $str <p>
@@ -1871,11 +1871,11 @@ Returns true if the string contains only alphabetic and numeric chars, false oth
 
 --------
 
-## is_ascii(string $str): bool
+## isAscii(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Checks if a string is 7 bit ASCII.
 
-EXAMPLE: <code>UTF8::is_ascii('白'); // false</code>
+EXAMPLE: <code>UTF8::isAscii('白'); // false</code>
 
 **Parameters:**
 - `string $str <p>The string to check.</p>`
@@ -1907,7 +1907,7 @@ EXAMPLE: <code>UTF8::is_base64('4KSu4KWL4KSo4KS/4KSa'); // true</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the input is binary... (is look like a hack).
 
-EXAMPLE: <code>UTF8::is_binary(01); // true</code>
+EXAMPLE: <code>UTF8::isBinary(01); // true</code>
 
 **Parameters:**
 - `int|string $input`
@@ -1922,7 +1922,7 @@ EXAMPLE: <code>UTF8::is_binary(01); // true</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the file is binary.
 
-EXAMPLE: <code>UTF8::is_binary('./utf32.txt'); // true</code>
+EXAMPLE: <code>UTF8::isBinary('./utf32.txt'); // true</code>
 
 **Parameters:**
 - `string $file`
@@ -2111,16 +2111,16 @@ UTF8::is_utf8(["Iñtërnâtiônàlizætiøn\xA0\xA1", 'bar']); // false
 
 --------
 
-## is_utf16(string $str, bool $check_if_string_is_binary): false|int
+## isUtf16(string $str, bool $check_if_string_is_binary): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the string is UTF-16.
 
 EXAMPLE: <code>
-UTF8::is_utf16(file_get_contents('utf-16-le.txt')); // 1
+UTF8::isUtf16(file_get_contents('utf-16-le.txt')); // 1
 //
-UTF8::is_utf16(file_get_contents('utf-16-be.txt')); // 2
+UTF8::isUtf16(file_get_contents('utf-16-be.txt')); // 2
 //
-UTF8::is_utf16(file_get_contents('utf-8.txt')); // false
+UTF8::isUtf16(file_get_contents('utf-8.txt')); // false
 </code>
 
 **Parameters:**
@@ -2134,16 +2134,16 @@ UTF8::is_utf16(file_get_contents('utf-8.txt')); // false
 
 --------
 
-## is_utf32(string $str, bool $check_if_string_is_binary): false|int
+##isUtf32(string $str, bool $check_if_string_is_binary): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the string is UTF-32.
 
 EXAMPLE: <code>
-UTF8::is_utf32(file_get_contents('utf-32-le.txt')); // 1
+UTF8::isUtf32(file_get_contents('utf-32-le.txt')); // 1
 //
-UTF8::is_utf32(file_get_contents('utf-32-be.txt')); // 2
+UTF8::isUtf32(file_get_contents('utf-32-be.txt')); // 2
 //
-UTF8::is_utf32(file_get_contents('utf-8.txt')); // false
+UTF8::isUtf32(file_get_contents('utf-8.txt')); // false
 </code>
 
 **Parameters:**
@@ -2157,12 +2157,12 @@ UTF8::is_utf32(file_get_contents('utf-8.txt')); // false
 
 --------
 
-## json_decode(string $json, bool $assoc, int $depth, int $options): mixed
+## jsonDecode(string $json, bool $assoc, int $depth, int $options): mixed
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 (PHP 5 &gt;= 5.2.0, PECL json &gt;= 1.2.0)<br/>
 Decodes a JSON string
 
-EXAMPLE: <code>UTF8::json_decode('[1,"\u00a5","\u00e4"]'); // array(1, '¥', 'ä')</code>
+EXAMPLE: <code>UTF8::jsonDecode('[1,"\u00a5","\u00e4"]'); // array(1, '¥', 'ä')</code>
 
 **Parameters:**
 - `string $json <p>
@@ -2201,7 +2201,7 @@ is deeper than the recursion limit.</p>`
 (PHP 5 &gt;= 5.2.0, PECL json &gt;= 1.2.0)<br/>
 Returns the JSON representation of a value.
 
-EXAMPLE: <code>UTF8::json_encode(array(1, '¥', 'ä')); // '[1,"\u00a5","\u00e4"]'</code>
+EXAMPLE: <code>UTF8::jsonEncode(array(1, '¥', 'ä')); // '[1,"\u00a5","\u00e4"]'</code>
 
 **Parameters:**
 - `mixed $value <p>
@@ -2398,7 +2398,7 @@ EXAMPLE: <code>UTF8::normalize_encoding('UTF8'); // 'UTF-8'</code>
 
 --------
 
-## normalize_line_ending(string $str, string|string[] $replacer): string
+## normalizeLineEnding(string $str, string|string[] $replacer): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Standardize line ending to unix-like.
 
@@ -2549,7 +2549,7 @@ e.g:
 
 --------
 
-## regex_replace(string $str, string $pattern, string $replacement, string $options, string $delimiter): string
+## regexReplace(string $str, string $pattern, string $replacement, string $options, string $delimiter): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replaces all occurrences of $pattern in $str by $replacement.
 
@@ -2781,7 +2781,7 @@ WARNING: Print native UTF-8 support (libs) by default, e.g. for debugging.
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts a UTF-8 character to HTML Numbered Entity like "&#123;".
 
-EXAMPLE: <code>UTF8::single_chr_html_encode('κ'); // '&#954;'</code>
+EXAMPLE: <code>UTF8::singleChrHtmlEncode('κ'); // '&#954;'</code>
 
 **Parameters:**
 - `T $char <p>The Unicode character to be encoded as numbered entity.</p>`
@@ -2930,13 +2930,13 @@ tr</p>`
 
 --------
 
-## str_detect_encoding(string $str): false|string
+## detectStringEncoding(string $str): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Optimized "mb_detect_encoding()"-function -> with support for UTF-16 and UTF-32.
 
 EXAMPLE: <code>
-UTF8::str_detect_encoding('中文空白'); // 'UTF-8'
-UTF8::str_detect_encoding('Abc'); // 'ASCII'
+UTF8::detectStringEncoding('中文空白'); // 'UTF-8'
+UTF8::detectStringEncoding('Abc'); // 'ASCII'
 </code>
 
 **Parameters:**
@@ -5079,11 +5079,11 @@ Returns the given string as an integer, or null if the string isn't numeric.
 
 --------
 
-## to_iso8859(string|string[] $str): string|string[]
+## toIso8859(string|string[] $str): string|string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert a string into "ISO-8859"-encoding (Latin-1).
 
-EXAMPLE: <code>UTF8::to_utf8(UTF8::to_iso8859('  -ABC-中文空白-  ')); // '  -ABC-????-  '</code>
+EXAMPLE: <code>UTF8::toUtf8(UTF8::toIso8859('  -ABC-中文空白-  ')); // '  -ABC-????-  '</code>
 
 **Parameters:**
 - `TToIso8859 $str`
@@ -5106,7 +5106,7 @@ and do not implement the "__toString()" method.
 
 --------
 
-## to_utf8(string|string[] $str, bool $decode_html_entity_to_utf8): string|string[]
+## toUtf8(string|string[] $str, bool $decode_html_entity_toUtf8): string|string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 This function leaves UTF-8 characters alone, while converting almost all non-UTF8 to UTF8.
 
@@ -5117,18 +5117,18 @@ This function leaves UTF-8 characters alone, while converting almost all non-UTF
 case.</li>
 </ul>
 
-EXAMPLE: <code>UTF8::to_utf8(["\u0063\u0061\u0074"]); // array('cat')</code>
+EXAMPLE: <code>UTF8::toUtf8(["\u0063\u0061\u0074"]); // array('cat')</code>
 
 **Parameters:**
 - `TToUtf8 $str <p>Any string or array of strings.</p>`
-- `bool $decode_html_entity_to_utf8 <p>Set to true, if you need to decode html-entities.</p>`
+- `bool $decode_html_entity_toUtf8 <p>Set to true, if you need to decode html-entities.</p>`
 
 **Return:**
 - `string|string[] <p>The UTF-8 encoded string</p>`
 
 --------
 
-## to_utf8_string(string $str, bool $decode_html_entity_to_utf8): string
+## toUtf8String(string $str, bool $decode_html_entity_toUtf8): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 This function leaves UTF-8 characters alone, while converting almost all non-UTF8 to UTF8.
 
@@ -5139,11 +5139,11 @@ This function leaves UTF-8 characters alone, while converting almost all non-UTF
 case.</li>
 </ul>
 
-EXAMPLE: <code>UTF8::to_utf8_string("\u0063\u0061\u0074"); // 'cat'</code>
+EXAMPLE: <code>UTF8::toUtf8String("\u0063\u0061\u0074"); // 'cat'</code>
 
 **Parameters:**
 - `T $str <p>Any string.</p>`
-- `bool $decode_html_entity_to_utf8 <p>Set to true, if you need to decode html-entities.</p>`
+- `bool $decode_html_entity_toUtf8 <p>Set to true, if you need to decode html-entities.</p>`
 
 **Return:**
 - `string <p>The UTF-8 encoded string</p>`
@@ -5235,11 +5235,11 @@ e.g:
 
 --------
 
-## utf8_decode(string $str, bool $keep_utf8_chars): string
+## utf8Decode(string $str, bool $keep_utf8_chars): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Decodes a UTF-8 string to ISO-8859-1.
 
-EXAMPLE: <code>UTF8::encode('UTF-8', UTF8::utf8_decode('-ABC-中文空白-')); // '-ABC-????-'</code>
+EXAMPLE: <code>UTF8::encode('UTF-8', UTF8::utf8Decode('-ABC-中文空白-')); // '-ABC-????-'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -5254,7 +5254,7 @@ EXAMPLE: <code>UTF8::encode('UTF-8', UTF8::utf8_decode('-ABC-中文空白-')); /
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Encodes an ISO-8859-1 string to UTF-8.
 
-EXAMPLE: <code>UTF8::utf8_decode(UTF8::utf8_encode('-ABC-中文空白-')); // '-ABC-中文空白-'</code>
+EXAMPLE: <code>UTF8::utf8Decode(UTF8::utf8Encode('-ABC-中文空白-')); // '-ABC-中文空白-'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`

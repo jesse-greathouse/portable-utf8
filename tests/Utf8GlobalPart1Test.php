@@ -291,7 +291,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         for ($i = 0; $i < 2; ++$i) { // keep this loop for simple performance tests
             foreach ($tests as $before => $after) {
                 static::assertSame($after, UTF8::chrToDecimal($before));
-                static::assertSame($after, UTF8::chrToDecimal(UTF8::decimal_to_chr(UTF8::chrToDecimal($before))));
+                static::assertSame($after, UTF8::chrToDecimal(UTF8::decimalToChr(UTF8::chrToDecimal($before))));
             }
         }
     }
@@ -347,7 +347,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         $resultTmp = UTF8::chunkSplit("\n\r" . 'ABC-ÖÄÜ-中文空白-κόσμε' . "\n", 3);
         $expected = "\n\nA\nBC-\nÖÄÜ\n-中文\n空白-\nκόσ\nμε\n";
 
-        $result = UTF8::normalize_line_ending($resultTmp);
+        $result = UTF8::normalizeLineEnding($resultTmp);
         static::assertSame($expected, $result);
     }
 
@@ -663,14 +663,14 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::count_chars($actual), 'error by ' . $actual);
+            static::assertSame($expected, UTF8::countChars($actual), 'error by ' . $actual);
         }
 
         // added invalid UTF-8
         $testArray['白' . "\xa0\xa1" . '白'] = ['白' => 2];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::count_chars($actual, true), 'error by ' . $actual);
+            static::assertSame($expected, UTF8::countChars($actual, true), 'error by ' . $actual);
         }
     }
 
@@ -683,9 +683,9 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::decimal_to_chr($before));
-            static::assertSame($before, UTF8::chrToDecimal(UTF8::decimal_to_chr($before)), 'tested: ' . $after);
-            static::assertSame($after, UTF8::decimal_to_chr(UTF8::chrToDecimal(UTF8::decimal_to_chr($before))));
+            static::assertSame($after, UTF8::decimalToChr($before));
+            static::assertSame($before, UTF8::chrToDecimal(UTF8::decimalToChr($before)), 'tested: ' . $after);
+            static::assertSame($after, UTF8::decimalToChr(UTF8::chrToDecimal(UTF8::decimalToChr($before))));
         }
     }
 
@@ -901,7 +901,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_encode(UTF8::encode('UTF-8', $before)));
+            static::assertSame($after, UTF8::utf8Encode(UTF8::encode('UTF-8', $before)));
         }
     }
 
@@ -945,10 +945,10 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
     public function testFileGetContents()
     {
         if (\method_exists(__CLASS__, 'assertStringContainsString')) {
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/sample-unicode-chart.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-unicode-chart.txt');
             static::assertStringContainsString('M	𝐌	𝑀	𝑴	𝖬	𝗠	𝘔	𝙈	ℳ	𝓜	𝔐	𝕸	𝙼	𝕄', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-html.txt');
             static::assertStringContainsString('վṩ鼦Ѷ鼦ַ鼦ٷվݡ', $testString);
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
@@ -964,63 +964,63 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             // ---
 
             if (UTF8::mbstring_loaded()) { // only with "mbstring"
-                static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-16-be.txt'));
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt');
+                static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-16-be.txt'));
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-be.txt');
                 static::assertStringContainsString(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
-                static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-16-le.txt'));
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt');
+                static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-16-le.txt'));
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt');
                 static::assertStringContainsString(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
             }
 
-            static::assertFalse(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-8.txt'));
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt');
+            static::assertFalse(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-8.txt'));
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt');
             static::assertStringContainsString('Iñtërnâtiônàlizætiøn', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt');
             static::assertStringContainsString('Iñtërnâtiônàlizætiøn', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt');
             static::assertStringContainsString('Iñtërnâtiônàlizætiøn', $testString);
 
             if (UTF8::mbstring_loaded()) { // only with "mbstring"
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt');
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-be.txt');
                 static::assertStringContainsString(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 0);
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 0);
                 static::assertStringContainsString(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
                 // text: with offset
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 5);
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 5);
                 static::assertStringContainsString('There are better connections.', $testString);
             }
 
             // text: with offset & max-length
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt', false, null, 7, 11);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt', false, null, 7, 11);
             static::assertStringContainsString('Iñtërnât', $testString);
 
             // text: with offset & max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt', false, null, 7, 10, 15);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt', false, null, 7, 10, 15);
             static::assertStringContainsString('ñtërnâtiôn', $testString);
 
             // text: with timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, 7, null, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, 7, null, 10);
             static::assertStringContainsString('Iñtërnâtiônàlizætiøn', $testString);
 
             // text: with max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, null, 10, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, null, 10, 10);
             static::assertStringContainsString('Hírek', $testString);
 
             $context = \stream_context_create(
@@ -1032,11 +1032,11 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             );
 
             // text: with max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10);
             static::assertStringContainsString('Hírek', $testString);
 
             // text: do not convert to utf-8 + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10, false);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10, false);
             if (\method_exists(__CLASS__, 'assertMatchesRegularExpression')) {
                 static::assertMatchesRegularExpression('#H.*rek#', $testString);
             } else {
@@ -1044,13 +1044,13 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             }
 
             // text: do not convert to utf-8 + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt', false, $context, null, 10, 10, false);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt', false, $context, null, 10, 10, false);
             static::assertStringContainsString('Hírek', $testString);
         } else {
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/sample-unicode-chart.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-unicode-chart.txt');
             static::assertContains('M	𝐌	𝑀	𝑴	𝖬	𝗠	𝘔	𝙈	ℳ	𝓜	𝔐	𝕸	𝙼	𝕄', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-html.txt');
             static::assertContains('վṩ鼦Ѷ鼦ַ鼦ٷվݡ', $testString);
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
@@ -1066,63 +1066,63 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             // ---
 
             if (UTF8::mbstring_loaded()) { // only with "mbstring"
-                static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-16-be.txt'));
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt');
+                static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-16-be.txt'));
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-be.txt');
                 static::assertContains(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
-                static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-16-le.txt'));
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt');
+                static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-16-le.txt'));
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt');
                 static::assertContains(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
             }
 
-            static::assertFalse(UTF8::is_binary_file(__DIR__ . '/fixtures/utf-8.txt'));
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt');
+            static::assertFalse(UTF8::isBinary_file(__DIR__ . '/fixtures/utf-8.txt'));
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt');
             static::assertContains('Iñtërnâtiônàlizætiøn', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt');
             static::assertContains('Iñtërnâtiônàlizætiøn', $testString);
 
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt');
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt');
             static::assertContains('Iñtërnâtiônàlizætiøn', $testString);
 
             if (UTF8::mbstring_loaded()) { // only with "mbstring"
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt');
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-be.txt');
                 static::assertContains(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 0);
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 0);
                 static::assertContains(
                     '<p>Today’s Internet users are not the same users who were online a decade ago. There are better connections.',
                     $testString
                 );
 
                 // text: with offset
-                $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 5);
+                $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-16-le.txt', false, null, 5);
                 static::assertContains('There are better connections.', $testString);
             }
 
             // text: with offset & max-length
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt', false, null, 7, 11);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt', false, null, 7, 11);
             static::assertContains('Iñtërnât', $testString);
 
             // text: with offset & max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt', false, null, 7, 10, 15);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt', false, null, 7, 10, 15);
             static::assertContains('ñtërnâtiôn', $testString);
 
             // text: with timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, 7, null, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, 7, null, 10);
             static::assertContains('Iñtërnâtiônàlizætiøn', $testString);
 
             // text: with max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, null, 10, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, null, null, 10, 10);
             static::assertContains('Hírek', $testString);
 
             $context = \stream_context_create(
@@ -1134,15 +1134,15 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             );
 
             // text: with max-length + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10);
             static::assertContains('Hírek', $testString);
 
             // text: do not convert to utf-8 + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10, false);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/iso-8859-7.txt', false, $context, null, 10, 10, false);
             static::assertRegExp('#H.*rek#', $testString);
 
             // text: do not convert to utf-8 + timeout
-            $testString = UTF8::file_get_contents(__DIR__ . '/fixtures/utf-8.txt', false, $context, null, 10, 10, false);
+            $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/utf-8.txt', false, $context, null, 10, 10, false);
             static::assertContains('Hírek', $testString);
         }
     }
@@ -1158,28 +1158,28 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         );
 
         // image: do not convert to utf-8 + timeout
-        $image = UTF8::file_get_contents(__DIR__ . '/fixtures/image.png', false, $context, null, null, 10, false);
-        static::assertTrue(UTF8::is_binary($image));
+        $image = UTF8::fileGetContents(__DIR__ . '/fixtures/image.png', false, $context, null, null, 10, false);
+        static::assertTrue(UTF8::isBinary($image));
 
         // image: convert to utf-8 + timeout (ERROR)
-        $image2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image.png', false, $context, null, null, 10, true);
-        static::assertTrue(UTF8::is_binary($image2));
+        $image2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image.png', false, $context, null, null, 10, true);
+        static::assertTrue(UTF8::isBinary($image2));
 
         // image: do not convert to utf-8 + timeout
-        $image = UTF8::file_get_contents(__DIR__ . '/fixtures/image_small.png', false, $context, null, null, 10, false);
-        static::assertTrue(UTF8::is_binary($image));
+        $image = UTF8::fileGetContents(__DIR__ . '/fixtures/image_small.png', false, $context, null, null, 10, false);
+        static::assertTrue(UTF8::isBinary($image));
 
         // image: convert to utf-8 + timeout (ERROR)
-        $image2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image_small.png', false, $context, null, null, 10, true);
-        static::assertTrue(UTF8::is_binary($image2));
+        $image2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image_small.png', false, $context, null, null, 10, true);
+        static::assertTrue(UTF8::isBinary($image2));
 
         // zip: do not convert to utf-8 + timeout
-        $image = UTF8::file_get_contents(__DIR__ . '/fixtures/test.zip', false, $context, null, null, 10, false);
-        static::assertTrue(UTF8::is_binary($image));
+        $image = UTF8::fileGetContents(__DIR__ . '/fixtures/test.zip', false, $context, null, null, 10, false);
+        static::assertTrue(UTF8::isBinary($image));
 
         // zip: convert to utf-8 + timeout (ERROR)
-        $image2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.zip', false, $context, null, null, 10, true);
-        static::assertTrue(UTF8::is_binary($image2));
+        $image2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.zip', false, $context, null, null, 10, true);
+        static::assertTrue(UTF8::isBinary($image2));
 
         static::assertSame($image2, $image);
     }
@@ -1234,12 +1234,12 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        static::assertSame('  -ABC-中文空白-  ', UTF8::filter_var('  -ABC-中文空白-  ', \FILTER_DEFAULT));
-        static::assertFalse(UTF8::filter_var('  -ABC-中文空白-  ', \FILTER_VALIDATE_URL));
-        static::assertFalse(UTF8::filter_var('  -ABC-中文空白-  ', \FILTER_VALIDATE_EMAIL));
-        static::assertSame(-1, UTF8::filter_var('中文空白 ', \FILTER_VALIDATE_INT, $options));
-        static::assertSame(99, UTF8::filter_var(99, \FILTER_VALIDATE_INT, $options));
-        static::assertSame(-1, UTF8::filter_var(100, \FILTER_VALIDATE_INT, $options));
+        static::assertSame('  -ABC-中文空白-  ', UTF8::filterVar('  -ABC-中文空白-  ', \FILTER_DEFAULT));
+        static::assertFalse(UTF8::filterVar('  -ABC-中文空白-  ', \FILTER_VALIDATE_URL));
+        static::assertFalse(UTF8::filterVar('  -ABC-中文空白-  ', \FILTER_VALIDATE_EMAIL));
+        static::assertSame(-1, UTF8::filterVar('中文空白 ', \FILTER_VALIDATE_INT, $options));
+        static::assertSame(99, UTF8::filterVar(99, \FILTER_VALIDATE_INT, $options));
+        static::assertSame(-1, UTF8::filterVar(100, \FILTER_VALIDATE_INT, $options));
     }
 
     public function testFilterVarArray()
@@ -1269,7 +1269,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
                 'age'   => 18,
                 'email' => 'foo@bar.de',
             ],
-            UTF8::filter_var_array($data, $filters, true)
+            UTF8::filterVarArray($data, $filters, true)
         );
 
         static::assertSame(
@@ -1278,7 +1278,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
                 'age'   => '18',
                 'email' => 'foo@bar.de',
             ],
-            UTF8::filter_var_array($data)
+            UTF8::filterVarArray($data)
         );
     }
 
@@ -1447,11 +1447,11 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::html_encode($actual), 'tested:' . $actual);
+            static::assertSame($expected, UTF8::htmlEncode($actual), 'tested:' . $actual);
         }
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($actual, UTF8::html_entity_decode(UTF8::html_encode($actual)), 'tested:' . $actual);
+            static::assertSame($actual, UTF8htmlEntityDecode(UTF8::htmlEncode($actual)), 'tested:' . $actual);
         }
 
         // ---
@@ -1471,8 +1471,8 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::html_encode($actual, true), 'tested:' . $actual);
-            static::assertSame($actual, UTF8::html_entity_decode(UTF8::html_encode($actual, true)), 'tested:' . $actual);
+            static::assertSame($expected, UTF8::htmlEncode($actual, true), 'tested:' . $actual);
+            static::assertSame($actual, UTF8htmlEntityDecode(UTF8::htmlEncode($actual, true)), 'tested:' . $actual);
         }
 
         // ---
@@ -1495,7 +1495,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::html_entity_decode(UTF8::html_encode($actual, true)), 'tested:' . $actual);
+            static::assertSame($expected, UTF8htmlEntityDecode(UTF8::htmlEncode($actual, true)), 'tested:' . $actual);
         }
 
         // --- ISO
@@ -1509,7 +1509,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertNotSame($expected, UTF8::html_entity_decode(UTF8::html_encode($actual, true, 'ISO')), 'tested:' . $actual);
+            static::assertNotSame($expected, UTF8htmlEntityDecode(UTF8::htmlEncode($actual, true, 'ISO')), 'tested:' . $actual);
         }
 
         $testArray = [
@@ -1525,7 +1525,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::html_entity_decode(UTF8::html_encode($actual, true, 'ISO'), \ENT_QUOTES), 'tested:' . $actual);
+            static::assertSame($expected, UTF8htmlEntityDecode(UTF8::htmlEncode($actual, true, 'ISO'), \ENT_QUOTES), 'tested:' . $actual);
         }
 
         // ---
@@ -1540,7 +1540,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             ];
 
             foreach ($testArray as $actual => $expected) {
-                static::assertSame($expected, UTF8::html_entity_decode(UTF8::html_encode($actual, true, 'ISO'), \ENT_COMPAT), 'tested:' . $actual);
+                static::assertSame($expected, UTF8htmlEntityDecode(UTF8::htmlEncode($actual, true, 'ISO'), \ENT_COMPAT), 'tested:' . $actual);
             }
         }
     }
@@ -1587,7 +1587,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         for ($i = 0; $i < 2; ++$i) { // keep this loop for simple performance tests
             foreach ($testArray as $before => $after) {
-                static::assertSame($after, UTF8::html_entity_decode($before, \ENT_COMPAT), 'error by ' . $before);
+                static::assertSame($after, UTF8htmlEntityDecode($before, \ENT_COMPAT), 'error by ' . $before);
             }
         }
     }
@@ -1629,7 +1629,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         }
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::html_entity_decode($before, \ENT_NOQUOTES, 'UTF-8'), 'error by ' . $before);
+            static::assertSame($after, UTF8htmlEntityDecode($before, \ENT_NOQUOTES, 'UTF-8'), 'error by ' . $before);
         }
     }
 
@@ -1670,7 +1670,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         }
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::html_entity_decode($before, \ENT_QUOTES, 'UTF-8'), 'error by ' . $before);
+            static::assertSame($after, UTF8htmlEntityDecode($before, \ENT_QUOTES, 'UTF-8'), 'error by ' . $before);
         }
 
         // ---
@@ -1686,11 +1686,11 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::html_entity_decode($before, \ENT_QUOTES, 'ISO'), 'error by ' . $before); // 'ISO-8859-1'
+            static::assertSame($after, UTF8htmlEntityDecode($before, \ENT_QUOTES, 'ISO'), 'error by ' . $before); // 'ISO-8859-1'
         }
 
-        static::assertSame('Who\'s Online 中', UTF8::html_entity_decode('Who&amp;#039;s Online &#20013;', \ENT_QUOTES, 'UTF8'));
-        static::assertSame('Who\'s Online &#20013;', UTF8::html_entity_decode('Who&amp;#039;s Online &#20013;', \ENT_QUOTES, 'ISO'));
+        static::assertSame('Who\'s Online 中', UTF8htmlEntityDecode('Who&amp;#039;s Online &#20013;', \ENT_QUOTES, 'UTF8'));
+        static::assertSame('Who\'s Online &#20013;', UTF8htmlEntityDecode('Who&amp;#039;s Online &#20013;', \ENT_QUOTES, 'ISO'));
     }
 
     /**
@@ -1730,7 +1730,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         }
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::html_entity_decode($before, \ENT_QUOTES | \ENT_HTML5, 'UTF-8'), 'error by ' . $before);
+            static::assertSame($after, UTF8htmlEntityDecode($before, \ENT_QUOTES | \ENT_HTML5, 'UTF-8'), 'error by ' . $before);
         }
     }
 
@@ -1741,7 +1741,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             '<\\\'öäü>'                                                                                                   => '&lt;&#92;\'&ouml;&auml;&uuml;&gt;',
             '<白>'                                                                                                         => '&lt;&#30333;&gt;',
             '<白-öäü>'                                                                                                     => '&lt;&#30333;-&ouml;&auml;&uuml;&gt;',
-            'dies ist ein test „Goldenen Regeln und Checklisten“.<br /><br /><br />' . UTF8::html_entity_decode('&nbsp;') => 'dies ist ein test &bdquo;Goldenen Regeln und Checklisten&ldquo;.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&nbsp;',
+            'dies ist ein test „Goldenen Regeln und Checklisten“.<br /><br /><br />' . UTF8htmlEntityDecode('&nbsp;') => 'dies ist ein test &bdquo;Goldenen Regeln und Checklisten&ldquo;.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&nbsp;',
             'öäü'                                                                                                         => '&ouml;&auml;&uuml;',
             ' '                                                                                                           => ' ',
             ''                                                                                                            => '',
@@ -1754,7 +1754,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
             static::assertSame(
                 $actual,
-                UTF8::html_entity_decode(
+                UTF8htmlEntityDecode(
                     UTF8::htmlentities($actual)
                 )
             );
@@ -1774,7 +1774,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
             static::assertSame(
                 $actual,
-                UTF8::html_entity_decode(
+                UTF8htmlEntityDecode(
                     UTF8::htmlentities($actual, \ENT_COMPAT, 'ISO-8859-1', false),
                     \ENT_COMPAT,
                     'ISO-8859-1'
@@ -1831,7 +1831,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_ascii($actual), 'error by ' . $actual);
+            static::assertSame($expected, UTF8::isAscii($actual), 'error by ' . $actual);
         }
     }
 
@@ -1867,82 +1867,82 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
     public function testIsBinaryNonStrict()
     {
         /** @noinspection PhpUsageOfSilenceOperatorInspection */
-        static::assertFalse(@UTF8::is_binary_file(__DIR__ . '/fixtures/fileNotExists.txt'));
+        static::assertFalse(@UTF8::isBinary_file(__DIR__ . '/fixtures/fileNotExists.txt'));
 
-        static::assertFalse(UTF8::is_binary_file(__DIR__ . '/fixtures/latin.txt'));
+        static::assertFalse(UTF8::isBinary_file(__DIR__ . '/fixtures/latin.txt'));
 
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/latin.txt');
-        static::assertFalse(UTF8::is_binary($testString1, false));
+        static::assertFalse(UTF8::isBinary($testString1, false));
 
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt');
-        static::assertFalse(UTF8::is_binary($testString2, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt');
+        static::assertFalse(UTF8::isBinary($testString2, false));
 
-        static::assertSame(UTF8::to_utf8($testString1), $testString2);
+        static::assertSame(UTF8::toUtf8($testString1), $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.xlsx'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.xlsx'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.xlsx');
-        static::assertFalse(UTF8::is_binary($testString1, false));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.xlsx');
-        static::assertFalse(UTF8::is_binary($testString2, false));
+        static::assertFalse(UTF8::isBinary($testString1, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.xlsx');
+        static::assertFalse(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.xls'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.xls'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.xls');
-        static::assertTrue(UTF8::is_binary($testString1, false));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.xls');
-        static::assertTrue(UTF8::is_binary($testString2, false));
+        static::assertTrue(UTF8::isBinary($testString1, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.xls');
+        static::assertTrue(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.pdf'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.pdf'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.pdf');
-        static::assertFalse(UTF8::is_binary($testString1, false));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.pdf');
-        static::assertFalse(UTF8::is_binary($testString2, false));
+        static::assertFalse(UTF8::isBinary($testString1, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.pdf');
+        static::assertFalse(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/image.png'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/image.png'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/image.png');
-        static::assertTrue(UTF8::is_binary($testString1, false));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image.png');
-        static::assertTrue(UTF8::is_binary($testString2, false));
+        static::assertTrue(UTF8::isBinary($testString1, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image.png');
+        static::assertTrue(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/image_small.png'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/image_small.png'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/image_small.png');
-        static::assertTrue(UTF8::is_binary($testString1, false));
+        static::assertTrue(UTF8::isBinary($testString1, false));
 
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image_small.png');
-        static::assertTrue(UTF8::is_binary($testString2, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image_small.png');
+        static::assertTrue(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertFalse(UTF8::is_binary_file(__DIR__ . '/fixtures/test.js'));
+        static::assertFalse(UTF8::isBinary_file(__DIR__ . '/fixtures/test.js'));
         $testString3 = \file_get_contents(__DIR__ . '/fixtures/test.js');
-        static::assertFalse(UTF8::is_binary($testString3, false));
+        static::assertFalse(UTF8::isBinary($testString3, false));
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.zip'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.zip'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.zip');
-        static::assertTrue(UTF8::is_binary($testString1, false));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.zip');
-        static::assertTrue(UTF8::is_binary($testString2, false));
+        static::assertTrue(UTF8::isBinary($testString1, false));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.zip');
+        static::assertTrue(UTF8::isBinary($testString2, false));
 
         static::assertSame($testString1, $testString2);
 
@@ -1970,7 +1970,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::is_binary($before, false), 'value: ' . $before);
+            static::assertSame($after, UTF8::isBinary($before, false), 'value: ' . $before);
         }
     }
 
@@ -1980,71 +1980,71 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
             static::markTestSkipped('finfo is not supported');
         }
 
-        static::assertFalse(UTF8::is_binary_file(__DIR__ . '/fixtures/latin.txt'));
+        static::assertFalse(UTF8::isBinary_file(__DIR__ . '/fixtures/latin.txt'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/latin.txt');
-        static::assertFalse(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/latin.txt');
-        static::assertFalse(UTF8::is_binary($testString2, true));
+        static::assertFalse(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/latin.txt');
+        static::assertFalse(UTF8::isBinary($testString2, true));
 
-        static::assertSame(UTF8::to_utf8($testString1), $testString2);
+        static::assertSame(UTF8::toUtf8($testString1), $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.xlsx'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.xlsx'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.xlsx');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.xlsx');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.xlsx');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.xls'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.xls'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.xls');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.xls');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.xls');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.pdf'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.pdf'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.pdf');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.pdf');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.pdf');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/image.png'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/image.png'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/image.png');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image.png');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image.png');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/image_small.png'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/image_small.png'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/image_small.png');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/image_small.png');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/image_small.png');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
         // ---
 
-        static::assertTrue(UTF8::is_binary_file(__DIR__ . '/fixtures/test.zip'));
+        static::assertTrue(UTF8::isBinary_file(__DIR__ . '/fixtures/test.zip'));
         $testString1 = \file_get_contents(__DIR__ . '/fixtures/test.zip');
-        static::assertTrue(UTF8::is_binary($testString1, true));
-        $testString2 = UTF8::file_get_contents(__DIR__ . '/fixtures/test.zip');
-        static::assertTrue(UTF8::is_binary($testString2, true));
+        static::assertTrue(UTF8::isBinary($testString1, true));
+        $testString2 = UTF8::fileGetContents(__DIR__ . '/fixtures/test.zip');
+        static::assertTrue(UTF8::isBinary($testString2, true));
 
         static::assertSame($testString1, $testString2);
 
@@ -2072,7 +2072,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::is_binary($before, true), 'value: ' . $before);
+            static::assertSame($after, UTF8::isBinary($before, true), 'value: ' . $before);
         }
     }
 
@@ -2176,27 +2176,27 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf16($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf16($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf16($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf16($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
-        static::assertFalse(UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-8.txt')));
-        static::assertFalse(UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-8-bom.txt')));
+        static::assertFalse(UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-8.txt')));
+        static::assertFalse(UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-8-bom.txt')));
 
-        static::assertSame(2, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt')));
-        static::assertSame(2, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-be-bom.txt')));
+        static::assertSame(2, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt')));
+        static::assertSame(2, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-be-bom.txt')));
 
-        static::assertSame(1, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt')));
-        static::assertSame(1, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-le-bom.txt')));
+        static::assertSame(1, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-le.txt')));
+        static::assertSame(1, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/utf-16-le-bom.txt')));
 
-        static::assertSame(1, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/sample-utf-16-le-bom.txt')));
-        static::assertSame(2, UTF8::is_utf16(\file_get_contents(__DIR__ . '/fixtures/sample-utf-16-be-bom.txt')));
+        static::assertSame(1, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/sample-utf-16-le-bom.txt')));
+        static::assertSame(2, UTF8::isUtf16(\file_get_contents(__DIR__ . '/fixtures/sample-utf-16-be-bom.txt')));
     }
 
     public function testIsUtf32()
@@ -2253,21 +2253,21 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf32($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf32($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf32($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf32($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
-        static::assertFalse(UTF8::is_utf32(\file_get_contents(__DIR__ . '/fixtures/utf-8.txt')));
-        static::assertFalse(UTF8::is_utf32(\file_get_contents(__DIR__ . '/fixtures/utf-8-bom.txt')));
+        static::assertFalse(UTF8::isUtf32(\file_get_contents(__DIR__ . '/fixtures/utf-8.txt')));
+        static::assertFalse(UTF8::isUtf32(\file_get_contents(__DIR__ . '/fixtures/utf-8-bom.txt')));
 
-        static::assertSame(1, UTF8::is_utf32(\file_get_contents(__DIR__ . '/fixtures/sample-utf-32-le-bom.txt')));
-        static::assertSame(2, UTF8::is_utf32(\file_get_contents(__DIR__ . '/fixtures/sample-utf-32-be-bom.txt')));
+        static::assertSame(1, UTF8::isUtf32(\file_get_contents(__DIR__ . '/fixtures/sample-utf-32-le-bom.txt')));
+        static::assertSame(2, UTF8::isUtf32(\file_get_contents(__DIR__ . '/fixtures/sample-utf-32-be-bom.txt')));
     }
 
     public function testIsUtf8()
@@ -2353,7 +2353,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::json_decode(UTF8::json_encode($before)));
+            static::assertSame($after, UTF8::jsonDecode(UTF8::jsonEncode($before)));
         }
 
         // ---
@@ -2376,11 +2376,11 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         $expected = new \stdClass();
         $expected->array = [1, '¥', 'ä'];
-        static::assertSame((array) $expected, (array) UTF8::json_decode('{"array":[1,"¥","ä"]}'));
+        static::assertSame((array) $expected, (array) UTF8::jsonDecode('{"array":[1,"¥","ä"]}'));
 
         // ----
 
-        static::assertSame([1, '¥', 'ä'], UTF8::json_decode('[1,"\u00a5","\u00e4"]'));
+        static::assertSame([1, '¥', 'ä'], UTF8::jsonDecode('[1,"\u00a5","\u00e4"]'));
     }
 
     public function testShowSupport()
@@ -2401,11 +2401,11 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
     {
         $test = new \stdClass();
         $test->array = [1, '¥', 'ä'];
-        static::assertSame('{"array":[1,"\u00a5","\u00e4"]}', UTF8::json_encode($test));
+        static::assertSame('{"array":[1,"\u00a5","\u00e4"]}', UTF8::jsonEncode($test));
 
         // ----
 
-        static::assertSame('[1,"\u00a5","\u00e4"]', UTF8::json_encode([1, '¥', 'ä']));
+        static::assertSame('[1,"\u00a5","\u00e4"]', UTF8::jsonEncode([1, '¥', 'ä']));
     }
 
     public function testLcWords()
@@ -2626,7 +2626,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
     public function testOrd()
     {
-        $nbsp = UTF8::html_entity_decode('&nbsp;');
+        $nbsp = UTF8htmlEntityDecode('&nbsp;');
 
         $testArray = [
             "\xF0\x90\x8C\xBC" => 66364,
@@ -3110,13 +3110,13 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::single_chr_html_encode($actual));
+            static::assertSame($expected, UTF8::singleChrHtmlEncode($actual));
         }
 
-        static::assertSame('a', UTF8::single_chr_html_encode('a', true));
+        static::assertSame('a', UTF8::singleChrHtmlEncode('a', true));
 
-        static::assertSame('&#246;', UTF8::single_chr_html_encode('ö', false, 'ISO'));
-        static::assertSame('&#246;', UTF8::single_chr_html_encode('ö', false, 'UTF8'));
+        static::assertSame('&#246;', UTF8::singleChrHtmlEncode('ö', false, 'ISO'));
+        static::assertSame('&#246;', UTF8::singleChrHtmlEncode('ö', false, 'UTF8'));
     }
 
     public function testSplit()
@@ -3180,28 +3180,28 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
             foreach ($tests as $before => $after) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertSame($after, @UTF8::str_detect_encoding($before), 'value: ' . $before);
+                static::assertSame($after, @UTF8::detectStringEncoding($before), 'value: ' . $before);
             }
         }
 
         if (\method_exists(__CLASS__, 'assertStringContainsString')) {
             $testString = \file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
-            static::assertStringContainsString('UTF-8', UTF8::str_detect_encoding($testString));
+            static::assertStringContainsString('UTF-8', UTF8::detectStringEncoding($testString));
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/latin.txt');
-            static::assertStringContainsString('ISO-8859-1', UTF8::str_detect_encoding($testString));
+            static::assertStringContainsString('ISO-8859-1', UTF8::detectStringEncoding($testString));
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt');
-            static::assertStringContainsString('ISO-8859-1', UTF8::str_detect_encoding($testString)); // ?
+            static::assertStringContainsString('ISO-8859-1', UTF8::detectStringEncoding($testString)); // ?
         } else {
             $testString = \file_get_contents(__DIR__ . '/fixtures/sample-html.txt');
-            static::assertContains('UTF-8', UTF8::str_detect_encoding($testString));
+            static::assertContains('UTF-8', UTF8::detectStringEncoding($testString));
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/latin.txt');
-            static::assertContains('ISO-8859-1', UTF8::str_detect_encoding($testString));
+            static::assertContains('ISO-8859-1', UTF8::detectStringEncoding($testString));
 
             $testString = \file_get_contents(__DIR__ . '/fixtures/iso-8859-7.txt');
-            static::assertContains('ISO-8859-1', UTF8::str_detect_encoding($testString)); // ?
+            static::assertContains('ISO-8859-1', UTF8::detectStringEncoding($testString)); // ?
         }
     }
 
@@ -3464,7 +3464,7 @@ abc	áßç	क際👽 	क際👽
         js/rust/ruby	çखी國👽
         ';
 
-        static::assertSame($expected, UTF8::rawurldecode(UTF8::to_utf8($testStr, true)));
+        static::assertSame($expected, UTF8::rawurldecode(UTF8::toUtf8($testStr, true)));
     }
 
     public function testStrShuffle()

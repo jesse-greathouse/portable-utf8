@@ -5954,7 +5954,7 @@ final class Utf8HtmlEncode extends \PHPUnit\Framework\TestCase
 
         foreach ($encodeData as $encodeDataInnerArray) {
             static::assertSame(
-                UTF8::to_utf8($encodeDataInnerArray['decoded']),
+                UTF8::toUtf8($encodeDataInnerArray['decoded']),
                 UTF8::html_decode($encodeDataInnerArray['encoded']),
                 'tested: ' . \print_r($encodeDataInnerArray, true)
             );
@@ -5962,8 +5962,8 @@ final class Utf8HtmlEncode extends \PHPUnit\Framework\TestCase
 
         foreach ($encodeData as $encodeDataInnerArray) {
             static::assertSame(
-                UTF8::to_utf8($encodeDataInnerArray['decoded']),
-                UTF8::html_decode(UTF8::html_encode($encodeDataInnerArray['decoded'], true)),
+                UTF8::toUtf8($encodeDataInnerArray['decoded']),
+                UTF8::html_decode(UTF8::htmlEncode($encodeDataInnerArray['decoded'], true)),
                 'tested: ' . \print_r($encodeDataInnerArray, true)
             );
         }
@@ -11914,7 +11914,7 @@ b',
 
         foreach ($encodeData as $encodeDataInnerArray) {
             static::assertSame(
-                UTF8::to_utf8($encodeDataInnerArray['decoded']),
+                UTF8::toUtf8($encodeDataInnerArray['decoded']),
                 UTF8::html_decode($encodeDataInnerArray['encoded']),
                 'tested: ' . \print_r($encodeDataInnerArray, true)
             );

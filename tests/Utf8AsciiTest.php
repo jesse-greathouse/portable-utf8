@@ -16,37 +16,37 @@ final class Utf8AsciiTest extends \PHPUnit\Framework\TestCase
     public function testUtf8()
     {
         $str = 'testiñg';
-        static::assertFalse(UTF8::is_ascii($str));
+        static::assertFalse(UTF8::isAscii($str));
     }
 
     public function testAscii()
     {
         $str = 'testing';
-        static::assertTrue(UTF8::is_ascii($str));
+        static::assertTrue(UTF8::isAscii($str));
     }
 
     public function testInvalidChar()
     {
         $str = "tes\xe9ting";
-        static::assertFalse(UTF8::is_ascii($str));
+        static::assertFalse(UTF8::isAscii($str));
     }
 
     public function testEmptyStr()
     {
         $str = '';
-        static::assertTrue(UTF8::is_ascii($str));
+        static::assertTrue(UTF8::isAscii($str));
     }
 
     public function testNewLine()
     {
         $str = "a\nb\nc";
-        static::assertTrue(UTF8::is_ascii($str));
+        static::assertTrue(UTF8::isAscii($str));
     }
 
     public function testTab()
     {
         $str = "a\tb\tc";
-        static::assertTrue(UTF8::is_ascii($str));
+        static::assertTrue(UTF8::isAscii($str));
     }
 
     public function testUtf8ToAscii()

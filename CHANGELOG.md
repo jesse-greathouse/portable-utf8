@@ -66,16 +66,16 @@ Removed:
 - UTF8::GRAPHEME_CLUSTER_RX
 - UTF8::chr_to_int() (please use UTF8::chrToDecimal())
 - UTF8::hasBom() (please use UTF8::hasBom())
-- UTF8::html_decode() (please use UTF8::html_entity_decode())
-- UTF8::int_to_chr() (please use UTF8::decimal_to_chr())
-- UTF8::isAscii() (please use UTF8::is_ascii())
+- UTF8::html_decode() (please use UTF8htmlEntityDecode())
+- UTF8::int_to_chr() (please use UTF8::decimalToChr())
+- UTF8::isAscii() (please use UTF8::isAscii())
 - UTF8::isBase64() (please use UTF8::is_base64())
-- UTF8::isBinary() (please use UTF8::is_binary())
+- UTF8::isBinary() (please use UTF8::isBinary())
 - UTF8::isBom() (please use UTF8::is_bom())
 - UTF8::isHtml() (please use UTF8::is_html())
 - UTF8::isJson() (please use UTF8::is_json())
-- UTF8::isUtf16() (please use UTF8::is_utf16())
-- UTF8::isUtf32() (please use UTF8::is_utf32())
+- UTF8::isUtf16() (please use UTF8::isUtf16())
+- UTF8::isUtf32() (please use UTF8::isUtf32())
 - UTF8::isUtf8() (please use UTF8::is_utf8())
 - UTF8::lcword() (please use UTF8::lcfirst())
 - UTF8::lowerCaseFirst() (please use UTF8::lcfirst())
@@ -95,16 +95,16 @@ Removed:
 - UTF8::strchr() (please use UTF8::strstr()) 
 - UTF8::strichr() (please use UTF8::stristr())
 - UTF8::toAscii() (please use UTF8::to_ascii())
-- UTF8::toIso8859() (please use UTF8::to_iso8859())
-- UTF8::toLatin1() (please use UTF8::to_iso8859())
-- UTF8::to_latin1() (please use UTF8::to_iso8859())
-- UTF8::toUTF8() (please use UTF8::to_utf8())
+- UTF8::toIso8859() (please use UTF8::toIso8859())
+- UTF8::toLatin1() (please use UTF8::toIso8859())
+- UTF8::to_latin1() (please use UTF8::toIso8859())
+- UTF8::toUTF8() (please use UTF8::toUtf8())
 - UTF8::ucword() (please use UTF8::ucfirst())
 - UTF8::urldecode_fix_win1252_chars() (please use UTF8::urldecode())
 - UTF8::utf8_fix_win1252_chars() (please use UTF8::fixSimpleUtf8())
 
 Fixed:
-- "UTF8::is_binary()" -> fix for strict usage
+- "UTF8::isBinary()" -> fix for strict usage
 
 ### 5.4.51 (2020-12-02)
 
@@ -124,7 +124,7 @@ Fixed:
 ### 5.4.48 (2020-11-07)
 
 - fix "UTF8::chr()" handling of non "int" code points
-- fix "UTF8::html_encode()" (parameter mismatch for "mb_encode_numericentity()")
+- fix "UTF8::htmlEncode()" (parameter mismatch for "mb_encode_numericentity()")
 - fix "UTF8::str_ireplace()" (TypeError of "preg_replace()")
 - fix "UTF8::strtonatfold()" (TypeError of "preg_replace()")
 - fix "UTF8::substr_count()" return type if "$haystack" is an empty string
@@ -165,7 +165,7 @@ Fixed:
 
 ### 5.4.42 (2020-05-05)
 
-- add "UTF8::css_identifier()"
+- add "UTF8::cssIdentifier()"
 - optimize phpdoc comments
 - use more template phpdoc-annotation (supported by phpstan and psalm)
 - move code examples into the code
@@ -182,14 +182,14 @@ Fixed:
 ### 5.4.39 (2020-01-30)
 
 - "GRAPHEME_CLUSTER_RX" -> is not used anymore and is now deprecated
-- fix "UTF8::decode_mimeheader" fallback -> now we always use the symfony polyfill (mb_decode_mimeheader has different results)
+- fix "UTF8::decodeMimeHeader" fallback -> now we always use the symfony polyfill (mb_decodeMimeHeader has different results)
 - fix "UTF8::get_unique_string()" -> use "mt_rand" as fallback
 - fix "UTF8::strtr()" -> now it works also with arrays
-- fix phpdoc for "UTF8::normalize_line_ending()"
+- fix phpdoc for "UTF8::normalizeLineEnding()"
 - fix phpdoc for "UTF8::split()" & "UTF8::strSplit()"
 - add "UTF8::strSplitArray()"
 - add "UTF8::stripos_in_byte()"
-- add "UTF8::emoji_from_country_code()"
+- add "UTF8::emojiFromCountryCode()"
 - add many new tests
 - optimize "UTF8::is_url()" + fix deprecated php (>= 7.3) constants
 - optimize "UTF8::str_limit_after_word()" -> optimize the regex
@@ -242,7 +242,7 @@ Fixed:
 ### 5.4.28 (2019-11-17)
 
 - use "mb_strSplit" with PHP >= 7.4 + mbstring support (performance++)
-- improve performance from "UTF8::string()" (use UTF8::html_entity_decode() for the full string)
+- improve performance from "UTF8::string()" (use UTF8htmlEntityDecode() for the full string)
 - fix errors reported by phpstan (level 7) / psalm
 
 ### 5.4.27 (2019-11-11)
@@ -278,7 +278,7 @@ Fixed:
 ### 5.4.23 (2019-09-27)
 
 - improve performance from "UTF8::chrToDecimal()" (now we use iconv if it's available)
-- improve performance from "UTF8::html_entity_decode()" (code cleanup, remove dead code)
+- improve performance from "UTF8htmlEntityDecode()" (code cleanup, remove dead code)
 
 ### 5.4.22 (2019-09-26)
 
@@ -307,18 +307,18 @@ Fixed:
 
 ### 5.4.17 (2019-08-21)
 
-- fix "UTF8::get_file_type()" -> do not add too simple comparisons, because of false-positive results
+- fix "UTF8::getFileType()" -> do not add too simple comparisons, because of false-positive results
 - extend "UTF8::str_titleize()" -> allow to add "word"-chars as new parameter
 
 ### 5.4.16 (2019-08-15)
 
-- optimize "UTF8::str_detect_encoding()"
+- optimize "UTF8::detectStringEncoding()"
 
 ### 5.4.15 (2019-08-06)
 
 - extend "UTF8::range()" -> support for different steps
-- fix "UTF8::str_detect_encoding()" detecting of "UTF-32"
-- revert: use "mb_detect_order()" for "UTF8::str_detect_encoding()"
+- fix "UTF8::detectStringEncoding()" detecting of "UTF-32"
+- revert: use "mb_detect_order()" for "UTF8::detectStringEncoding()"
 
 ### 5.4.14 (2019-08-02)
 
@@ -334,7 +334,7 @@ Fixed:
 
 ### 5.4.11 (2019-07-19)
 
-- use "mb_detect_order()" for "UTF8::str_detect_encoding()"
+- use "mb_detect_order()" for "UTF8::detectStringEncoding()"
 - code clean-up + optimize regex usage
 
 ### 5.4.10 (2019-07-05)
@@ -348,7 +348,7 @@ Fixed:
 
 ### 5.4.8 (2019-06-08)
 
-- fix typo in "win1252_to_utf8.php"
+- fix typo in "win1252_toUtf8.php"
 - optimize "UTF8::fixSimpleUtf8()"
 
 ### 5.4.7 (2019-05-28)
@@ -372,7 +372,7 @@ Fixed:
 ### 5.4.3 (2019-03-05)
 
 - optimize "UTF8::strrev()" with support for emoji chars
-- added "UTF8::emoji_encode()" + "UTF8::emoji_decode()"
+- added "UTF8::emojiEncode()" + "UTF8::emojiDecode()"
 
 ### 5.4.2 (2019-02-11)
 
@@ -425,7 +425,7 @@ Fixed:
 - added "UTF8::str_ireplace_beginning()" && "UTF8::str_ireplace_ending()"
 
 ### 5.2.13 (2018-11-29)
-- "UTF8::get_file_type()" is now public + tested
+- "UTF8::getFileType()" is now public + tested
 
 ### 5.2.12 (2018-11-29)
 - optimize "UTF8::ord()" performance
@@ -444,7 +444,7 @@ Fixed:
 - "composer.json" -> remove extra alias
 - UTF8::substr_replace() -> optimize performance
 - UTF8::clean() -> add tests with "\00"
-- update "UTF8::get_file_type()"
+- update "UTF8::getFileType()"
 - fix fallback for "UTF8::encode()"
 
 ### 5.2.7 (2018-09-15)
@@ -460,7 +460,7 @@ Fixed:
 
 ### 5.2.4 (2018-09-11)
 - optimize performance for "UTF8::removeBom()"
-- optimize performance for "UTF8::is_binary()"
+- optimize performance for "UTF8::isBinary()"
 - fix tests with "mbstring_func_overload"
 
 ### 5.2.3 (2018-09-07)
@@ -485,7 +485,7 @@ Fixed:
 
 ### 5.0.6 (2018-05-02)
 - fix "UTF8::to_ascii()"
-- update encoding list for "UTF8::str_detect_encoding()"
+- update encoding list for "UTF8::detectStringEncoding()"
 - use root namespaces for php functions
 
 
@@ -497,23 +497,23 @@ Fixed:
 - performance optimizing
   -> use "UTF8::normalize_encoding()" if needed
   -> use "CP850" encoding only if needed
-  -> don't use "UTF8::html_encode()" in a foreach-loop
+  -> don't use "UTF8::htmlEncode()" in a foreach-loop
 
 
 ### 5.0.3 (2018-01-02)
 - fix tests without "finfo" (e.g. appveyor - windows)
-- optimize "UTF8::str_detect_encoding()"
+- optimize "UTF8::detectStringEncoding()"
   -> return "false" if we detect binary data, but not for UTF-16 / UTF-32
 
 
 ### 5.0.2 (2018-01-02)
-- optimize "UTF8::is_binary()" v2
+- optimize "UTF8::isBinary()" v2
 - edit "UTF8::clean()" -> do not remote diamond question mark by default
-  -> fix for e.g. UTF8::file_get_contents() + auto encoding detection
+  -> fix for e.g. UTF8::fileGetContents() + auto encoding detection
 
 
 ### 5.0.1 (2018-01-01)
-- optimize "UTF8::is_binary()" + new tests
+- optimize "UTF8::isBinary()" + new tests
 
 
 ### 5.0.0 (2017-12-10)

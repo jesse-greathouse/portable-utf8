@@ -84,12 +84,12 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         $counter = 0;
         foreach ($examples as $testString => $testResults) {
             foreach ($testResults as $before => $after) {
-                static::assertSame($after, UTF8::to_utf8(UTF8::cleanup($testString)), $counter . ' - ' . $before);
+                static::assertSame($after, UTF8::toUtf8(UTF8::cleanup($testString)), $counter . ' - ' . $before);
             }
             ++$counter;
         }
 
-        $testString = 'test' . UTF8::html_entity_decode('&nbsp;') . 'test';
+        $testString = 'test' . UTF8htmlEntityDecode('&nbsp;') . 'test';
         static::assertSame('test' . "\xc2\xa0" . 'test', $testString);
         static::assertSame('test&nbsp;test', UTF8::htmlentities($testString));
         static::assertSame('test' . "\xc2\xa0" . 'test', UTF8::cleanup($testString));
@@ -324,7 +324,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         $result = [];
         $i = 0;
         foreach ($testArray as $test) {
-            $result[$i] = UTF8::to_utf8($test);
+            $result[$i] = UTF8::toUtf8($test);
 
             static::assertSame($test, $result[$i]);
 
@@ -332,10 +332,10 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         }
 
         // test with array
-        static::assertSame($result, UTF8::to_utf8($testArray));
+        static::assertSame($result, UTF8::toUtf8($testArray));
 
         foreach ($testArray as $test) {
-            static::assertSame($test, UTF8::to_utf8(UTF8::to_utf8($test)));
+            static::assertSame($test, UTF8::toUtf8(UTF8::toUtf8($test)));
         }
     }
 
@@ -362,7 +362,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::to_utf8($before));
+            static::assertSame($after, UTF8::toUtf8($before));
         }
 
         // ---
@@ -386,7 +386,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::to_utf8($before, true));
+            static::assertSame($after, UTF8::toUtf8($before, true));
         }
 
         // ---
@@ -429,7 +429,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
         static::assertTrue(\count($testArray) > 0);
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::to_utf8($before), 'tested: ' . $before);
+            static::assertSame($after, UTF8::toUtf8($before), 'tested: ' . $before);
         }
     }
 
@@ -439,7 +439,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
         $utf8File = \explode("\n", \str_replace(["\r\n", "\r", '<br>', '<br />'], "\n", $utf8File));
         foreach ($utf8File as $str) {
-            static::assertSame($str, UTF8::to_utf8($str), 'tested: ' . $str);
+            static::assertSame($str, UTF8::toUtf8($str), 'tested: ' . $str);
         }
     }
 
@@ -714,7 +714,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::encode('UTF-8', UTF8::utf8_decode($before)));
+            static::assertSame($after, UTF8::encode('UTF-8', UTF8::utf8Decode($before)));
         }
 
         // ---
@@ -729,7 +729,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_encode(UTF8::encode('ISO-8859-1', (string) $before, false)));
+            static::assertSame($after, UTF8::utf8Encode(UTF8::encode('ISO-8859-1', (string) $before, false)));
         }
     }
 
@@ -751,7 +751,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_encode((UTF8::utf8_decode((string) $before))));
+            static::assertSame($after, UTF8::utf8Encode((UTF8::utf8Decode((string) $before))));
         }
     }
 
@@ -765,7 +765,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_encode($before));
+            static::assertSame($after, UTF8::utf8Encode($before));
         }
     }
 
@@ -779,7 +779,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::encode('UTF-8', UTF8::utf8_encode($before)));
+            static::assertSame($after, UTF8::encode('UTF-8', UTF8::utf8Encode($before)));
         }
     }
 
@@ -799,7 +799,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_decode(UTF8::utf8_encode($before)));
+            static::assertSame($after, UTF8::utf8Decode(UTF8::utf8Encode($before)));
         }
     }
 
@@ -813,7 +813,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::utf8_encode(UTF8::utf8_encode($before)));
+            static::assertSame($after, UTF8::utf8Encode(UTF8::utf8Encode($before)));
         }
     }
 
@@ -883,10 +883,10 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
     public function testUtf8FileWithBom()
     {
-        $bom = UTF8::file_has_bom(__DIR__ . '/fixtures/utf-8-bom.txt');
+        $bom = UTF8::fileHasBom(__DIR__ . '/fixtures/utf-8-bom.txt');
         static::assertTrue($bom);
 
-        $bom = UTF8::file_has_bom(__DIR__ . '/fixtures/utf-8.txt');
+        $bom = UTF8::fileHasBom(__DIR__ . '/fixtures/utf-8.txt');
         static::assertFalse($bom);
     }
 
@@ -994,7 +994,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
     public function testValidCharsViaUtf8Encode()
     {
-        $tests = UTF8::json_decode(UTF8::file_get_contents(__DIR__ . '/fixtures/valid.json'), true);
+        $tests = UTF8::jsonDecode(UTF8::fileGetContents(__DIR__ . '/fixtures/valid.json'), true);
 
         foreach ($tests as $test) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
@@ -1154,13 +1154,13 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
     public function testhtmlEncodeChr()
     {
-        static::assertSame('\'', UTF8::decimal_to_chr(39));
-        static::assertSame('\'', UTF8::decimal_to_chr('39'));
-        static::assertSame('&', UTF8::decimal_to_chr(38));
-        static::assertSame('&', UTF8::decimal_to_chr('38'));
-        static::assertSame('<', UTF8::decimal_to_chr(60));
-        static::assertSame('Σ', UTF8::decimal_to_chr(931));
-        static::assertSame('Σ', UTF8::decimal_to_chr('0931'));
+        static::assertSame('\'', UTF8::decimalToChr(39));
+        static::assertSame('\'', UTF8::decimalToChr('39'));
+        static::assertSame('&', UTF8::decimalToChr(38));
+        static::assertSame('&', UTF8::decimalToChr('38'));
+        static::assertSame('<', UTF8::decimalToChr(60));
+        static::assertSame('Σ', UTF8::decimalToChr(931));
+        static::assertSame('Σ', UTF8::decimalToChr('0931'));
     }
 
     public function trimProvider(): \Iterator
