@@ -926,24 +926,24 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testEmpty()
     {
-        static::assertTrue(UTF8::is_empty(''));
-        static::assertTrue(UTF8::is_empty('0'));
-        static::assertTrue(UTF8::is_empty([]));
-        static::assertTrue(UTF8::is_empty(null));
-        static::assertTrue(UTF8::is_empty(0));
-        static::assertTrue(UTF8::is_empty(0000));
-        static::assertTrue(UTF8::is_empty(0.0000));
+        static::assertTrue(UTF8::isEmpty(''));
+        static::assertTrue(UTF8::isEmpty('0'));
+        static::assertTrue(UTF8::isEmpty([]));
+        static::assertTrue(UTF8::isEmpty(null));
+        static::assertTrue(UTF8::isEmpty(0));
+        static::assertTrue(UTF8::isEmpty(0000));
+        static::assertTrue(UTF8::isEmpty(0.0000));
 
-        static::assertFalse(UTF8::is_empty('0000'));
-        static::assertFalse(UTF8::is_empty(0.0001));
-        static::assertFalse(UTF8::is_empty(-0.0001));
-        static::assertFalse(UTF8::is_empty([null]));
-        static::assertFalse(UTF8::is_empty([0]));
-        static::assertFalse(UTF8::is_empty([0.0000]));
-        static::assertFalse(UTF8::is_empty([1]));
-        static::assertFalse(UTF8::is_empty(-1));
-        static::assertFalse(UTF8::is_empty(1));
-        static::assertFalse(UTF8::is_empty('1'));
+        static::assertFalse(UTF8::isEmpty('0000'));
+        static::assertFalse(UTF8::isEmpty(0.0001));
+        static::assertFalse(UTF8::isEmpty(-0.0001));
+        static::assertFalse(UTF8::isEmpty([null]));
+        static::assertFalse(UTF8::isEmpty([0]));
+        static::assertFalse(UTF8::isEmpty([0.0000]));
+        static::assertFalse(UTF8::isEmpty([1]));
+        static::assertFalse(UTF8::isEmpty(-1));
+        static::assertFalse(UTF8::isEmpty(1));
+        static::assertFalse(UTF8::isEmpty('1'));
     }
 
     public function testEncodeMimeheader()

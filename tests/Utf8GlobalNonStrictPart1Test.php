@@ -319,7 +319,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::chrToHex(UTF8::hex_to_chr(UTF8::chrToHex($before))), 'tested: ' . $before);
+            static::assertSame($after, UTF8::chrToHex(UTF8::hexToChr(UTF8::chrToHex($before))), 'tested: ' . $before);
         }
 
         // ---
@@ -329,7 +329,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         // ---
 
-        static::assertSame('U+0000', UTF8::chrToHex(UTF8::hex_to_chr(UTF8::chrToHex(''))));
+        static::assertSame('U+0000', UTF8::chrToHex(UTF8::hexToChr(UTF8::chrToHex(''))));
     }
 
     public function testChunkSplit()
@@ -1302,7 +1302,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         foreach ($testArray as $actual => $data) {
             foreach ($data as $size => $expected) {
-                static::assertSame($expected, UTF8::fits_inside($actual, $size), 'error by ' . $actual);
+                static::assertSame($expected, UTF8::fitsInside($actual, $size), 'error by ' . $actual);
             }
         }
     }
@@ -1333,11 +1333,11 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         if (UTF8::mbstring_loaded()) { // only with "mbstring"
             foreach ($testArray as $before => $after) {
-                static::assertSame($after, UTF8::fix_utf8($before), 'tested: ' . $before);
+                static::assertSame($after, UTF8::fixUtf8($before), 'tested: ' . $before);
             }
         }
 
-        static::assertSame(['Düsseldorf', 'Fédération'], UTF8::fix_utf8(['DÃ¼sseldorf', 'FÃÂÂÂÂ©dÃÂÂÂÂ©ration']));
+        static::assertSame(['Düsseldorf', 'Fédération'], UTF8::fixUtf8(['DÃ¼sseldorf', 'FÃÂÂÂÂ©dÃÂÂÂÂ©ration']));
     }
 
     public function testFixSimpleUtf8()
@@ -1423,17 +1423,17 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach (\array_replace($testsForHexToInt, $tests) as $before => $after) {
-            static::assertSame($after, UTF8::hex_to_int($before), 'tested: ' . $before);
+            static::assertSame($after, UTF8::hexToInt($before), 'tested: ' . $before);
         }
 
         foreach ($tests as $after => $before) {
             static::assertSame($after, UTF8::intToHex($before), 'tested: ' . $before);
         }
 
-        // --- fail (hex_to_int)
+        // --- fail (hexToInt)
 
-        static::assertFalse(UTF8::hex_to_int(''));
-        static::assertFalse(UTF8::hex_to_int('abc-öäü'));
+        static::assertFalse(UTF8::hexToInt(''));
+        static::assertFalse(UTF8::hexToInt('abc-öäü'));
     }
 
     public function testHtmlEncode()
@@ -1872,7 +1872,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::is_base64($before), 'tested:  ' . $before);
+            static::assertSame($after, UTF8::isBase64($before), 'tested:  ' . $before);
         }
     }
 
@@ -2096,7 +2096,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $test => $expected) {
-            static::assertSame($expected, UTF8::is_bom($test), 'tested: ' . $test);
+            static::assertSame($expected, UTF8::isBom($test), 'tested: ' . $test);
         }
     }
 
@@ -2132,7 +2132,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::is_html($testString), 'tested: ' . $testString);
+            static::assertSame($testResult, UTF8::isHtml($testString), 'tested: ' . $testString);
         }
     }
 
@@ -3226,11 +3226,11 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_istarts_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strIstartsWith($str, $test), 'tested: ' . $test);
         }
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_istarts_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strIstartsWith($str, $test), 'tested: ' . $test);
         }
     }
 

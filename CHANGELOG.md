@@ -69,10 +69,10 @@ Removed:
 - UTF8::html_decode() (please use UTF8htmlEntityDecode())
 - UTF8::int_to_chr() (please use UTF8::decimalToChr())
 - UTF8::isAscii() (please use UTF8::isAscii())
-- UTF8::isBase64() (please use UTF8::is_base64())
+- UTF8::isBase64() (please use UTF8::isBase64())
 - UTF8::isBinary() (please use UTF8::isBinary())
-- UTF8::isBom() (please use UTF8::is_bom())
-- UTF8::isHtml() (please use UTF8::is_html())
+- UTF8::isBom() (please use UTF8::isBom())
+- UTF8::isHtml() (please use UTF8::isHtml())
 - UTF8::isJson() (please use UTF8::is_json())
 - UTF8::isUtf16() (please use UTF8::isUtf16())
 - UTF8::isUtf32() (please use UTF8::isUtf32())
@@ -84,7 +84,7 @@ Removed:
 - UTF8::split() (please use UTF8::strSplit())
 - UTF8::str_begins() (please use UTF8::str_starts_with())
 - UTF8::str_ends() (please use UTF8::str_ends_with())
-- UTF8::str_ibegins() (please use UTF8::str_istarts_with())
+- UTF8::str_ibegins() (please use UTF8::strIstartsWith())
 - UTF8::str_iends() (please use UTF8::str_iends_with())
 - UTF8::str_iindex_first() (please use UTF8::stripos())
 - UTF8::str_iindex_last() (please use UTF8::strripos())
@@ -119,7 +119,7 @@ Fixed:
 ### 5.4.49 (2020-11-12)
 
 - "UTF8::removeInvisibleCharacters()" -> can now also remove "control characters" if needed
-- "UTF8::is_printable()" -> fix for non-printable control characters
+- "UTF8::isPrintable()" -> fix for non-printable control characters
 
 ### 5.4.48 (2020-11-07)
 
@@ -183,7 +183,7 @@ Fixed:
 
 - "GRAPHEME_CLUSTER_RX" -> is not used anymore and is now deprecated
 - fix "UTF8::decodeMimeHeader" fallback -> now we always use the symfony polyfill (mb_decodeMimeHeader has different results)
-- fix "UTF8::get_unique_string()" -> use "mt_rand" as fallback
+- fix "UTF8::getUniqueString()" -> use "mt_rand" as fallback
 - fix "UTF8::strtr()" -> now it works also with arrays
 - fix phpdoc for "UTF8::normalizeLineEnding()"
 - fix phpdoc for "UTF8::split()" & "UTF8::strSplit()"
@@ -191,7 +191,7 @@ Fixed:
 - add "UTF8::stripos_in_byte()"
 - add "UTF8::emojiFromCountryCode()"
 - add many new tests
-- optimize "UTF8::is_url()" + fix deprecated php (>= 7.3) constants
+- optimize "UTF8::isUrl()" + fix deprecated php (>= 7.3) constants
 - optimize "UTF8::str_limit_after_word()" -> optimize the regex
 - optimize "UTF8::substr()" -> combine "if"-statements
 - optimize "UTF8::str_capitalize_name_helper()" -> performance -> use break
@@ -200,7 +200,7 @@ Fixed:
 
 ### 5.4.38 (2020-01-14)
 
-- add "UTF8::is_url()"
+- add "UTF8::isUrl()"
 
 ### 5.4.37 (2019-12-30)
 
@@ -208,7 +208,7 @@ Fixed:
 
 ### 5.4.36 (2019-12-30)
 
-- add "is_punctuation()" && "is_printable()"
+- add "isPunctuation()" && "isPrintable()"
 
 ### 5.4.35 (2019-12-27)
 
@@ -398,7 +398,7 @@ Fixed:
 - update "UTF8::is_json()" + tests
 
 ### 5.3.2 (2019-01-11)
-- update "UTF8::is_base64()" + tests
+- update "UTF8::isBase64()" + tests
 
 ### 5.3.1 (2019-01-11)
 - update "UTF8::str_truncate_safe()" + tests

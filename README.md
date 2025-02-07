@@ -126,11 +126,11 @@ Example 2: UTF8::strlen()
   // 50
 ```
 
-Example 3: UTF8::fix_utf8()
+Example 3: UTF8::fixUtf8()
 ```php
 
-  echo UTF8::fix_utf8('DÃ¼sseldorf');
-  echo UTF8::fix_utf8('Ã¤');
+  echo UTF8::fixUtf8('DÃ¼sseldorf');
+  echo UTF8::fixUtf8('Ã¤');
   
   // will output:
   // Düsseldorf
@@ -185,48 +185,48 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#filter_var_arrayarray-data-arrayint-definition-bool-add_empty-arraystringmixedfalsenull">filter_var_array</a>
 </td><td><a href="#finfo_loaded-bool">finfo_loaded</a>
 </td></tr><tr><td><a href="#firstCharstring-str-int-n-string-encoding-string">firstChar</a>
-</td><td><a href="#fits_insidestring-str-int-box_size-bool">fits_inside</a>
+</td><td><a href="#fitsInsidestring-str-int-box_size-bool">fitsInside</a>
 </td><td><a href="#fixSimpleUtf8string-str-string">fixSimpleUtf8</a>
-</td><td><a href="#fix_utf8stringstring-str-stringstring">fix_utf8</a>
+</td><td><a href="#fixUtf8stringstring-str-stringstring">fixUtf8</a>
 </td></tr><tr><td><a href="#getchardirectionstring-char-string">getCharDirection</a>
 </td><td><a href="#getsupportinfostringnull-key-mixed">getSupportInfo</a>
 </td><td><a href="#geturlparamfromarraystring-param-array-data-mixed">getUrlParamFromArray</a>
 </td><td><a href="#getFileTypestring-str-array-fallback">getFileType</a>
-</td></tr><tr><td><a href="#get_random_stringint-length-string-possible_chars-string-encoding-string">get_random_string</a>
-</td><td><a href="#get_unique_stringintstring-extra_entropy-bool-use_md5-non-empty-string">get_unique_string</a>
-</td><td><a href="#has_lowercasestring-str-bool">has_lowercase</a>
-</td><td><a href="#has_uppercasestring-str-bool">has_uppercase</a>
+</td></tr><tr><td><a href="#getRandomStringint-length-string-possible_chars-string-encoding-string">getRandomString</a>
+</td><td><a href="#getUniqueStringintstring-extra_entropy-bool-use_md5-non-empty-string">getUniqueString</a>
+</td><td><a href="#hasLowercasestring-str-bool">hasLowercase</a>
+</td><td><a href="#hasUppercasestring-str-bool">hasUppercase</a>
 </td></tr><tr><td><a href="#has_whitespacestring-str-bool">has_whitespace</a>
-</td><td><a href="#hex_to_chrstring-hexdec-string">hex_to_chr</a>
-</td><td><a href="#hex_to_intstring-hexdec-falseint">hex_to_int</a>
+</td><td><a href="#hexToChrstring-hexdec-string">hexToChr</a>
+</td><td><a href="#hexToIntstring-hexdec-falseint">hexToInt</a>
 </td><td><a href="#html_encodestring-str-bool-keep_ascii_chars-string-encoding-string">html_encode</a>
 </td></tr><tr><td><a href="#html_entity_decodestring-str-intnull-flags-string-encoding-string">html_entity_decode</a>
-</td><td><a href="#html_escapestring-str-string-encoding-string">html_escape</a>
-</td><td><a href="#html_stripe_empty_tagsstring-str-string">html_stripe_empty_tags</a>
+</td><td><a href="#htmlEscapestring-str-string-encoding-string">htmlEscape</a>
+</td><td><a href="#htmlStripEmptyTagsstring-str-string">htmlStripEmptyTags</a>
 </td><td><a href="#htmlentitiesstring-str-int-flags-string-encoding-bool-double_encode-string">htmlentities</a>
 </td></tr><tr><td><a href="#htmlspecialcharsstring-str-int-flags-string-encoding-bool-double_encode-string">htmlspecialchars</a>
 </td><td><a href="#iconv_loaded-bool">iconv_loaded</a>
 </td><td><a href="#intToHexint-int-string-prefix-string">intToHex</a>
 </td><td><a href="#intlchar_loaded-bool">intlChar_loaded</a>
 </td></tr><tr><td><a href="#intl_loaded-bool">intl_loaded</a>
-</td><td><a href="#is_alphastring-str-bool">is_alpha</a>
-</td><td><a href="#is_alphanumericstring-str-bool">is_alphanumeric</a>
+</td><td><a href="#isAlphastring-str-bool">isAlpha</a>
+</td><td><a href="#isAlphanumericstring-str-bool">isAlphanumeric</a>
 </td><td><a href="#isAsciistring-str-bool">isAscii</a>
-</td></tr><tr><td><a href="#is_base64stringnull-str-bool-empty_string_is_valid-bool">is_base64</a>
+</td></tr><tr><td><a href="#isBase64stringnull-str-bool-empty_string_is_valid-bool">isBase64</a>
 </td><td><a href="#is_binaryintstring-input-bool-strict-bool">is_binary</a>
-</td><td><a href="#is_binary_filestring-file-bool">is_binary_file</a>
-</td><td><a href="#is_blankstring-str-bool">is_blank</a>
-</td></tr><tr><td><a href="#is_bomstring-str-bool">is_bom</a>
-</td><td><a href="#is_emptyarrayfloatintstring-str-bool">is_empty</a>
-</td><td><a href="#is_hexadecimalstring-str-bool">is_hexadecimal</a>
-</td><td><a href="#is_htmlstring-str-bool">is_html</a>
+</td><td><a href="#isBinaryFilestring-file-bool">isBinaryFile</a>
+</td><td><a href="#isBlankstring-str-bool">isBlank</a>
+</td></tr><tr><td><a href="#isBomstring-str-bool">isBom</a>
+</td><td><a href="#isEmptyarrayfloatintstring-str-bool">isEmpty</a>
+</td><td><a href="#isHexadecimalstring-str-bool">isHexadecimal</a>
+</td><td><a href="#isHtmlstring-str-bool">isHtml</a>
 </td></tr><tr><td><a href="#is_jsonstring-str-bool-only_array_or_object_results_are_valid-bool">is_json</a>
-</td><td><a href="#is_lowercasestring-str-bool">is_lowercase</a>
-</td><td><a href="#is_printablestring-str-bool-ignore_control_characters-bool">is_printable</a>
-</td><td><a href="#is_punctuationstring-str-bool">is_punctuation</a>
-</td></tr><tr><td><a href="#is_serializedstring-str-bool">is_serialized</a>
+</td><td><a href="#isLowercasestring-str-bool">isLowercase</a>
+</td><td><a href="#isPrintablestring-str-bool-ignore_control_characters-bool">isPrintable</a>
+</td><td><a href="#isPunctuationstring-str-bool">isPunctuation</a>
+</td></tr><tr><td><a href="#isSerializedstring-str-bool">isSerialized</a>
 </td><td><a href="#is_uppercasestring-str-bool">is_uppercase</a>
-</td><td><a href="#is_urlstring-url-bool-disallow_localhost-bool">is_url</a>
+</td><td><a href="#isUrlstring-url-bool-disallow_localhost-bool">isUrl</a>
 </td><td><a href="#is_utf8intstringstringnull-str-bool-strict-bool">is_utf8</a>
 </td></tr><tr><td><a href="#isUtf16string-str-bool-check_if_string_is_binary-falseint">isUtf16</a>
 </td><td><a href="#isUtf32string-str-bool-check_if_string_is_binary-falseint">isUtf32</a>
@@ -286,8 +286,8 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#str_ireplacestringstring-search-stringstring-replacement-stringstring-subject-int-count-stringstring">str_ireplace</a>
 </td></tr><tr><td><a href="#str_ireplace_beginningstring-str-string-search-string-replacement-string">str_ireplace_beginning</a>
 </td><td><a href="#str_ireplace_endingstring-str-string-search-string-replacement-string">str_ireplace_ending</a>
-</td><td><a href="#str_istarts_withstring-haystack-string-needle-bool">str_istarts_with</a>
-</td><td><a href="#str_istarts_with_anystring-str-scalar-substrings-bool">str_istarts_with_any</a>
+</td><td><a href="#strIstartsWithstring-haystack-string-needle-bool">strIstartsWith</a>
+</td><td><a href="#strIstartsWithAnystring-str-scalar-substrings-bool">strIstartsWithAny</a>
 </td></tr><tr><td><a href="#str_isubstr_after_first_separatorstring-str-string-separator-string-encoding-string">str_isubstr_after_first_separator</a>
 </td><td><a href="#str_isubstr_after_last_separatorstring-str-string-separator-string-encoding-string">str_isubstr_after_last_separator</a>
 </td><td><a href="#str_isubstr_before_first_separatorstring-str-string-separator-string-encoding-string">str_isubstr_before_first_separator</a>
@@ -300,7 +300,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#str_longest_common_prefixstring-str1-string-str2-string-encoding-string">str_longest_common_prefix</a>
 </td><td><a href="#str_longest_common_substringstring-str1-string-str2-string-encoding-string">str_longest_common_substring</a>
 </td><td><a href="#str_longest_common_suffixstring-str1-string-str2-string-encoding-string">str_longest_common_suffix</a>
-</td></tr><tr><td><a href="#str_matches_patternstring-str-string-pattern-bool">str_matches_pattern</a>
+</td></tr><tr><td><a href="#strMatchesPatternstring-str-string-pattern-bool">strMatchesPattern</a>
 </td><td><a href="#str_obfuscatestring-str-float-percent-string-obfuscatechar-string-keepchars-string">str_obfuscate</a>
 </td><td><a href="#str_offset_existsstring-str-int-offset-string-encoding-bool">str_offset_exists</a>
 </td><td><a href="#str_offset_getstring-str-int-index-string-encoding-string">str_offset_get</a>
@@ -1250,11 +1250,11 @@ Returns the first $n characters of the string.
 
 --------
 
-## fits_inside(string $str, int $box_size): bool
+## fitsInside(string $str, int $box_size): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the number of Unicode characters isn't greater than the specified integer.
 
-EXAMPLE: <code>UTF8::fits_inside('κόσμε', 6); // false</code>
+EXAMPLE: <code>UTF8::fitsInside('κόσμε', 6); // false</code>
 
 **Parameters:**
 - `string $str the original string to be checked`
@@ -1269,7 +1269,7 @@ EXAMPLE: <code>UTF8::fits_inside('κόσμε', 6); // false</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Try to fix simple broken UTF-8 strings.
 
-INFO: Take a look at "UTF8::fix_utf8()" if you need a more advanced fix for broken UTF-8 strings.
+INFO: Take a look at "UTF8::fixUtf8()" if you need a more advanced fix for broken UTF-8 strings.
 
 EXAMPLE: <code>UTF8::fixSimpleUtf8('DÃ¼sseldorf'); // 'Düsseldorf'</code>
 
@@ -1285,11 +1285,11 @@ See: http://en.wikipedia.org/wiki/Windows-1252
 
 --------
 
-## fix_utf8(string|string[] $str): string|string[]
+## fixUtf8(string|string[] $str): string|string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Fix a double (or multiple) encoded UTF8 string.
 
-EXAMPLE: <code>UTF8::fix_utf8('FÃÂÂÂÂ©dÃÂÂÂÂ©ration'); // 'Fédération'</code>
+EXAMPLE: <code>UTF8::fixUtf8('FÃÂÂÂÂ©dÃÂÂÂÂ©ration'); // 'Fédération'</code>
 
 **Parameters:**
 - `TFixUtf8 $str you can use a string or an array of strings`
@@ -1357,7 +1357,7 @@ Warning: this method only works for some file-types (png, jpg)
 
 --------
 
-## get_random_string(int $length, string $possible_chars, string $encoding): string
+## getRandomString(int $length, string $possible_chars, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -1371,7 +1371,7 @@ Warning: this method only works for some file-types (png, jpg)
 
 --------
 
-## get_unique_string(int|string $extra_entropy, bool $use_md5): non-empty-string
+## getUniqueString(int|string $extra_entropy, bool $use_md5): non-empty-string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -1384,7 +1384,7 @@ Warning: this method only works for some file-types (png, jpg)
 
 --------
 
-## has_lowercase(string $str): bool
+## hasLowercase(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains a lower case char, false otherwise.
 
@@ -1396,7 +1396,7 @@ Returns true if the string contains a lower case char, false otherwise.
 
 --------
 
-## has_uppercase(string $str): bool
+## hasUppercase(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains an upper case char, false otherwise.
 
@@ -1420,13 +1420,13 @@ Returns true if the string contains whitespace, false otherwise.
 
 --------
 
-## hex_to_chr(string $hexdec): string
+## hexToChr(string $hexdec): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts a hexadecimal value into a UTF-8 character.
 
 INFO: opposite to UTF8::chrToHex()
 
-EXAMPLE: <code>UTF8::hex_to_chr('U+00a7'); // '§'</code>
+EXAMPLE: <code>UTF8::hexToChr('U+00a7'); // '§'</code>
 
 **Parameters:**
 - `string $hexdec <p>The hexadecimal value.</p>`
@@ -1436,13 +1436,13 @@ EXAMPLE: <code>UTF8::hex_to_chr('U+00a7'); // '§'</code>
 
 --------
 
-## hex_to_int(string $hexdec): false|int
+## hexToInt(string $hexdec): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts hexadecimal U+xxxx code point representation to integer.
 
 INFO: opposite to UTF8::intToHex()
 
-EXAMPLE: <code>UTF8::hex_to_int('U+00f1'); // 241</code>
+EXAMPLE: <code>UTF8::hexToInt('U+00f1'); // 241</code>
 
 **Parameters:**
 - `string $hexdec <p>The hexadecimal code point representation.</p>`
@@ -1544,7 +1544,7 @@ Handle code as HTML 5.
 
 --------
 
-## html_escape(string $str, string $encoding): string
+## htmlEscape(string $str, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Create a escape html version of the string via "UTF8::htmlspecialchars()".
 
@@ -1557,7 +1557,7 @@ Create a escape html version of the string via "UTF8::htmlspecialchars()".
 
 --------
 
-## html_stripe_empty_tags(string $str): string
+## htmlStripEmptyTags(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove empty html-tag.
 
@@ -1810,7 +1810,7 @@ __nothing__
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts Integer to hexadecimal U+xxxx code point representation.
 
-INFO: opposite to UTF8::hex_to_int()
+INFO: opposite to UTF8::hexToInt()
 
 EXAMPLE: <code>UTF8::intToHex(241); // 'U+00f1'</code>
 
@@ -1847,7 +1847,7 @@ __nothing__
 
 --------
 
-## is_alpha(string $str): bool
+## isAlpha(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only alphabetic chars, false otherwise.
 
@@ -1859,7 +1859,8 @@ Returns true if the string contains only alphabetic chars, false otherwise.
 
 --------
 
-## is_alphanumeric(string $str): bool
+## isAlphanumeric
+(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only alphabetic and numeric chars, false otherwise.
 
@@ -1888,11 +1889,11 @@ EXAMPLE: <code>UTF8::isAscii('白'); // false</code>
 
 --------
 
-## is_base64(string|null $str, bool $empty_string_is_valid): bool
+## isBase64(string|null $str, bool $empty_string_is_valid): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string is base64 encoded, false otherwise.
 
-EXAMPLE: <code>UTF8::is_base64('4KSu4KWL4KSo4KS/4KSa'); // true</code>
+EXAMPLE: <code>UTF8::isBase64('4KSu4KWL4KSo4KS/4KSa'); // true</code>
 
 **Parameters:**
 - `string|null $str <p>The input string.</p>`
@@ -1918,7 +1919,7 @@ EXAMPLE: <code>UTF8::isBinary(01); // true</code>
 
 --------
 
-## is_binary_file(string $file): bool
+## isBinaryFile(string $file): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the file is binary.
 
@@ -1932,7 +1933,7 @@ EXAMPLE: <code>UTF8::isBinary('./utf32.txt'); // true</code>
 
 --------
 
-## is_blank(string $str): bool
+## isBlank(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only whitespace chars, false otherwise.
 
@@ -1944,13 +1945,13 @@ Returns true if the string contains only whitespace chars, false otherwise.
 
 --------
 
-## is_bom(string $str): bool
+## isBom(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Checks if the given string is equal to any "Byte Order Mark".
 
 WARNING: Use "UTF8::hasBom()" if you will check BOM in a string.
 
-EXAMPLE: <code>UTF8::is_bom("\xef\xbb\xbf"); // true</code>
+EXAMPLE: <code>UTF8::isBom("\xef\xbb\xbf"); // true</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -1960,7 +1961,7 @@ EXAMPLE: <code>UTF8::is_bom("\xef\xbb\xbf"); // true</code>
 
 --------
 
-## is_empty(array|float|int|string $str): bool
+## isEmpty(array|float|int|string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Determine whether the string is considered to be empty.
 
@@ -1975,7 +1976,7 @@ empty() does not generate a warning if the variable does not exist.
 
 --------
 
-## is_hexadecimal(string $str): bool
+## isHexadecimal(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only hexadecimal chars, false otherwise.
 
@@ -1987,11 +1988,11 @@ Returns true if the string contains only hexadecimal chars, false otherwise.
 
 --------
 
-## is_html(string $str): bool
+## isHtml(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the string contains any HTML tags.
 
-EXAMPLE: <code>UTF8::is_html('<b>lall</b>'); // true</code>
+EXAMPLE: <code>UTF8::isHtml('<b>lall</b>'); // true</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -2017,7 +2018,7 @@ results.</p>`
 
 --------
 
-## is_lowercase(string $str): bool
+## isLowercase(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -2029,7 +2030,7 @@ results.</p>`
 
 --------
 
-## is_printable(string $str, bool $ignore_control_characters): bool
+## isPrintable(string $str, bool $ignore_control_characters): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only printable (non-invisible) chars, false otherwise.
 
@@ -2042,7 +2043,7 @@ Returns true if the string contains only printable (non-invisible) chars, false 
 
 --------
 
-## is_punctuation(string $str): bool
+## isPunctuation(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string contains only punctuation chars, false otherwise.
 
@@ -2054,7 +2055,7 @@ Returns true if the string contains only punctuation chars, false otherwise.
 
 --------
 
-## is_serialized(string $str): bool
+## isSerialized(string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string is serialized, false otherwise.
 
@@ -2079,7 +2080,7 @@ otherwise.
 
 --------
 
-## is_url(string $url, bool $disallow_localhost): bool
+## isUrl(string $url, bool $disallow_localhost): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if $url is an correct url.
 
@@ -3130,13 +3131,13 @@ Replaces $search from the ending of string with $replacement.
 
 --------
 
-## str_istarts_with(string $haystack, string $needle): bool
+## strIstartsWith(string $haystack, string $needle): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Check if the string starts with the given substring, case-insensitive.
 
 EXAMPLE: <code>
-UTF8::str_istarts_with('ΚόσμεMiddleEnd', 'Κόσμε'); // true
-UTF8::str_istarts_with('ΚόσμεMiddleEnd', 'κόσμε'); // true
+UTF8::strIstartsWith('ΚόσμεMiddleEnd', 'Κόσμε'); // true
+UTF8::strIstartsWith('ΚόσμεMiddleEnd', 'κόσμε'); // true
 </code>
 
 **Parameters:**
@@ -3148,7 +3149,7 @@ UTF8::str_istarts_with('ΚόσμεMiddleEnd', 'κόσμε'); // true
 
 --------
 
-## str_istarts_with_any(string $str, scalar[] $substrings): bool
+## strIstartsWithAny(string $str, scalar[] $substrings): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if the string begins with any of $substrings, false otherwise.
 
@@ -3339,7 +3340,7 @@ Returns the longest common suffix getSubstringBetween the $str1 and $str2.
 
 --------
 
-## str_matches_pattern(string $str, string $pattern): bool
+## strMatchesPattern(string $str, string $pattern): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns true if $str matches the supplied pattern, false otherwise.
 

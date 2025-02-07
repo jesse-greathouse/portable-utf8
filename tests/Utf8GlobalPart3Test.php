@@ -1142,14 +1142,14 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
 
     public function testhexToChr()
     {
-        static::assertSame('<', UTF8::hex_to_chr('3c'));
-        static::assertSame('<', UTF8::hex_to_chr('003c'));
-        static::assertSame('&', UTF8::hex_to_chr('26'));
-        static::assertSame('}', UTF8::hex_to_chr('7d'));
-        static::assertSame('Σ', UTF8::hex_to_chr('3A3'));
-        static::assertSame('Σ', UTF8::hex_to_chr('03A3'));
-        static::assertSame('Σ', UTF8::hex_to_chr('3a3'));
-        static::assertSame('Σ', UTF8::hex_to_chr('03a3'));
+        static::assertSame('<', UTF8::hexToChr('3c'));
+        static::assertSame('<', UTF8::hexToChr('003c'));
+        static::assertSame('&', UTF8::hexToChr('26'));
+        static::assertSame('}', UTF8::hexToChr('7d'));
+        static::assertSame('Σ', UTF8::hexToChr('3A3'));
+        static::assertSame('Σ', UTF8::hexToChr('03A3'));
+        static::assertSame('Σ', UTF8::hexToChr('3a3'));
+        static::assertSame('Σ', UTF8::hexToChr('03a3'));
     }
 
     public function testhtmlEncodeChr()

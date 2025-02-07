@@ -1688,7 +1688,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            $tmpString = UTF8::get_random_string($testResult[0], $testString);
+            $tmpString = UTF8::getRandomString($testResult[0], $testString);
 
             static::assertSame($testResult[1], UTF8::strlen($tmpString), 'tested: ' . $testString . ' | ' . $tmpString);
         }
@@ -1698,7 +1698,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
     {
         $uniquIDs = [];
         for ($i = 0; $i <= 100; ++$i) {
-            $uniquIDs[] = UTF8::get_unique_string();
+            $uniquIDs[] = UTF8::getUniqueString();
         }
 
         // detect duplicate values in the array
@@ -2135,7 +2135,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testEscape($expected, $str, $encoding = '')
     {
-        $result = UTF8::html_escape($str, $encoding);
+        $result = UTF8::htmlEscape($str, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2269,7 +2269,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testHasLowerCase($expected, $str)
     {
-        $result = UTF8::has_lowercase($str);
+        $result = UTF8::hasLowercase($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2318,7 +2318,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testHasUpperCase($expected, $str)
     {
-        $result = UTF8::has_uppercase($str);
+        $result = UTF8::hasUppercase($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2439,7 +2439,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsAlpha($expected, $str)
     {
-        $result = UTF8::is_alpha($str);
+        $result = UTF8::isAlpha($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2453,7 +2453,8 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsAlphanumeric($expected, $str)
     {
-        $result = UTF8::is_alphanumeric($str);
+        $result = UTF8::isAlphanumeric
+($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2467,7 +2468,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsPunctuation($expected, $str)
     {
-        $result = UTF8::is_punctuation($str);
+        $result = UTF8::isPunctuation($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2481,7 +2482,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsBase64($expected, $str)
     {
-        $result = UTF8::is_base64($str);
+        $result = UTF8::isBase64($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2495,7 +2496,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsBase64EmptyStringIsAlsoValid($expected, $str)
     {
-        $result = UTF8::is_base64($str, true);
+        $result = UTF8::isBase64($str, true);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2509,7 +2510,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsBlank($expected, $str)
     {
-        $result = UTF8::is_blank($str);
+        $result = UTF8::isBlank($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2523,7 +2524,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsHexadecimal($expected, $str)
     {
-        $result = UTF8::is_hexadecimal($str);
+        $result = UTF8::isHexadecimal($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2546,7 +2547,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::is_html($testString), 'tested: ' . $testString);
+            static::assertSame($testResult, UTF8::isHtml($testString), 'tested: ' . $testString);
         }
     }
 
@@ -2586,7 +2587,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsLowerCase($expected, $str)
     {
-        $result = UTF8::is_lowercase($str);
+        $result = UTF8::isLowercase($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2600,7 +2601,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsSerialized($expected, $str)
     {
-        $result = UTF8::is_serialized($str);
+        $result = UTF8::isSerialized($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -3326,7 +3327,7 @@ d
         if ($caseSensitive) {
             $result = UTF8::str_starts_with($str, $substring);
         } else {
-            $result = UTF8::str_istarts_with($str, $substring);
+            $result = UTF8::strIstartsWith($str, $substring);
         }
 
         static::assertTrue(\is_bool($result));
@@ -3346,7 +3347,7 @@ d
         if ($caseSensitive) {
             $result = UTF8::str_starts_with_any($str, $substring);
         } else {
-            $result = UTF8::str_istarts_with_any($str, $substring);
+            $result = UTF8::strIstartsWithAny($str, $substring);
         }
 
         static::assertTrue(\is_bool($result));
@@ -3388,7 +3389,7 @@ d
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::html_stripe_empty_tags($testString));
+            static::assertSame($testResult, UTF8::htmlStripEmptyTags($testString));
         }
     }
 
