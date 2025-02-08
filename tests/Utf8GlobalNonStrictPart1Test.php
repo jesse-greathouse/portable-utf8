@@ -32,7 +32,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
             $value = UTF8::trim($value);
 
             if (UTF8::stripos($comment, $value) !== false) {
-                $comment = UTF8::str_ireplace($value, '*****', $comment);
+                $comment = UTF8::strReplaceInsensitive($value, '*****', $comment);
             }
         }
 
@@ -2325,22 +2325,22 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
             "\xFC\xA1\xA1\xA1\xA1\xA1"                                         => false,
         ];
 
-        static::assertFalse(UTF8::is_utf8(\array_keys($testArray)));
+        static::assertFalse(UTF8::isUtf8(\array_keys($testArray)));
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf8($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf8($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
         $counter = 0;
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::is_utf8($actual), 'error by - ' . $counter . ' :' . $actual);
+            static::assertSame($expected, UTF8::isUtf8($actual), 'error by - ' . $counter . ' :' . $actual);
             ++$counter;
         }
 
-        static::assertFalse(UTF8::is_utf8(\file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt'), true));
-        static::assertFalse(UTF8::is_utf8(\file_get_contents(__DIR__ . '/fixtures/utf-16-be-bom.txt'), true));
+        static::assertFalse(UTF8::isUtf8(\file_get_contents(__DIR__ . '/fixtures/utf-16-be.txt'), true));
+        static::assertFalse(UTF8::isUtf8(\file_get_contents(__DIR__ . '/fixtures/utf-16-be-bom.txt'), true));
     }
 
     public function testJsonDecode()
@@ -2535,7 +2535,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::max_chr_width($actual));
+            static::assertSame($expected, UTF8::maxChrWidth($actual));
         }
     }
 
@@ -2574,7 +2574,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::normalize_encoding($before, ''), 'tested: ' . $before);
+            static::assertSame($after, UTF8::normalizeEncoding($before, ''), 'tested: ' . $before);
         }
     }
 
@@ -2725,7 +2725,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         // test-string
         $str = "Iñtërnâtiôn\xE9àlizætiøn=測試&arr[]=foo+測試&arr[]=ການທົດສອບ";
 
-        $result = UTF8::parse_str($str, $array, true);
+        $result = UTF8::parseStr($str, $array, true);
 
         static::assertTrue($result);
 
@@ -2746,7 +2746,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         // test-string
         $str = 'Iñtërnâtiônàlizætiøn=測試&arr[]=foo+測試&arr[]=ການທົດສອບ';
 
-        $result = UTF8::parse_str($str, $array, false);
+        $result = UTF8::parseStr($str, $array, false);
 
         static::assertTrue($result);
 
@@ -2785,7 +2785,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         if (!Bootup::is_php('7.1')) {
             /** @noinspection NonSecureParseStrUsageInspection */
             /** @noinspection PhpParamsInspection */
-            UTF8::parse_str($str, $result); // <- you need to use the second parameter!!!
+            UTF8::parseStr($str, $result); // <- you need to use the second parameter!!!
 
             static::assertSame($foo, '123');
             static::assertSame($test, '');
@@ -2796,7 +2796,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         $str = '[]';
 
-        $result = UTF8::parse_str($str, $array);
+        $result = UTF8::parseStr($str, $array);
 
         // bug reported (hhvm (3.6.6~precise)): https://github.com/facebook/hhvm/issues/7247
         if (!\defined('HHVM_VERSION')) {
@@ -3178,11 +3178,11 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_ends_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8strEndsWith($str, $test), 'tested: ' . $test);
         }
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_ends_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8strEndsWith($str, $test), 'tested: ' . $test);
         }
     }
 
@@ -3202,11 +3202,11 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_iends_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strEndsWithInsensitive($str, $test), 'tested: ' . $test);
         }
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::str_iends_with($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strEndsWithInsensitive($str, $test), 'tested: ' . $test);
         }
     }
 
@@ -3226,11 +3226,11 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::strIstartsWith($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strStartsWithInsensitive($str, $test), 'tested: ' . $test);
         }
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::strIstartsWith($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::strStartsWithInsensitive($str, $test), 'tested: ' . $test);
         }
     }
 
@@ -3274,7 +3274,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $test) {
-            static::assertSame($test[0], UTF8::str_limit_after_word($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
+            static::assertSame($test[0], UTF8::strLimitAfterWord($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
         }
     }
 
@@ -3283,7 +3283,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         $firstString = "Though wise men at their end know dark is right,\nBecause their words had forked no lightning they\n";
         $secondString = 'Do not go gentle into that good night.';
         $expectedString = $firstString . $secondString;
-        $actualString = UTF8::str_pad(
+        $actualString = UTF8::strPad(
             $firstString,
             UTF8::strlen($firstString) + UTF8::strlen($secondString),
             $secondString
@@ -3291,26 +3291,26 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
         static::assertSame($expectedString, $actualString);
 
-        static::assertSame('中文空白______', UTF8::str_pad('中文空白', 10, '_', \STR_PAD_RIGHT));
-        static::assertSame('______中文空白', UTF8::str_pad('中文空白', 10, '_', \STR_PAD_LEFT));
-        static::assertSame('___中文空白___', UTF8::str_pad('中文空白', 10, '_', \STR_PAD_BOTH));
-        static::assertSame('中文空白', UTF8::str_pad('中文空白', 0, '_', \STR_PAD_BOTH));
-        static::assertSame('中文空白', UTF8::str_pad('中文空白', -1, '_', \STR_PAD_BOTH));
+        static::assertSame('中文空白______', UTF8::strPad('中文空白', 10, '_', \STR_PAD_RIGHT));
+        static::assertSame('______中文空白', UTF8::strPad('中文空白', 10, '_', \STR_PAD_LEFT));
+        static::assertSame('___中文空白___', UTF8::strPad('中文空白', 10, '_', \STR_PAD_BOTH));
+        static::assertSame('中文空白', UTF8::strPad('中文空白', 0, '_', \STR_PAD_BOTH));
+        static::assertSame('中文空白', UTF8::strPad('中文空白', -1, '_', \STR_PAD_BOTH));
 
         $toPad = '<IñtërnëT>'; // 10 characters
         $padding = 'ø__'; // 4 characters
 
-        static::assertSame($toPad . '          ', UTF8::str_pad($toPad, 20));
-        static::assertSame('          ' . $toPad, UTF8::str_pad($toPad, 20, ' ', \STR_PAD_LEFT));
-        static::assertSame('     ' . $toPad . '     ', UTF8::str_pad($toPad, 20, ' ', \STR_PAD_BOTH));
+        static::assertSame($toPad . '          ', UTF8::strPad($toPad, 20));
+        static::assertSame('          ' . $toPad, UTF8::strPad($toPad, 20, ' ', \STR_PAD_LEFT));
+        static::assertSame('     ' . $toPad . '     ', UTF8::strPad($toPad, 20, ' ', \STR_PAD_BOTH));
 
-        static::assertSame($toPad, UTF8::str_pad($toPad, 10));
-        static::assertSame('5char', \str_pad('5char', 4)); // str_pos won't truncate input string
-        static::assertSame($toPad, UTF8::str_pad($toPad, 8));
+        static::assertSame($toPad, UTF8::strPad($toPad, 10));
+        static::assertSame('5char', \strPad('5char', 4)); // str_pos won't truncate input string
+        static::assertSame($toPad, UTF8::strPad($toPad, 8));
 
-        static::assertSame($toPad . 'ø__ø__ø__ø', UTF8::str_pad($toPad, 20, $padding, \STR_PAD_RIGHT));
-        static::assertSame('ø__ø__ø__ø' . $toPad, UTF8::str_pad($toPad, 20, $padding, \STR_PAD_LEFT));
-        static::assertSame('ø__ø_' . $toPad . 'ø__ø_', UTF8::str_pad($toPad, 20, $padding, \STR_PAD_BOTH));
+        static::assertSame($toPad . 'ø__ø__ø__ø', UTF8::strPad($toPad, 20, $padding, \STR_PAD_RIGHT));
+        static::assertSame('ø__ø__ø__ø' . $toPad, UTF8::strPad($toPad, 20, $padding, \STR_PAD_LEFT));
+        static::assertSame('ø__ø_' . $toPad . 'ø__ø_', UTF8::strPad($toPad, 20, $padding, \STR_PAD_BOTH));
     }
 
     public function testStrRepeat()
@@ -3326,7 +3326,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::str_repeat($before, 17));
+            static::assertSame($after, UTF8::strRepeat($before, 17));
         }
     }
 
@@ -3476,18 +3476,18 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
 
     public function testStrToWords()
     {
-        static::assertSame(['', 'iñt', ' ', 'ërn', ' ', 'I', ''], UTF8::str_to_words('iñt ërn I'));
-        static::assertSame(['iñt', 'ërn', 'I'], UTF8::str_to_words('iñt ërn I', '', true));
-        static::assertSame(['iñt', 'ërn'], UTF8::str_to_words('iñt ërn I', '', false, 1));
+        static::assertSame(['', 'iñt', ' ', 'ërn', ' ', 'I', ''], UTF8::strToWords('iñt ërn I'));
+        static::assertSame(['iñt', 'ërn', 'I'], UTF8::strToWords('iñt ërn I', '', true));
+        static::assertSame(['iñt', 'ërn'], UTF8::strToWords('iñt ërn I', '', false, 1));
 
         // ---
 
-        static::assertSame(['', 'âti', "\n ", 'ônà', ''], UTF8::str_to_words("âti\n ônà"));
-        static::assertSame(["\t\t"], UTF8::str_to_words("\t\t", "\n"));
-        static::assertSame(['', "\t\t", ''], UTF8::str_to_words("\t\t", "\t"));
-        static::assertSame(['', '中文空白', ' ', 'oöäü#s', ''], UTF8::str_to_words('中文空白 oöäü#s', '#'));
-        static::assertSame(['', 'foo', ' ', 'oo', ' ', 'oöäü', '#', 's', ''], UTF8::str_to_words('foo oo oöäü#s', ''));
-        static::assertSame([''], UTF8::str_to_words(''));
+        static::assertSame(['', 'âti', "\n ", 'ônà', ''], UTF8::strToWords("âti\n ônà"));
+        static::assertSame(["\t\t"], UTF8::strToWords("\t\t", "\n"));
+        static::assertSame(['', "\t\t", ''], UTF8::strToWords("\t\t", "\t"));
+        static::assertSame(['', '中文空白', ' ', 'oöäü#s', ''], UTF8::strToWords('中文空白 oöäü#s', '#'));
+        static::assertSame(['', 'foo', ' ', 'oo', ' ', 'oöäü', '#', 's', ''], UTF8::strToWords('foo oo oöäü#s', ''));
+        static::assertSame([''], UTF8::strToWords(''));
 
         $testArray = [
             'Düsseldorf'                                                                                => 'Düsseldorf',
@@ -3509,7 +3509,7 @@ final class Utf8GlobalNonStrictPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $test => $unused) {
-            static::assertSame($test, \implode(UTF8::str_to_words($test)), '');
+            static::assertSame($test, \implode(UTF8::strToWords($test)), '');
         }
     }
 

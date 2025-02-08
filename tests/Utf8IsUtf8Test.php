@@ -16,109 +16,109 @@ final class Utf8IsUtf8Test extends \PHPUnit\Framework\TestCase
     public function testEmptyString()
     {
         $str = '';
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testNull()
     {
         $str = null;
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testValidUtf8()
     {
         $str = 'Iñtërnâtiônàlizætiøn';
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testValidUtf8Ascii()
     {
         $str = 'testing';
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testInvalidUtf8()
     {
         $str = "Iñtërnâtiôn\xe9àlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidUtf8Ascii()
     {
         $str = "this is an invalid char '\xe9' here";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidUtf8Start()
     {
         $str = "\xe9Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidUtf8End()
     {
         $str = "Iñtërnâtiônàlizætiøn\xe9";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testValidTwoOctetId()
     {
         $str = "abc\xc3\xb1";
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testInvalidTwoOctetSequence()
     {
         $str = "Iñtërnâtiônàlizætiøn \xc3\x28 Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidIdBetweenTwoAndThree()
     {
         $str = "Iñtërnâtiônàlizætiøn\xa0\xa1Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testValidThreeOctetId()
     {
         $str = "Iñtërnâtiônàlizætiøn\xe2\x82\xa1Iñtërnâtiônàlizætiøn";
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testInvalidThreeOctetSequenceSecond()
     {
         $str = "Iñtërnâtiônàlizætiøn\xe2\x28\xa1Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidThreeOctetSequenceThird()
     {
         $str = "Iñtërnâtiônàlizætiøn\xe2\x82\x28Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testValidFourOctetId()
     {
         $str = "Iñtërnâtiônàlizætiøn\xf0\x90\x8c\xbcIñtërnâtiônàlizætiøn";
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     public function testInvalidFourOctetSequence()
     {
         $str = "Iñtërnâtiônàlizætiøn\xf0\x28\x8c\xbcIñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidFiveOctetSequence()
     {
         $str = "Iñtërnâtiônàlizætiøn\xf8\xa1\xa1\xa1\xa1Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testInvalidSixOctetSequence()
     {
         $str = "Iñtërnâtiônàlizætiøn\xfc\xa1\xa1\xa1\xa1\xa1Iñtërnâtiônàlizætiøn";
-        static::assertFalse(UTF8::is_utf8($str));
+        static::assertFalse(UTF8::isUtf8($str));
     }
 
     public function testValidUtf8CleanUp()

@@ -17,37 +17,37 @@ final class Utf8ToAsciiTest extends \PHPUnit\Framework\TestCase
     public function testUtf8()
     {
         $str = 'testiñg';
-        static::assertSame('testing', u::to_ascii($str));
+        static::assertSame('testing', u::toAscii($str));
     }
 
     public function testAscii()
     {
         $str = 'testing';
-        static::assertSame('testing', u::to_ascii($str));
+        static::assertSame('testing', u::toAscii($str));
     }
 
     public function testInvalidChar()
     {
         $str = "tes\xE9ting";
-        static::assertSame('testing', u::to_ascii($str));
+        static::assertSame('testing', u::toAscii($str));
     }
 
     public function testEmptyStr()
     {
         $str = '';
-        static::assertEmpty(u::to_ascii($str));
+        static::assertEmpty(u::toAscii($str));
     }
 
     public function testNulAndNon7Bit()
     {
         $str = "a\x00ñ\x00c";
-        static::assertSame('anc', u::to_ascii($str));
+        static::assertSame('anc', u::toAscii($str));
     }
 
     public function testNul()
     {
         $str = "a\x00b\x00c";
-        static::assertSame('abc', u::to_ascii($str));
+        static::assertSame('abc', u::toAscii($str));
     }
 
     public function testToASCII()
@@ -59,7 +59,7 @@ final class Utf8ToAsciiTest extends \PHPUnit\Framework\TestCase
             $testString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-unicode-chart.txt');
             $resultString = UTF8::fileGetContents(__DIR__ . '/fixtures/sample-ascii-chart.txt');
 
-            static::assertSame($resultString, UTF8::to_ascii($testString, '?', true));
+            static::assertSame($resultString, UTF8::toAscii($testString, '?', true));
 
             // ---
 
@@ -144,12 +144,12 @@ final class Utf8ToAsciiTest extends \PHPUnit\Framework\TestCase
 
         for ($i = 0; $i <= 2; ++$i) { // keep this loop for simple performance tests
             foreach ($tests as $before => $after) {
-                static::assertSame($after, UTF8::to_ascii($before), 'tested: ' . $before);
+                static::assertSame($after, UTF8::toAscii($before), 'tested: ' . $before);
             }
         }
 
         foreach ($testsStrict as $before => $after) {
-            static::assertSame($after, UTF8::to_ascii($before, '?', true), 'tested: ' . $before);
+            static::assertSame($after, UTF8::toAscii($before, '?', true), 'tested: ' . $before);
         }
     }
 }

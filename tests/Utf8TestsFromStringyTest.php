@@ -29,7 +29,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public static function assertUtf8String(string $str)
     {
-        static::assertTrue(UTF8::is_utf8($str));
+        static::assertTrue(UTF8::isUtf8($str));
     }
 
     /**
@@ -1175,7 +1175,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         yield ['foo', 'foo bar', ' bar'];
         yield ['foo bar', 'foo bar', 'ba'];
         yield ['foo bar', 'foo bar', 'foo ba'];
-        yield ['foo ba', 'foo bar', UTF8::str_last_char('foo bar', 1), 'UTF-8'];
+        yield ['foo ba', 'foo bar', UTF8::strLastChar('foo bar', 1), 'UTF-8'];
         yield ['foo ba', 'foo bar', UTF8::charAt('foo bar', 6), 'UTF-8'];
         yield ['fòô bàř', 'fòô bàř', '', 'UTF-8'];
         yield ['fòô bà', 'fòô bàř', 'ř', 'UTF-8'];
@@ -1754,7 +1754,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_after_first_separator($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrAfterFirstSeparatorInsensitive($testString, 'b'));
         }
     }
 
@@ -1777,7 +1777,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_after_last_separator($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrAfterLastSeparatorInsensitive($testString, 'b'));
         }
     }
 
@@ -1860,8 +1860,8 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_before_first_separator($testString, 'b'));
-            static::assertSame($testResult, UTF8::str_isubstr_first($testString, 'b', true));
+            static::assertSame($testResult, UTF8::strSubstrBeforeFirstSeparatorInsensitive($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrFirstInsensitive($testString, 'b', true));
         }
     }
 
@@ -1907,7 +1907,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_before_last_separator($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrBeforeLastSeparatorInsensitive($testString, 'b'));
         }
     }
 
@@ -1981,7 +1981,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testContains($expected, $haystack, $needle, $caseSensitive = true)
     {
-        $result = UTF8::str_contains($haystack, $needle, $caseSensitive);
+        $result = UTF8::strContains($haystack, $needle, $caseSensitive);
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result, 'tested: "' . $haystack . '" and "' . $needle . '"');
     }
@@ -1996,7 +1996,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testContainsAll($expected, $haystack, $needles, $caseSensitive = true)
     {
-        $result = UTF8::str_contains_all($haystack, $needles, $caseSensitive);
+        $result = UTF8::strContainsAll($haystack, $needles, $caseSensitive);
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result, 'tested: ' . $haystack);
     }
@@ -2038,7 +2038,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testDasherize($expected, $str, $encoding = '')
     {
-        $result = UTF8::str_dasherize($str, $encoding);
+        $result = UTF8::strDelimit($str, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2053,7 +2053,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testDelimit($expected, $str, $delimiter, $encoding = '')
     {
-        $result = UTF8::str_delimit($str, $delimiter, $encoding);
+        $result = UTF8::strDelimit($str, $delimiter, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2069,9 +2069,9 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
     public function testEndsWith($expected, $str, $substring, $caseSensitive = true)
     {
         if ($caseSensitive) {
-            $result = UTF8::str_ends_with($str, $substring);
+            $result = UTF8strEndsWith($str, $substring);
         } else {
-            $result = UTF8::str_iends_with($str, $substring);
+            $result = UTF8::strEndsWithInsensitive($str, $substring);
         }
 
         static::assertTrue(\is_bool($result));
@@ -2089,9 +2089,9 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
     public function testEndsWithAny($expected, $str, $substrings, $caseSensitive = true)
     {
         if ($caseSensitive) {
-            $result = UTF8::str_ends_with_any($str, $substrings);
+            $result = UTF8strEndsWith_any($str, $substrings);
         } else {
-            $result = UTF8::str_iends_with_any($str, $substrings);
+            $result = UTF8::strEndsWithAnyInsensitive($str, $substrings);
         }
 
         static::assertTrue(\is_bool($result));
@@ -2107,7 +2107,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testEnsureLeft($expected, $str, $substring)
     {
-        $result = UTF8::str_ensure_left($str, $substring);
+        $result = UTF8::strEnsureLeft($str, $substring);
 
         static::assertSame($expected, $result);
     }
@@ -2121,7 +2121,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testEnsureRight($expected, $str, $substring)
     {
-        $result = UTF8::str_ensure_right($str, $substring);
+        $result = UTF8::strEnsureRight($str, $substring);
 
         static::assertSame($expected, $result);
     }
@@ -2362,7 +2362,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testHumanize($expected, $str)
     {
-        $result = UTF8::str_humanize($str);
+        $result = UTF8::strHumanize($str);
 
         static::assertSame($expected, $result);
     }
@@ -2426,7 +2426,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testInsert($expected, $str, $substring, $index, $encoding = '')
     {
-        $result = UTF8::str_insert($str, $substring, $index, $encoding);
+        $result = UTF8::strInsert($str, $substring, $index, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2615,7 +2615,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsUpperCase($expected, $str)
     {
-        $result = UTF8::is_uppercase($str);
+        $result = UTF8::isUppercase($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);
@@ -2631,7 +2631,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testLast($expected, $str, $n, $encoding = '')
     {
-        $result = UTF8::str_last_char($str, $n, $encoding);
+        $result = UTF8::strLastChar($str, $n, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2677,7 +2677,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_last($testString, 'b', false));
+            static::assertSame($testResult, UTF8::strSubstrLastInsensitive($testString, 'b', false));
         }
     }
 
@@ -2814,7 +2814,7 @@ d
      */
     public function testLongestCommonPrefix($expected, $str, $otherStr, $encoding = '')
     {
-        $result = UTF8::str_longest_common_prefix($str, $otherStr, $encoding);
+        $result = UTF8::strLongestCommonPrefix($str, $otherStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2829,7 +2829,7 @@ d
      */
     public function testLongestCommonSubstring($expected, $str, $otherStr, $encoding = '')
     {
-        $result = UTF8::str_longest_common_substring($str, $otherStr, $encoding);
+        $result = UTF8::strLongestCommonSubstring($str, $otherStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2844,7 +2844,7 @@ d
      */
     public function testLongestCommonSuffix($expected, $str, $otherStr, $encoding = '')
     {
-        $result = UTF8::str_longest_common_suffix($str, $otherStr, $encoding);
+        $result = UTF8::strLongestCommonSuffix($str, $otherStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2871,13 +2871,13 @@ d
      */
     public function testOffsetExists($expected, $offset)
     {
-        static::assertSame($expected, UTF8::str_offset_exists('fòô', $offset));
+        static::assertSame($expected, UTF8::strOffsetExists('fòô', $offset));
     }
 
     public function testOffsetGet()
     {
-        static::assertSame('f', UTF8::str_offset_get('fòô', 0));
-        static::assertSame('ô', UTF8::str_offset_get('fòô', 2));
+        static::assertSame('f', UTF8::strOffsetGet('fòô', 0));
+        static::assertSame('ô', UTF8::strOffsetGet('fòô', 2));
     }
 
     public function testOffsetGetOutOfBoundsException()
@@ -2885,7 +2885,7 @@ d
         $this->expectException(\OutOfBoundsException::class);
 
         /** @noinspection UnusedFunctionResultInspection */
-        UTF8::str_offset_get('fòô', -999);
+        UTF8::strOffsetGet('fòô', -999);
     }
 
     /**
@@ -2900,7 +2900,7 @@ d
      */
     public function testPad($expected, $str, $length, $padStr = ' ', $padType = 'right', $encoding = '')
     {
-        $result = UTF8::str_pad($str, $length, $padStr, $padType, $encoding);
+        $result = UTF8::strPad($str, $length, $padStr, $padType, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2916,7 +2916,7 @@ d
      */
     public function testPadBoth($expected, $str, $length, $padStr = ' ', $encoding = '')
     {
-        $result = UTF8::str_pad_both($str, $length, $padStr, $encoding);
+        $result = UTF8::strPadBoth($str, $length, $padStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2926,7 +2926,7 @@ d
         $this->expectException(\InvalidArgumentException::class);
 
         /** @noinspection UnusedFunctionResultInspection */
-        UTF8::str_pad('foo', 5, 'foo', 'bar');
+        UTF8::strPad('foo', 5, 'foo', 'bar');
     }
 
     /**
@@ -2940,7 +2940,7 @@ d
      */
     public function testPadLeft($expected, $str, $length, $padStr = ' ', $encoding = '')
     {
-        $result = UTF8::str_pad_left($str, $length, $padStr, $encoding);
+        $result = UTF8::strPadLeft($str, $length, $padStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2956,7 +2956,7 @@ d
      */
     public function testPadRight($expected, $str, $length, $padStr = ' ', $encoding = '')
     {
-        $result = UTF8::str_pad_right($str, $length, $padStr, $encoding);
+        $result = UTF8::strPadRight($str, $length, $padStr, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3074,7 +3074,7 @@ d
      */
     public function testRepeat($expected, $str, $multiplier)
     {
-        $result = UTF8::str_repeat($str, $multiplier);
+        $result = UTF8::strRepeat($str, $multiplier);
 
         static::assertSame($expected, $result);
     }
@@ -3138,7 +3138,7 @@ d
      */
     public function testTestiReplaceBeginning($expected, $str, $search, $replacement)
     {
-        $result = UTF8::str_ireplace_beginning($str, $search, $replacement);
+        $result = UTF8::strReplaceInsensitive_beginning($str, $search, $replacement);
 
         static::assertSame($expected, $result);
     }
@@ -3168,7 +3168,7 @@ d
      */
     public function testTestiReplaceEnding($expected, $str, $search, $replacement)
     {
-        $result = UTF8::str_ireplace_ending($str, $search, $replacement);
+        $result = UTF8::strReplaceEndingInsensitive($str, $search, $replacement);
 
         static::assertSame($expected, $result);
     }
@@ -3229,7 +3229,7 @@ d
      */
     public function testShortenAfterWord($expected, $str, $length, $strAddOn = '...', $encoding = '')
     {
-        $result = UTF8::str_limit_after_word($str, $length, $strAddOn, $encoding);
+        $result = UTF8::strLimitAfterWord($str, $length, $strAddOn, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3327,7 +3327,7 @@ d
         if ($caseSensitive) {
             $result = UTF8::str_starts_with($str, $substring);
         } else {
-            $result = UTF8::strIstartsWith($str, $substring);
+            $result = UTF8::strStartsWithInsensitive($str, $substring);
         }
 
         static::assertTrue(\is_bool($result));
@@ -3347,7 +3347,7 @@ d
         if ($caseSensitive) {
             $result = UTF8::str_starts_with_any($str, $substring);
         } else {
-            $result = UTF8::strIstartsWithAny($str, $substring);
+            $result = UTF8::strStartsWithAnyInsensitive($str, $substring);
         }
 
         static::assertTrue(\is_bool($result));
@@ -3491,7 +3491,7 @@ d
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_isubstr_first($testString, 'b', false));
+            static::assertSame($testResult, UTF8::strSubstrFirstInsensitive($testString, 'b', false));
         }
     }
 
@@ -3665,7 +3665,7 @@ d
      */
     public function testToAscii($expected, $str)
     {
-        $result = UTF8::to_ascii($str);
+        $result = UTF8::toAscii($str);
 
         static::assertSame($expected, $result, 'tested:' . $str);
     }
@@ -4024,7 +4024,7 @@ d
      */
     public function testTestcontainsAny($expected, $haystack, $needles, $caseSensitive = true)
     {
-        $result = UTF8::str_contains_any($haystack, $needles, $caseSensitive);
+        $result = UTF8::strContainsAny($haystack, $needles, $caseSensitive);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result);

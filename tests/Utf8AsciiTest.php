@@ -52,48 +52,48 @@ final class Utf8AsciiTest extends \PHPUnit\Framework\TestCase
     public function testUtf8ToAscii()
     {
         $str = 'testiñg';
-        static::assertSame('testing', UTF8::to_ascii($str));
+        static::assertSame('testing', UTF8::toAscii($str));
     }
 
     public function testAsciiToAscii()
     {
         $str = 'testing';
-        static::assertSame('testing', UTF8::to_ascii($str));
+        static::assertSame('testing', UTF8::toAscii($str));
     }
 
     public function testInvalidCharToAscii()
     {
         $str = "tes\xe9ting";
-        static::assertSame('testing', UTF8::to_ascii($str));
+        static::assertSame('testing', UTF8::toAscii($str));
     }
 
     public function testEmptyStrToAscii()
     {
         $str = '';
-        static::assertSame('', UTF8::to_ascii($str));
+        static::assertSame('', UTF8::toAscii($str));
     }
 
     public function testNulAndNon7Bit()
     {
         $str = "a\x00ñ\x00c";
-        static::assertSame('anc', UTF8::to_ascii($str));
+        static::assertSame('anc', UTF8::toAscii($str));
     }
 
     public function testNul()
     {
         $str = "a\x00b\x00c";
-        static::assertSame('abc', UTF8::to_ascii($str));
+        static::assertSame('abc', UTF8::toAscii($str));
     }
 
     public function testNewLineToAscii()
     {
         $str = "a\nb\nc";
-        static::assertSame("a\nb\nc", UTF8::to_ascii($str));
+        static::assertSame("a\nb\nc", UTF8::toAscii($str));
     }
 
     public function testTabToAscii()
     {
         $str = "a\tb\tc";
-        static::assertSame("a\tb\tc", UTF8::to_ascii($str));
+        static::assertSame("a\tb\tc", UTF8::toAscii($str));
     }
 }

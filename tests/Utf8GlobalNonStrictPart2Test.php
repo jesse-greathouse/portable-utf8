@@ -41,7 +41,7 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
         // string with UTF-16 (LE) BOM + valid UTF-8 && invalid UTF-8
         $string = "\xFF\xFE" . 'string <strong>with utf-8 chars åèä</strong>' . "\xa0\xa1" . ' - doo-bee doo-bee dooh';
 
-        static::assertSame(74, UTF8::strlen_in_byte($string));
+        static::assertSame(74, UTF8::strlenInByte($string));
     }
 
     public function testStrlen()
@@ -990,15 +990,15 @@ final class Utf8GlobalNonStrictPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testSubstrInByte()
     {
-        static::assertSame('23', UTF8::substr_in_byte(1234, 1, 2));
-        static::assertSame('bc', UTF8::substr_in_byte('abcde', 1, 2));
-        static::assertSame('de', UTF8::substr_in_byte('abcde', -2, 2));
-        static::assertSame('bc', UTF8::substr_in_byte('abcde', 1, 2));
-        static::assertSame('bc', UTF8::substr_in_byte('abcde', 1, 2));
-        static::assertSame('bc', UTF8::substr_in_byte('abcde', 1, 2));
-        static::assertSame('bcde', UTF8::substr_in_byte('abcde', 1, null));
-        static::assertSame('bcd', UTF8::substr_in_byte('abcde', 1, 3));
-        static::assertSame('bc', UTF8::substr_in_byte('abcde', 1, 2));
+        static::assertSame('23', UTF8::strlenInByte(1234, 1, 2));
+        static::assertSame('bc', UTF8::strlenInByte('abcde', 1, 2));
+        static::assertSame('de', UTF8::strlenInByte('abcde', -2, 2));
+        static::assertSame('bc', UTF8::strlenInByte('abcde', 1, 2));
+        static::assertSame('bc', UTF8::strlenInByte('abcde', 1, 2));
+        static::assertSame('bc', UTF8::strlenInByte('abcde', 1, 2));
+        static::assertSame('bcde', UTF8::strlenInByte('abcde', 1, null));
+        static::assertSame('bcd', UTF8::strlenInByte('abcde', 1, 3));
+        static::assertSame('bc', UTF8::strlenInByte('abcde', 1, 2));
 
         // ... no support for UTF-8
     }

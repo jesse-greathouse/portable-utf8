@@ -2,7 +2,7 @@
 
 ### 6.0.13 (2023-03-08)
 
-- added "UTF8::str_limit_in_byte()"
+- added "UTF8::strLimitInByte()"
 
 ### 6.0.12 (2023-01-11)
 
@@ -76,25 +76,25 @@ Removed:
 - UTF8::isJson() (please use UTF8::is_json())
 - UTF8::isUtf16() (please use UTF8::isUtf16())
 - UTF8::isUtf32() (please use UTF8::isUtf32())
-- UTF8::isUtf8() (please use UTF8::is_utf8())
+- UTF8::isUtf8() (please use UTF8::isUtf8())
 - UTF8::lcword() (please use UTF8::lcfirst())
 - UTF8::lowerCaseFirst() (please use UTF8::lcfirst())
-- UTF8::normalizeEncoding() (please use UTF8::normalize_encoding())
+- UTF8::normalizeEncoding() (please use UTF8::normalizeEncoding())
 - UTF8::removeBOM() (please use UTF8::removeBom())
 - UTF8::split() (please use UTF8::strSplit())
 - UTF8::str_begins() (please use UTF8::str_starts_with())
-- UTF8::str_ends() (please use UTF8::str_ends_with())
-- UTF8::str_ibegins() (please use UTF8::strIstartsWith())
-- UTF8::str_iends() (please use UTF8::str_iends_with())
+- UTF8::str_ends() (please use UTF8strEndsWith())
+- UTF8::str_ibegins() (please use UTF8::strStartsWithInsensitive())
+- UTF8::str_iends() (please use UTF8::strEndsWithInsensitive())
 - UTF8::str_iindex_first() (please use UTF8::stripos())
 - UTF8::str_iindex_last() (please use UTF8::strripos())
 - UTF8::str_index_first() (please use UTF8::strpos())
 - UTF8::str_index_last() (please use UTF8::strrpos())
-- UTF8::str_transliterate() (please use UTF8::to_ascii())
+- UTF8::str_transliterate() (please use UTF8::toAscii())
 - UTF8::str_upper_first() (please use UTF8::ucfirst())
 - UTF8::strchr() (please use UTF8::strstr()) 
 - UTF8::strichr() (please use UTF8::stristr())
-- UTF8::toAscii() (please use UTF8::to_ascii())
+- UTF8::toAscii() (please use UTF8::toAscii())
 - UTF8::toIso8859() (please use UTF8::toIso8859())
 - UTF8::toLatin1() (please use UTF8::toIso8859())
 - UTF8::to_latin1() (please use UTF8::toIso8859())
@@ -125,7 +125,7 @@ Fixed:
 
 - fix "UTF8::chr()" handling of non "int" code points
 - fix "UTF8::htmlEncode()" (parameter mismatch for "mb_encode_numericentity()")
-- fix "UTF8::str_ireplace()" (TypeError of "preg_replace()")
+- fix "UTF8::strReplaceInsensitive()" (TypeError of "preg_replace()")
 - fix "UTF8::strtonatfold()" (TypeError of "preg_replace()")
 - fix "UTF8::substr_count()" return type if "$haystack" is an empty string
 - compatibility with PHP 8.0 behaviour for:
@@ -136,7 +136,7 @@ Fixed:
     - UTF::strrpos()
     - UTF::strripos()
 - use native functions from PHP 8.0
-    - \str_contains()
+    - \strContains()
     - \str_starts_with()
     - \str_ends_with()
 
@@ -173,7 +173,7 @@ Fixed:
 
 ### 5.4.41 (2020-03-06)
 
-- fix "UTF8::is_utf8*" -> detecting when last byte is incomplete multibyte character | big thanks @daniel-jeffery 
+- fix "UTF8::isUtf8*" -> detecting when last byte is incomplete multibyte character | big thanks @daniel-jeffery 
 
 ### 5.4.40 (2020-02-23)
 
@@ -192,7 +192,7 @@ Fixed:
 - add "UTF8::emojiFromCountryCode()"
 - add many new tests
 - optimize "UTF8::isUrl()" + fix deprecated php (>= 7.3) constants
-- optimize "UTF8::str_limit_after_word()" -> optimize the regex
+- optimize "UTF8::strLimitAfterWord()" -> optimize the regex
 - optimize "UTF8::substr()" -> combine "if"-statements
 - optimize "UTF8::str_capitalize_name_helper()" -> performance -> use break
 - code style: fix for "UTF8::filter()"
@@ -224,7 +224,7 @@ Fixed:
 
 ### 5.4.32 (2019-12-13)
 
-- fix "UTF8::str_contains_all" -> "strpos(): Empty needle"
+- fix "UTF8::strContainsAll" -> "strpos(): Empty needle"
 
 ### 5.4.31 (2019-12-13)
 
@@ -233,7 +233,7 @@ Fixed:
 
 ### 5.4.30 (2019-12-04)
 
-- fix "UTF8::str_contains_all" -> fix the loop
+- fix "UTF8::strContainsAll" -> fix the loop
 
 ### 5.4.29 (2019-12-02)
 
@@ -339,7 +339,7 @@ Fixed:
 
 ### 5.4.10 (2019-07-05)
 
-- fix "UTF8::str_contains_any()" -> thanks @drupalista-br
+- fix "UTF8::strContainsAny()" -> thanks @drupalista-br
 
 ### 5.4.9 (2019-06-19)
 
@@ -386,10 +386,10 @@ Fixed:
 ### 5.4.0 (2019-01-22)
 - optimize performance | thx @fe3dback
   -> e.g. use "\mb_"-functions without encoding parameter
-  -> e.g. simplify logic of "UTF8::str_pad()"
+  -> e.g. simplify logic of "UTF8::strPad()"
 - no more 100% support for "mbstring_func_overload", it's already deprecated in php
 - move "UTF8::checkForSupport()" into "bootstrap.php"
-- fix output from "UTF8::str_pad()" + empty input string
+- fix output from "UTF8::strPad()" + empty input string
 - add more "encoding" parameter e.g. for "UTF8::str_shuffle()"
 - remove really old fallback for breaking-changes
 - do not use aliases for internal processing
@@ -422,7 +422,7 @@ Fixed:
 
 ### 5.2.14 (2018-12-07)
 - optimize "UTF8::str_replace_beginning()" && "UTF8::str_replace_ending()"
-- added "UTF8::str_ireplace_beginning()" && "UTF8::str_ireplace_ending()"
+- added "UTF8::strReplaceInsensitive_beginning()" && "UTF8::strReplaceEndingInsensitive()"
 
 ### 5.2.13 (2018-11-29)
 - "UTF8::getFileType()" is now public + tested
@@ -484,7 +484,7 @@ Fixed:
 - added many new tests
 
 ### 5.0.6 (2018-05-02)
-- fix "UTF8::to_ascii()"
+- fix "UTF8::toAscii()"
 - update encoding list for "UTF8::detectStringEncoding()"
 - use root namespaces for php functions
 
@@ -495,7 +495,7 @@ Fixed:
 
 ### 5.0.4 (2018-01-07)
 - performance optimizing
-  -> use "UTF8::normalize_encoding()" if needed
+  -> use "UTF8::normalizeEncoding()" if needed
   -> use "CP850" encoding only if needed
   -> don't use "UTF8::htmlEncode()" in a foreach-loop
 
@@ -554,4 +554,4 @@ after:
   * drop support for PHP < 7.0
   * use "strict_types"
   * "UTF8::number_format()" -> removed deprecated method 
-  * "UTF8::normalize_encoding()" -> change $fallback from bool to empty string
+  * "UTF8::normalizeEncoding()" -> change $fallback from bool to empty string

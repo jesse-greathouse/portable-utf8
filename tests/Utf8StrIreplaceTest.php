@@ -18,50 +18,50 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
     {
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'Iñtërnâtiônàlisetiøn';
-        static::assertSame($replaced, u::str_ireplace('lIzÆ', 'lise', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('lIzÆ', 'lise', $str));
 
         $str = ['Iñtërnâtiônàlizætiøn', 'Iñtërnâtiônàlisetiøn', 'foobar', '', "\0", ' '];
         $replaced = ['Iñtërnâtiônàlisetiøn', 'Iñtërnâtiônàlisetiøn', 'foobar', '', "\0", ' '];
-        static::assertSame($replaced, u::str_ireplace('lIzÆ', 'lise', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('lIzÆ', 'lise', $str));
 
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'Iñtërnâtiônàlisetiøn';
-        static::assertSame($replaced, UTF8::str_ireplace('lIzÆ', 'lise', $str));
+        static::assertSame($replaced, UTF8::strReplaceInsensitive('lIzÆ', 'lise', $str));
     }
 
     public function testReplaceNoMatch()
     {
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'Iñtërnâtiônàlizætiøn';
-        static::assertSame($replaced, u::str_ireplace('foo', 'bar', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('foo', 'bar', $str));
     }
 
     public function testEmptyString()
     {
         $str = '';
         $replaced = '';
-        static::assertSame($replaced, u::str_ireplace('foo', 'bar', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('foo', 'bar', $str));
     }
 
     public function testEmptySearch()
     {
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'Iñtërnâtiônàlizætiøn';
-        static::assertSame($replaced, u::str_ireplace('', 'x', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('', 'x', $str));
 
         // --
 
-        static::assertSame('Iñtërnâtiônàlizætiøn', u::str_ireplace('', null, $str));
-        static::assertSame('Iñtërnâtiônàlizætiøn', u::str_ireplace([], null, $str));
-        static::assertSame('Iñtërnâtiônàlizætiøn', u::str_ireplace(null, null, $str));
-        static::assertSame('', u::str_ireplace(null, null, null));
+        static::assertSame('Iñtërnâtiônàlizætiøn', u::strReplaceInsensitive('', null, $str));
+        static::assertSame('Iñtërnâtiônàlizætiøn', u::strReplaceInsensitive([], null, $str));
+        static::assertSame('Iñtërnâtiônàlizætiøn', u::strReplaceInsensitive(null, null, $str));
+        static::assertSame('', u::strReplaceInsensitive(null, null, null));
     }
 
     public function testReplaceCount()
     {
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'IñtërXâtiôXàlizætiøX';
-        static::assertSame($replaced, u::str_ireplace('n', 'X', $str, $count));
+        static::assertSame($replaced, u::strReplaceInsensitive('n', 'X', $str, $count));
         static::assertSame(3, $count);
     }
 
@@ -69,7 +69,7 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
     {
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'IñtërXXXâtiôXXXàlizætiøXXX';
-        static::assertSame($replaced, u::str_ireplace('n', 'XXX', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('n', 'XXX', $str));
     }
 
     public function testReplaceArrayAsciiSearch()
@@ -78,7 +78,7 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
         $replaced = 'Iñyërxâyiôxàlizæyiøx';
         static::assertSame(
             $replaced,
-            u::str_ireplace(
+            u::strReplaceInsensitive(
                 [
                     'n',
                     't',
@@ -97,7 +97,7 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'I?tërnâti??nàliz????ti???n';
         static::assertSame(
-            u::str_ireplace(
+            u::strReplaceInsensitive(
                 [
                     'Ñ',
                     'ô',
@@ -122,7 +122,7 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
         $replaced = 'I?tërnâti?nàliz?ti?n';
         static::assertSame(
             $replaced,
-            u::str_ireplace(
+            u::strReplaceInsensitive(
                 [
                     'Ñ',
                     'ô',
@@ -140,7 +140,7 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
         $str = 'Iñtërnâtiônàlizætiøn';
         $replaced = 'I?tërnâtinàliztin';
         static::assertSame(
-            u::str_ireplace(
+            u::strReplaceInsensitive(
                 [
                     'Ñ',
                     'ô',
@@ -158,20 +158,20 @@ final class Utf8StrIreplaceTest extends \PHPUnit\Framework\TestCase
     {
         $str = "Iñtërnâti\nônàlizætiøn";
         $replaced = "Iñtërnâti\nônàlisetiøn";
-        static::assertSame($replaced, u::str_ireplace('lIzÆ', 'lise', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive('lIzÆ', 'lise', $str));
     }
 
     public function testReplaceLinefeedArray()
     {
         $str = "Iñtërnâti\nônàlizætiøn";
         $replaced = "Iñtërnâti\n\nônàlisetiøn";
-        static::assertSame($replaced, u::str_ireplace(['lIzÆ', "\n"], ['lise', "\n\n"], $str));
+        static::assertSame($replaced, u::strReplaceInsensitive(['lIzÆ', "\n"], ['lise', "\n\n"], $str));
     }
 
     public function testReplaceLinefeedSearch()
     {
         $str = "Iñtërnâtiônàli\nzætiøn";
         $replaced = 'Iñtërnâtiônàlisetiøn';
-        static::assertSame($replaced, u::str_ireplace("lI\nzÆ", 'lise', $str));
+        static::assertSame($replaced, u::strReplaceInsensitive("lI\nzÆ", 'lise', $str));
     }
 }
