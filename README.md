@@ -116,7 +116,7 @@ Example 2: UTF8::strlen()
   // 67
 
   $string_test1 = strip_tags($string);
-  $string_test2 = UTF8::strip_tags($string);
+  $string_test2 = UTF8::stripTags($string);
 
   echo strlen($string_test1) . "\n<br />";
   echo UTF8::strlen($string_test2) . "\n<br />";
@@ -252,22 +252,22 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#rawurldecodestring-str-bool-multi_decode-string">rawurldecode</a>
 </td><td><a href="#regexReplacestring-str-string-pattern-string-replacement-string-options-string-delimiter-string">regexReplace</a>
 </td><td><a href="#removeBomstring-str-string">removeBom</a>
-</td></tr><tr><td><a href="#remove_duplicatesstring-str-stringstring-what-string">remove_duplicates</a>
-</td><td><a href="#remove_htmlstring-str-string-allowable_tags-string">remove_html</a>
-</td><td><a href="#remove_html_breaksstring-str-string-replacement-string">remove_html_breaks</a>
-</td><td><a href="#remove_ileftstring-str-string-substring-string-encoding-string">remove_ileft</a>
+</td></tr><tr><td><a href="#removeDuplicatesstring-str-stringstring-what-string">removeDuplicates</a>
+</td><td><a href="#removeHtmlstring-str-string-allowable_tags-string">removeHtml</a>
+</td><td><a href="#removeHtmlBreaksstring-str-string-replacement-string">removeHtmlBreaks</a>
+</td><td><a href="#removeLeftInsensitivestring-str-string-substring-string-encoding-string">removeLeftInsensitive</a>
 </td></tr><tr><td><a href="#removeInvisibleCharactersstring-str-bool-url_encoded-string-replacement-bool-keep_basic_control_characters-string">removeInvisibleCharacters</a>
-</td><td><a href="#remove_irightstring-str-string-substring-string-encoding-string">remove_iright</a>
-</td><td><a href="#remove_leftstring-str-string-substring-string-encoding-string">remove_left</a>
+</td><td><a href="#removeRightInsensitivestring-str-string-substring-string-encoding-string">removeRightInsensitive</a>
+</td><td><a href="#removeLeftstring-str-string-substring-string-encoding-string">removeLeft</a>
 </td><td><a href="#remove_rightstring-str-string-substring-string-encoding-string">remove_right</a>
 </td></tr><tr><td><a href="#replacestring-str-string-search-string-replacement-bool-case_sensitive-string">replace</a>
-</td><td><a href="#replace_allstring-str-string-search-stringstring-replacement-bool-case_sensitive-string">replace_all</a>
+</td><td><a href="#replaceAllstring-str-string-search-stringstring-replacement-bool-case_sensitive-string">replaceAll</a>
 </td><td><a href="#replaceDiamondQuestionMarkstring-str-string-replacement_char-bool-process_invalid_utf8_chars-string">replaceDiamondQuestionMark</a>
 </td><td><a href="#rtrimstring-str-stringnull-chars-string">rtrim</a>
 </td></tr><tr><td><a href="#showsupportbool-useecho-stringvoid">showSupport</a>
 </td><td><a href="#single_chr_html_encodestring-char-bool-keep_ascii_chars-string-encoding-string">single_chr_html_encode</a>
-</td><td><a href="#spaces_to_tabsstring-str-int-tab_length-string">spaces_to_tabs</a>
-</td><td><a href="#str_camelizestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">str_camelize</a>
+</td><td><a href="#spacesToTabsstring-str-int-tab_length-string">spacesToTabs</a>
+</td><td><a href="#camelizestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">camelize</a>
 </td></tr><tr><td><a href="#str_capitalize_namestring-str-string">str_capitalize_name</a>
 </td><td><a href="#strContainsstring-haystack-string-needle-bool-case_sensitive-bool">strContains</a>
 </td><td><a href="#strContainsAllstring-haystack-scalar-needles-bool-case_sensitive-bool">strContainsAll</a>
@@ -301,7 +301,7 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#strLongestCommonSubstringstring-str1-string-str2-string-encoding-string">strLongestCommonSubstring</a>
 </td><td><a href="#strLongestCommonSuffixstring-str1-string-str2-string-encoding-string">strLongestCommonSuffix</a>
 </td></tr><tr><td><a href="#strMatchesPatternstring-str-string-pattern-bool">strMatchesPattern</a>
-</td><td><a href="#str_obfuscatestring-str-float-percent-string-obfuscatechar-string-keepchars-string">str_obfuscate</a>
+</td><td><a href="#strObfuscatestring-str-float-percent-string-obfuscatechar-string-keepchars-string">strObfuscate</a>
 </td><td><a href="#strOffsetExistsstring-str-int-offset-string-encoding-bool">strOffsetExists</a>
 </td><td><a href="#strOffsetGetstring-str-int-index-string-encoding-string">strOffsetGet</a>
 </td></tr><tr><td><a href="#str_padstring-str-int-pad_length-string-pad_string-intstring-pad_type-string-encoding-string">str_pad</a>
@@ -309,39 +309,39 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#strPadLeftstring-str-int-length-string-pad_str-string-encoding-string">strPadLeft</a>
 </td><td><a href="#strPadRightstring-str-int-length-string-pad_str-string-encoding-string">strPadRight</a>
 </td></tr><tr><td><a href="#str_repeatstring-str-int-multiplier-string">str_repeat</a>
-</td><td><a href="#str_replace_beginningstring-str-string-search-string-replacement-string">str_replace_beginning</a>
-</td><td><a href="#str_replace_endingstring-str-string-search-string-replacement-string">str_replace_ending</a>
-</td><td><a href="#str_replace_firststring-search-string-replace-string-subject-string">str_replace_first</a>
-</td></tr><tr><td><a href="#str_replace_laststring-search-string-replace-string-subject-string">str_replace_last</a>
-</td><td><a href="#str_shufflestring-str-string-encoding-string">str_shuffle</a>
-</td><td><a href="#str_slicestring-str-int-start-intnull-end-string-encoding-falsestring">str_slice</a>
-</td><td><a href="#str_snakeizestring-str-string-encoding-string">str_snakeize</a>
-</td></tr><tr><td><a href="#str_sortstring-str-bool-unique-bool-desc-string">str_sort</a>
+</td><td><a href="#strReplaceBeginningstring-str-string-search-string-replacement-string">strReplaceBeginning</a>
+</td><td><a href="#strReplaceEndingstring-str-string-search-string-replacement-string">strReplaceEnding</a>
+</td><td><a href="#strReplaceFirststring-search-string-replace-string-subject-string">strReplaceFirst</a>
+</td></tr><tr><td><a href="#strReplaceLaststring-search-string-replace-string-subject-string">strReplaceLast</a>
+</td><td><a href="#strShufflestring-str-string-encoding-string">strShuffle</a>
+</td><td><a href="#strSlicestring-str-int-start-intnull-end-string-encoding-falsestring">strSlice</a>
+</td><td><a href="#snakeizestring-str-string-encoding-string">snakeize</a>
+</td></tr><tr><td><a href="#strSortstring-str-bool-unique-bool-desc-string">strSort</a>
 </td><td><a href="#strSplitintstring-str-int-length-bool-clean_utf8-bool-try_to_use_mb_functions-liststring">strSplit</a>
 </td><td><a href="#strSplitArrayintstring-input-int-length-bool-clean_utf8-bool-try_to_use_mb_functions-listliststring">strSplitArray</a>
-</td><td><a href="#strSplit_patternstring-str-string-pattern-int-limit-string">strSplit_pattern</a>
+</td><td><a href="#strSplitPatternstring-str-string-pattern-int-limit-string">strSplitPattern</a>
 </td></tr><tr><td><a href="#str_starts_withstring-haystack-string-needle-bool">str_starts_with</a>
 </td><td><a href="#str_starts_with_anystring-str-scalar-substrings-bool">str_starts_with_any</a>
-</td><td><a href="#str_substr_after_first_separatorstring-str-string-separator-string-encoding-string">str_substr_after_first_separator</a>
+</td><td><a href="#strSubstrAfterFirstSeparatorstring-str-string-separator-string-encoding-string">strSubstrAfterFirstSeparator</a>
 </td><td><a href="#str_substr_after_last_separatorstring-str-string-separator-string-encoding-string">str_substr_after_last_separator</a>
-</td></tr><tr><td><a href="#str_substr_before_first_separatorstring-str-string-separator-string-encoding-string">str_substr_before_first_separator</a>
+</td></tr><tr><td><a href="#strSubstrBeforeFirstSeparatorstring-str-string-separator-string-encoding-string">strSubstrBeforeFirstSeparator</a>
 </td><td><a href="#str_substr_before_last_separatorstring-str-string-separator-string-encoding-string">str_substr_before_last_separator</a>
-</td><td><a href="#str_substr_firststring-str-string-needle-bool-before_needle-string-encoding-string">str_substr_first</a>
+</td><td><a href="#strSubstrFirststring-str-string-needle-bool-before_needle-string-encoding-string">strSubstrFirst</a>
 </td><td><a href="#str_substr_laststring-str-string-needle-bool-before_needle-string-encoding-string">str_substr_last</a>
 </td></tr><tr><td><a href="#str_surroundstring-str-string-substring-string">str_surround</a>
-</td><td><a href="#str_titleizestring-str-stringnull-ignore-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-bool-use_trim_first-stringnull-word_define_chars-string">str_titleize</a>
-</td><td><a href="#str_titleize_for_humansstring-str-string-ignore-string-encoding-string">str_titleize_for_humans</a>
-</td><td><a href="#str_to_binarystring-str-falsestring">str_to_binary</a>
-</td></tr><tr><td><a href="#str_to_linesstring-str-bool-remove_empty_values-intnull-remove_short_values-string">str_to_lines</a>
+</td><td><a href="#strTitleizestring-str-stringnull-ignore-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-bool-use_trim_first-stringnull-word_define_chars-string">strTitleize</a>
+</td><td><a href="#strTitleizeForHumansstring-str-string-ignore-string-encoding-string">strTitleizeForHumans</a>
+</td><td><a href="#strToBinarystring-str-falsestring">strToBinary</a>
+</td></tr><tr><td><a href="#strToLinesstring-str-bool-remove_empty_values-intnull-remove_short_values-string">strToLines</a>
 </td><td><a href="#strToWordsstring-str-string-char_list-bool-remove_empty_values-intnull-remove_short_values-liststring">strToWords</a>
-</td><td><a href="#str_truncatestring-str-int-length-string-substring-string-encoding-string">str_truncate</a>
-</td><td><a href="#str_truncate_safestring-str-int-length-string-substring-string-encoding-bool-ignore_do_not_split_words_for_one_word-string">str_truncate_safe</a>
-</td></tr><tr><td><a href="#str_underscoredstring-str-string">str_underscored</a>
-</td><td><a href="#str_upper_camelizestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">str_upper_camelize</a>
-</td><td><a href="#str_word_countstring-str-int-format-string-char_list-intstring">str_word_count</a>
-</td><td><a href="#strcasecmpstring-str1-string-str2-string-encoding-int">strcasecmp</a>
-</td></tr><tr><td><a href="#strcmpstring-str1-string-str2-int">strcmp</a>
-</td><td><a href="#strcspnstring-str-string-char_list-int-offset-intnull-length-string-encoding-int">strcspn</a>
+</td><td><a href="#strTruncatestring-str-int-length-string-substring-string-encoding-string">strTruncate</a>
+</td><td><a href="#strTruncateSafestring-str-int-length-string-substring-string-encoding-bool-ignore_do_not_split_words_for_one_word-string">strTruncateSafe</a>
+</td></tr><tr><td><a href="#strUnderscoredstring-str-string">strUnderscored</a>
+</td><td><a href="#strUpperCamelizestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">strUpperCamelize</a>
+</td><td><a href="#strWordCountstring-str-int-format-string-char_list-intstring">strWordCount</a>
+</td><td><a href="#strCompareInsensitivestring-str1-string-str2-string-encoding-int">strCompareInsensitive</a>
+</td></tr><tr><td><a href="#strComparestring-str1-string-str2-int">strCompare</a>
+</td><td><a href="#strComplementSpanstring-str-string-char_list-int-offset-intnull-length-string-encoding-int">strComplementSpan</a>
 </td><td><a href="#stringintintstringstring-intorhex-string">string</a>
 </td><td><a href="#hasBomstring-str-bool">hasBom</a>
 </td></tr><tr><td><a href="#strip_tagsstring-str-stringnull-allowable_tags-bool-clean_utf8-string">strip_tags</a>
@@ -357,41 +357,41 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td><td><a href="#strncmpstring-str1-string-str2-int-len-string-encoding-int">strncmp</a>
 </td><td><a href="#strpbrkstring-haystack-string-char_list-falsestring">strpbrk</a>
 </td></tr><tr><td><a href="#strposstring-haystack-intstring-needle-int-offset-string-encoding-bool-clean_utf8-falseint">strpos</a>
-</td><td><a href="#strpos_in_bytestring-haystack-string-needle-int-offset-falseint">strpos_in_byte</a>
+</td><td><a href="#strposInBytestring-haystack-string-needle-int-offset-falseint">strposInByte</a>
 </td><td><a href="#strrchrstring-haystack-string-needle-bool-before_needle-string-encoding-bool-clean_utf8-falsestring">strrchr</a>
 </td><td><a href="#strrevstring-str-string-encoding-string">strrev</a>
 </td></tr><tr><td><a href="#strrichrstring-haystack-string-needle-bool-before_needle-string-encoding-bool-clean_utf8-falsestring">strrichr</a>
 </td><td><a href="#strriposstring-haystack-intstring-needle-int-offset-string-encoding-bool-clean_utf8-falseint">strripos</a>
 </td><td><a href="#strripos_in_bytestring-haystack-string-needle-int-offset-falseint">strripos_in_byte</a>
 </td><td><a href="#strrposstring-haystack-intstring-needle-int-offset-string-encoding-bool-clean_utf8-falseint">strrpos</a>
-</td></tr><tr><td><a href="#strrpos_in_bytestring-haystack-string-needle-int-offset-falseint">strrpos_in_byte</a>
+</td></tr><tr><td><a href="#strrposInBytestring-haystack-string-needle-int-offset-falseint">strrposInByte</a>
 </td><td><a href="#strspnstring-str-string-mask-int-offset-intnull-length-string-encoding-falseint">strspn</a>
 </td><td><a href="#strstrstring-haystack-string-needle-bool-before_needle-string-encoding-bool-clean_utf8-falsestring">strstr</a>
-</td><td><a href="#strstr_in_bytestring-haystack-string-needle-bool-before_needle-falsestring">strstr_in_byte</a>
-</td></tr><tr><td><a href="#strtocasefoldstring-str-bool-full-bool-clean_utf8-string-encoding-stringnull-lang-bool-lower-string">strtocasefold</a>
+</td><td><a href="#strstrInBytestring-haystack-string-needle-bool-before_needle-falsestring">strstrInByte</a>
+</td></tr><tr><td><a href="#strToCaseFoldstring-str-bool-full-bool-clean_utf8-string-encoding-stringnull-lang-bool-lower-string">strToCaseFold</a>
 </td><td><a href="#strtolowerstring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">strtolower</a>
 </td><td><a href="#strtoupperstring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">strtoupper</a>
 </td><td><a href="#strtrstring-str-stringstring-from-stringstring-to-string">strtr</a>
 </td></tr><tr><td><a href="#strwidthstring-str-string-encoding-bool-clean_utf8-int">strwidth</a>
 </td><td><a href="#substrstring-str-int-offset-intnull-length-string-encoding-bool-clean_utf8-falsestring">substr</a>
-</td><td><a href="#substr_comparestring-str1-string-str2-int-offset-intnull-length-bool-case_insensitivity-string-encoding-int">substr_compare</a>
-</td><td><a href="#substr_countstring-haystack-string-needle-int-offset-intnull-length-string-encoding-bool-clean_utf8-falseint">substr_count</a>
-</td></tr><tr><td><a href="#substr_count_in_bytestring-haystack-string-needle-int-offset-intnull-length-falseint">substr_count_in_byte</a>
+</td><td><a href="#substrComparestring-str1-string-str2-int-offset-intnull-length-bool-case_insensitivity-string-encoding-int">substrCompare</a>
+</td><td><a href="#substrCountstring-haystack-string-needle-int-offset-intnull-length-string-encoding-bool-clean_utf8-falseint">substrCount</a>
+</td></tr><tr><td><a href="#substrCountInBytestring-haystack-string-needle-int-offset-intnull-length-falseint">substrCountInByte</a>
 </td><td><a href="#countSubstringstring-str-string-substring-bool-case_sensitive-string-encoding-int">countSubstring</a>
-</td><td><a href="#substr_ileftstring-haystack-string-needle-string">substr_ileft</a>
+</td><td><a href="#substrleftInsensitivestring-haystack-string-needle-string">substrleftInsensitive</a>
 </td><td><a href="#strlenInBytestring-str-int-offset-intnull-length-falsestring">strlenInByte</a>
-</td></tr><tr><td><a href="#substr_irightstring-haystack-string-needle-string">substr_iright</a>
-</td><td><a href="#substr_leftstring-haystack-string-needle-string">substr_left</a>
+</td></tr><tr><td><a href="#substrRightInsensitivestring-haystack-string-needle-string">substrRightInsensitive</a>
+</td><td><a href="#substrLeftstring-haystack-string-needle-string">substrLeft</a>
 </td><td><a href="#substr_replacestringstring-str-stringstring-replacement-intint-offset-intintnull-length-string-encoding-stringstring">substr_replace</a>
-</td><td><a href="#substr_rightstring-haystack-string-needle-string-encoding-string">substr_right</a>
+</td><td><a href="#substrRightstring-haystack-string-needle-string-encoding-string">substrRight</a>
 </td></tr><tr><td><a href="#swapcasestring-str-string-encoding-bool-clean_utf8-string">swapCase</a>
 </td><td><a href="#symfony_polyfill_used-bool">symfony_polyfill_used</a>
-</td><td><a href="#tabs_to_spacesstring-str-int-tab_length-string">tabs_to_spaces</a>
-</td><td><a href="#titlecasestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">titlecase</a>
+</td><td><a href="#tabsToSpacesstring-str-int-tab_length-string">tabsToSpaces</a>
+</td><td><a href="#titleCasestring-str-string-encoding-bool-clean_utf8-stringnull-lang-bool-try_to_keep_the_string_length-string">titleCase</a>
 </td></tr><tr><td><a href="#toAsciistring-str-string-unknown-bool-strict-string">toAscii</a>
-</td><td><a href="#to_booleanboolfloatintstring-str-bool">to_boolean</a>
-</td><td><a href="#to_filenamestring-str-bool-use_transliterate-string-fallback_char-string">to_filename</a>
-</td><td><a href="#to_intstring-str-intnull">to_int</a>
+</td><td><a href="#toBooleanboolfloatintstring-str-bool">toBoolean</a>
+</td><td><a href="#toBooleanstring-str-bool-use_transliterate-string-fallback_char-string">toBoolean</a>
+</td><td><a href="#toIntstring-str-intnull">toInt</a>
 </td></tr><tr><td><a href="#toIso8859stringstring-str-stringstring">toIso8859</a>
 </td><td><a href="#to_stringfloatintobjectstringnull-input-stringnull">to_string</a>
 </td><td><a href="#toUtf8stringstring-str-bool-decode_html_entity_toUtf8-stringstring">toUtf8</a>
@@ -403,9 +403,9 @@ The API from the "UTF8"-Class is written as small static methods that will match
 </td></tr><tr><td><a href="#utf8Decodestring-str-bool-keep_utf8_chars-string">utf8Decode</a>
 </td><td><a href="#utf8_encodestring-str-string">utf8_encode</a>
 </td><td><a href="#whitespace_table-string">whitespace_table</a>
-</td><td><a href="#words_limitstring-str-int-limit-string-str_add_on-string">words_limit</a>
+</td><td><a href="#wordsLimitstring-str-int-limit-string-str_add_on-string">wordsLimit</a>
 </td></tr><tr><td><a href="#wordwrapstring-str-int-width-string-break-bool-cut-string">wordwrap</a>
-</td><td><a href="#wordwrap_per_linestring-str-int-width-string-break-bool-cut-bool-add_final_break-stringnull-delimiter-string">wordwrap_per_line</a>
+</td><td><a href="#wordwrapPerLinestring-str-int-width-string-break-bool-cut-bool-add_final_break-stringnull-delimiter-string">wordwrapPerLine</a>
 </td><td><a href="#ws-string">ws</a>
 </td></tr></table>
 
@@ -478,7 +478,7 @@ search for the start string.
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert binary into a string.
 
-INFO: opposite to UTF8::str_to_binary()
+INFO: opposite to UTF8::strToBinary()
 
 EXAMPLE: <code>UTF8::binaryToString('11110000100111111001100010000011'); // '😃'</code>
 
@@ -2528,7 +2528,7 @@ step will default to 1.
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Multi decode HTML entity + fix urlencoded-win1252-chars.
 
-EXAMPLE: <code>UTF8::rawurldecode('tes%20öäü%20\u00edtest+test'); // 'tes öäü ítest+test'</code>
+EXAMPLE: <code>UTF8::rawUrlDecode('tes%20öäü%20\u00edtest+test'); // 'tes öäü ítest+test'</code>
 
 e.g:
 'test+test'                     => 'test+test'
@@ -2580,11 +2580,11 @@ EXAMPLE: <code>UTF8::removeBom("\xEF\xBB\xBFΜπορώ να"); // 'Μπορώ ν
 
 --------
 
-## remove_duplicates(string $str, string|string[] $what): string
+## removeDuplicates(string $str, string|string[] $what): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Removes duplicate occurrences of a string in another string.
 
-EXAMPLE: <code>UTF8::remove_duplicates('öäü-κόσμεκόσμε-äöü', 'κόσμε'); // 'öäü-κόσμε-äöü'</code>
+EXAMPLE: <code>UTF8::removeDuplicates('öäü-κόσμεκόσμε-äöü', 'κόσμε'); // 'öäü-κόσμε-äöü'</code>
 
 **Parameters:**
 - `string $str <p>The base string.</p>`
@@ -2595,7 +2595,7 @@ EXAMPLE: <code>UTF8::remove_duplicates('öäü-κόσμεκόσμε-äöü', '
 
 --------
 
-## remove_html(string $str, string $allowable_tags): string
+## removeHtml(string $str, string $allowable_tags): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove html via "strip_tags()" from the string.
 
@@ -2610,7 +2610,7 @@ should not be stripped. Default: null
 
 --------
 
-## remove_html_breaks(string $str, string $replacement): string
+## removeHtmlBreaks(string $str, string $replacement): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Remove all breaks [<br> | \r\n | \r | \n | ...] from the string.
 
@@ -2623,7 +2623,7 @@ Remove all breaks [<br> | \r\n | \r | \n | ...] from the string.
 
 --------
 
-## remove_ileft(string $str, string $substring, string $encoding): string
+## removeLeftInsensitive(string $str, string $substring, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a new string with the prefix $substring removed, if present and case-insensitive.
 
@@ -2663,7 +2663,7 @@ Default: false
 
 --------
 
-## remove_iright(string $str, string $substring, string $encoding): string
+## removeRightInsensitive(string $str, string $substring, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a new string with the suffix $substring removed, if present and case-insensitive.
 
@@ -2677,7 +2677,7 @@ Returns a new string with the suffix $substring removed, if present and case-ins
 
 --------
 
-## remove_left(string $str, string $substring, string $encoding): string
+## removeLeft(string $str, string $substring, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a new string with the prefix $substring removed, if present.
 
@@ -2720,7 +2720,7 @@ Replaces all occurrences of $search in $str by $replacement.
 
 --------
 
-## replace_all(string $str, string[] $search, string|string[] $replacement, bool $case_sensitive): string
+## replaceAll(string $str, string[] $search, string|string[] $replacement, bool $case_sensitive): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replaces all occurrences of $search in $str by $replacement.
 
@@ -2794,7 +2794,7 @@ EXAMPLE: <code>UTF8::singleChrHtmlEncode('κ'); // '&#954;'</code>
 
 --------
 
-## spaces_to_tabs(string $str, int $tab_length): string
+## spacesToTabs(string $str, int $tab_length): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -2807,7 +2807,7 @@ EXAMPLE: <code>UTF8::singleChrHtmlEncode('κ'); // '&#954;'</code>
 
 --------
 
-## str_camelize(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
+## camelize(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a camelCase version of the string. Trims surrounding spaces,
 capitalizes letters following digits, spaces, dashes and underscores,
@@ -3353,13 +3353,13 @@ Returns true if $str matches the supplied pattern, false otherwise.
 
 --------
 
-## str_obfuscate(string $str, float $percent, string $obfuscateChar, string[] $keepChars): string
+## strObfuscate(string $str, float $percent, string $obfuscateChar, string[] $keepChars): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert a string into a obfuscate string.
 
 EXAMPLE: <code>
 
-UTF8::str_obfuscate('lars@moelleken.org', 0.5, '*', ['@', '.']); // e.g. "l***@m**lleke*.*r*"
+UTF8::strObfuscate('lars@moelleken.org', 0.5, '*', ['@', '.']); // e.g. "l***@m**lleke*.*r*"
 </code>
 
 **Parameters:**
@@ -3501,7 +3501,7 @@ will return an empty string.
 
 --------
 
-## str_replace_beginning(string $str, string $search, string $replacement): string
+## strReplaceBeginning(string $str, string $search, string $replacement): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replaces $search from the beginning of string with $replacement.
 
@@ -3515,7 +3515,7 @@ Replaces $search from the beginning of string with $replacement.
 
 --------
 
-## str_replace_ending(string $str, string $search, string $replacement): string
+## strReplaceEnding(string $str, string $search, string $replacement): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replaces $search from the ending of string with $replacement.
 
@@ -3529,7 +3529,7 @@ Replaces $search from the ending of string with $replacement.
 
 --------
 
-## str_replace_first(string $search, string $replace, string $subject): string
+## strReplaceFirst(string $search, string $replace, string $subject): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replace the first "$search"-term with the "$replace"-term.
 
@@ -3543,7 +3543,7 @@ Replace the first "$search"-term with the "$replace"-term.
 
 --------
 
-## str_replace_last(string $search, string $replace, string $subject): string
+## strReplaceLast(string $search, string $replace, string $subject): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replace the last "$search"-term with the "$replace"-term.
 
@@ -3557,13 +3557,13 @@ Replace the last "$search"-term with the "$replace"-term.
 
 --------
 
-## str_shuffle(string $str, string $encoding): string
+## strShuffle(string $str, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Shuffles all the characters in the string.
 
 INFO: uses random algorithm which is weak for cryptography purposes
 
-EXAMPLE: <code>UTF8::str_shuffle('fòô bàř fòô'); // 'àòôřb ffòô '</code>
+EXAMPLE: <code>UTF8::strShuffle('fòô bàř fòô'); // 'àòôřb ffòô '</code>
 
 **Parameters:**
 - `T $str <p>The input string</p>`
@@ -3574,7 +3574,7 @@ EXAMPLE: <code>UTF8::str_shuffle('fòô bàř fòô'); // 'àòôřb ffòô '</c
 
 --------
 
-## str_slice(string $str, int $start, int|null $end, string $encoding): false|string
+## strSlice(string $str, int $start, int|null $end, string $encoding): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns the substring beginning at $start, and up to, but not including
 the index specified by $end. If $end is omitted, the function extracts
@@ -3593,7 +3593,7 @@ characters long, <b>FALSE</b> will be returned.`
 
 --------
 
-## str_snakeize(string $str, string $encoding): string
+## snakeize(string $str, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert a string to e.g.: "snake_case"
 
@@ -3606,11 +3606,11 @@ Convert a string to e.g.: "snake_case"
 
 --------
 
-## str_sort(string $str, bool $unique, bool $desc): string
+## strSort(string $str, bool $unique, bool $desc): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Sort all characters according to code points.
 
-EXAMPLE: <code>UTF8::str_sort('  -ABC-中文空白-  '); // '    ---ABC中文白空'</code>
+EXAMPLE: <code>UTF8::strSort('  -ABC-中文空白-  '); // '    ---ABC中文白空'</code>
 
 **Parameters:**
 - `string $str <p>A UTF-8 string.</p>`
@@ -3664,7 +3664,7 @@ string.</p>`
 
 --------
 
-## strSplit_pattern(string $str, string $pattern, int $limit): string[]
+## strSplitPattern(string $str, string $pattern, int $limit): string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Splits the string with the provided regular expression, returning an
 array of strings. An optional integer $limit will truncate the
@@ -3685,8 +3685,8 @@ results.
 Check if the string starts with the given substring.
 
 EXAMPLE: <code>
-UTF8::str_starts_with('ΚόσμεMiddleEnd', 'Κόσμε'); // true
-UTF8::str_starts_with('ΚόσμεMiddleEnd', 'κόσμε'); // false
+UTF8strStartsWith('ΚόσμεMiddleEnd', 'Κόσμε'); // true
+UTF8strStartsWith('ΚόσμεMiddleEnd', 'κόσμε'); // false
 </code>
 
 **Parameters:**
@@ -3713,7 +3713,7 @@ Returns true if the string begins with any of $substrings, false otherwise.
 
 --------
 
-## str_substr_after_first_separator(string $str, string $separator, string $encoding): string
+## strSubstrAfterFirstSeparator(string $str, string $separator, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Gets the substring after the first occurrence of a separator.
 
@@ -3741,7 +3741,7 @@ Gets the substring after the last occurrence of a separator.
 
 --------
 
-## str_substr_before_first_separator(string $str, string $separator, string $encoding): string
+## strSubstrBeforeFirstSeparator(string $str, string $separator, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Gets the substring before the first occurrence of a separator.
 
@@ -3769,7 +3769,7 @@ Gets the substring before the last occurrence of a separator.
 
 --------
 
-## str_substr_first(string $str, string $needle, bool $before_needle, string $encoding): string
+## strSubstrFirst(string $str, string $needle, bool $before_needle, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Gets the substring after (or before via "$before_needle") the first occurrence of the "$needle".
 
@@ -3812,7 +3812,7 @@ Surrounds $str with the given substring.
 
 --------
 
-## str_titleize(string $str, string[]|null $ignore, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length, bool $use_trim_first, string|null $word_define_chars): string
+## strTitleize(string $str, string[]|null $ignore, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length, bool $use_trim_first, string|null $word_define_chars): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a trimmed string with the first letter of each word capitalized.
 
@@ -3840,7 +3840,7 @@ whitespace separator === words.</p>`
 
 --------
 
-## str_titleize_for_humans(string $str, string[] $ignore, string $encoding): string
+## strTitleizeForHumans(string $str, string[] $ignore, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a trimmed string in proper title case.
 
@@ -3859,11 +3859,11 @@ Adapted from John Gruber's script.
 
 --------
 
-## str_to_binary(string $str): false|string
+## strToBinary(string $str): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Get a binary representation of a specific string.
 
-EXAPLE: <code>UTF8::str_to_binary('😃'); // '11110000100111111001100010000011'</code>
+EXAPLE: <code>UTF8::strToBinary('😃'); // '11110000100111111001100010000011'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -3873,7 +3873,7 @@ EXAPLE: <code>UTF8::str_to_binary('😃'); // '11110000100111111001100010000011'
 
 --------
 
-## str_to_lines(string $str, bool $remove_empty_values, int|null $remove_short_values): string[]
+## strToLines(string $str, bool $remove_empty_values, int|null $remove_short_values): string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -3904,7 +3904,7 @@ EXAMPLE: <code>UTF8::strToWords('中文空白 oöäü#s', '#') // array('', '中
 
 --------
 
-## str_truncate(string $str, int $length, string $substring, string $encoding): string
+## strTruncate(string $str, int $length, string $substring, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Truncates the string to a given length. If $substring is provided, and
 truncating occurs, the string is further truncated so that the substring
@@ -3921,7 +3921,7 @@ may be appended without exceeding the desired length.
 
 --------
 
-## str_truncate_safe(string $str, int $length, string $substring, string $encoding, bool $ignore_do_not_split_words_for_one_word): string
+## strTruncateSafe(string $str, int $length, string $substring, string $encoding, bool $ignore_do_not_split_words_for_one_word): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Truncates the string to a given length, while ensuring that it does not
 split words. If $substring is provided, and truncating occurs, the
@@ -3942,7 +3942,7 @@ Default:
 
 --------
 
-## str_underscored(string $str): string
+## strUnderscored(string $str): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns a lowercase and trimmed string separated by underscores.
 
@@ -3958,7 +3958,7 @@ dashes.
 
 --------
 
-## str_upper_camelize(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
+## strUpperCamelize(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns an UpperCamelCase version of the supplied string. It trims
 surrounding spaces, capitalizes letters following digits, spaces, dashes
@@ -3978,25 +3978,25 @@ tr</p>`
 
 --------
 
-## str_word_count(string $str, int $format, string $char_list): int|string[]
+## strWordCount(string $str, int $format, string $char_list): int|string[]
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Get the number of words in a specific string.
 
 EXAMPLES: <code>
 // format: 0 -> return only word count (int)
 //
-UTF8::str_word_count('中文空白 öäü abc#c'); // 4
-UTF8::str_word_count('中文空白 öäü abc#c', 0, '#'); // 3
+UTF8::strWordCount('中文空白 öäü abc#c'); // 4
+UTF8::strWordCount('中文空白 öäü abc#c', 0, '#'); // 3
 
 // format: 1 -> return words (array)
 //
-UTF8::str_word_count('中文空白 öäü abc#c', 1); // array('中文空白', 'öäü', 'abc', 'c')
-UTF8::str_word_count('中文空白 öäü abc#c', 1, '#'); // array('中文空白', 'öäü', 'abc#c')
+UTF8::strWordCount('中文空白 öäü abc#c', 1); // array('中文空白', 'öäü', 'abc', 'c')
+UTF8::strWordCount('中文空白 öäü abc#c', 1, '#'); // array('中文空白', 'öäü', 'abc#c')
 
 // format: 2 -> return words with offset (array)
 //
-UTF8::str_word_count('中文空白 öäü ab#c', 2); // array(0 => '中文空白', 5 => 'öäü', 9 => 'abc', 13 => 'c')
-UTF8::str_word_count('中文空白 öäü ab#c', 2, '#'); // array(0 => '中文空白', 5 => 'öäü', 9 => 'abc#c')
+UTF8::strWordCount('中文空白 öäü ab#c', 2); // array(0 => '中文空白', 5 => 'öäü', 9 => 'abc', 13 => 'c')
+UTF8::strWordCount('中文空白 öäü ab#c', 2, '#'); // array(0 => '中文空白', 5 => 'öäü', 9 => 'abc#c')
 </code>
 
 **Parameters:**
@@ -4013,13 +4013,13 @@ UTF8::str_word_count('中文空白 öäü ab#c', 2, '#'); // array(0 => '中文�
 
 --------
 
-## strcasecmp(string $str1, string $str2, string $encoding): int
+## strCompareInsensitive(string $str1, string $str2, string $encoding): int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Case-insensitive string comparison.
 
-INFO: Case-insensitive version of UTF8::strcmp()
+INFO: Case-insensitive version of UTF8::strCompare()
 
-EXAMPLE: <code>UTF8::strcasecmp("iñtërnâtiôn\nàlizætiøn", "Iñtërnâtiôn\nàlizætiøn"); // 0</code>
+EXAMPLE: <code>UTF8::strCompareInsensitive("iñtërnâtiôn\nàlizætiøn", "Iñtërnâtiôn\nàlizætiøn"); // 0</code>
 
 **Parameters:**
 - `string $str1 <p>The first string.</p>`
@@ -4033,11 +4033,11 @@ EXAMPLE: <code>UTF8::strcasecmp("iñtërnâtiôn\nàlizætiøn", "Iñtërnâtiô
 
 --------
 
-## strcmp(string $str1, string $str2): int
+## strCompare(string $str1, string $str2): int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Case-sensitive string comparison.
 
-EXAMPLE: <code>UTF8::strcmp("iñtërnâtiôn\nàlizætiøn", "iñtërnâtiôn\nàlizætiøn"); // 0</code>
+EXAMPLE: <code>UTF8::strCompare("iñtërnâtiôn\nàlizætiøn", "iñtërnâtiôn\nàlizætiøn"); // 0</code>
 
 **Parameters:**
 - `string $str1 <p>The first string.</p>`
@@ -4050,7 +4050,7 @@ EXAMPLE: <code>UTF8::strcmp("iñtërnâtiôn\nàlizætiøn", "iñtërnâtiôn\n�
 
 --------
 
-## strcspn(string $str, string $char_list, int $offset, int|null $length, string $encoding): int
+## strComplementSpan(string $str, string $char_list, int $offset, int|null $length, string $encoding): int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Find length of initial segment not matching mask.
 
@@ -4103,7 +4103,7 @@ EXAMPLE: <code>UTF8::hasBom("\xef\xbb\xbf foobar"); // true</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Strip HTML and PHP tags from a string + clean invalid UTF-8.
 
-EXAMPLE: <code>UTF8::strip_tags("<span>κόσμε\xa0\xa1</span>"); // 'κόσμε'</code>
+EXAMPLE: <code>UTF8::stripTags("<span>κόσμε\xa0\xa1</span>"); // 'κόσμε'</code>
 
 **Parameters:**
 - `string $str <p>
@@ -4250,14 +4250,14 @@ Get string length in byte.
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Case-insensitive string comparisons using a "natural order" algorithm.
 
-INFO: natural order version of UTF8::strcasecmp()
+INFO: natural order version of UTF8::strCompareInsensitive()
 
 EXAMPLES: <code>
 UTF8::strnatcasecmp('2', '10Hello WORLD 中文空白!'); // -1
-UTF8::strcasecmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // 1
+UTF8::strCompareInsensitive('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // 1
 
 UTF8::strnatcasecmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // 1
-UTF8::strcasecmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // -1
+UTF8::strCompareInsensitive('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // -1
 </code>
 
 **Parameters:**
@@ -4276,14 +4276,14 @@ UTF8::strcasecmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); /
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 String comparisons using a "natural order" algorithm
 
-INFO: natural order version of UTF8::strcmp()
+INFO: natural order version of UTF8::strCompare()
 
 EXAMPLES: <code>
-UTF8::strnatcmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // -1
-UTF8::strcmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // 1
+UTF8::strNatrualCompare('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // -1
+UTF8::strCompare('2Hello world 中文空白!', '10Hello WORLD 中文空白!'); // 1
 
-UTF8::strnatcmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // 1
-UTF8::strcmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // -1
+UTF8::strNatrualCompare('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // 1
+UTF8::strCompare('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // -1
 </code>
 
 **Parameters:**
@@ -4302,7 +4302,7 @@ UTF8::strcmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'); // -1
 Case-insensitive string comparison of the first n characters.
 
 EXAMPLE: <code>
-UTF8::strcasecmp("iñtërnâtiôn\nàlizætiøn321", "iñtërnâtiôn\nàlizætiøn123", 5); // 0
+UTF8::strCompareInsensitive("iñtërnâtiôn\nàlizætiøn321", "iñtërnâtiôn\nàlizætiøn123", 5); // 0
 </code>
 
 **Parameters:**
@@ -4323,7 +4323,7 @@ UTF8::strcasecmp("iñtërnâtiôn\nàlizætiøn321", "iñtërnâtiôn\nàlizæti
 String comparison of the first n characters.
 
 EXAMPLE: <code>
-UTF8::strncmp("Iñtërnâtiôn\nàlizætiøn321", "Iñtërnâtiôn\nàlizætiøn123", 5); // 0
+UTF8::strCompareN("Iñtërnâtiôn\nàlizætiøn321", "Iñtërnâtiôn\nàlizætiøn123", 5); // 0
 </code>
 
 **Parameters:**
@@ -4358,7 +4358,7 @@ EXAMPLE: <code>UTF8::strpbrk('-中文空白-', '白'); // '白-'</code>
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Find the position of the first occurrence of a substring in a string.
 
-INFO: use UTF8::strpos_in_byte() for the byte-length
+INFO: use UTF8::strposInByte() for the byte-length
 
 EXAMPLE: <code>UTF8::strpos('ABC-ÖÄÜ-中文空白-中文空白', '中'); // 8</code>
 
@@ -4375,7 +4375,7 @@ string.<br> If needle is not found it returns false.`
 
 --------
 
-## strpos_in_byte(string $haystack, string $needle, int $offset): false|int
+## strposInByte(string $haystack, string $needle, int $offset): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Find the position of the first occurrence of a substring in a string.
 
@@ -4425,7 +4425,7 @@ from the last occurrence of needle to the end,
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Reverses characters order in the string.
 
-EXAMPLE: <code>UTF8::strrev('κ-öäü'); // 'üäö-κ'</code>
+EXAMPLE: <code>UTF8::strRev('κ-öäü'); // 'üäö-κ'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -4525,7 +4525,7 @@ string.<br>If needle is not found, it returns false.</p>`
 
 --------
 
-## strrpos_in_byte(string $haystack, string $needle, int $offset): false|int
+## strrposInByte(string $haystack, string $needle, int $offset): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Find the position of the last occurrence of a substring in a string.
 
@@ -4594,7 +4594,7 @@ haystack before the first occurrence of the needle (excluding the needle).
 
 --------
 
-## strstr_in_byte(string $haystack, string $needle, bool $before_needle): false|string
+## strstrInByte(string $haystack, string $needle, bool $before_needle): false|string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Finds first occurrence of a string within another.
 
@@ -4621,11 +4621,11 @@ or false if needle is not found.</p>`
 
 --------
 
-## strtocasefold(string $str, bool $full, bool $clean_utf8, string $encoding, string|null $lang, bool $lower): string
+## strToCaseFold(string $str, bool $full, bool $clean_utf8, string $encoding, string|null $lang, bool $lower): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Unicode transformation for case-less matching.
 
-EXAMPLE: <code>UTF8::strtocasefold('ǰ◌̱'); // 'ǰ◌̱'</code>
+EXAMPLE: <code>UTF8::strToCaseFold('ǰ◌̱'); // 'ǰ◌̱'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -4746,14 +4746,14 @@ characters long, <b>FALSE</b> will be returned.`
 
 --------
 
-## substr_compare(string $str1, string $str2, int $offset, int|null $length, bool $case_insensitivity, string $encoding): int
+## substrCompare(string $str1, string $str2, int $offset, int|null $length, bool $case_insensitivity, string $encoding): int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Binary-safe comparison of two strings from an offset, up to a length of characters.
 
 EXAMPLE: <code>
-UTF8::substr_compare("○●◎\r", '●◎', 0, 2); // -1
-UTF8::substr_compare("○●◎\r", '◎●', 1, 2); // 1
-UTF8::substr_compare("○●◎\r", '●◎', 1, 2); // 0
+UTF8::substrCompare("○●◎\r", '●◎', 0, 2); // -1
+UTF8::substrCompare("○●◎\r", '◎●', 1, 2); // 1
+UTF8::substrCompare("○●◎\r", '●◎', 1, 2); // 0
 </code>
 
 **Parameters:**
@@ -4775,11 +4775,11 @@ insensitive.</p>`
 
 --------
 
-## substr_count(string $haystack, string $needle, int $offset, int|null $length, string $encoding, bool $clean_utf8): false|int
+## substrCount(string $haystack, string $needle, int $offset, int|null $length, string $encoding, bool $clean_utf8): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Count the number of substring occurrences.
 
-EXAMPLE: <code>UTF8::substr_count('中文空白', '文空', 1, 2); // 1</code>
+EXAMPLE: <code>UTF8::substrCount('中文空白', '文空', 1, 2); // 1</code>
 
 **Parameters:**
 - `string $haystack <p>The string to search in.</p>`
@@ -4798,7 +4798,7 @@ greater than the haystack length.
 
 --------
 
-## substr_count_in_byte(string $haystack, string $needle, int $offset, int|null $length): false|int
+## substrCountInByte(string $haystack, string $needle, int $offset, int|null $length): false|int
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Count the number of substring occurrences.
 
@@ -4843,13 +4843,13 @@ by setting $case_sensitive to false.
 
 --------
 
-## substr_ileft(string $haystack, string $needle): string
+## substrleftInsensitive(string $haystack, string $needle): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Removes a prefix ($needle) from the beginning of the string ($haystack), case-insensitive.
 
 EXMAPLE: <code>
-UTF8::substr_ileft('ΚόσμεMiddleEnd', 'Κόσμε'); // 'MiddleEnd'
-UTF8::substr_ileft('ΚόσμεMiddleEnd', 'κόσμε'); // 'MiddleEnd'
+UTF8::substrleftInsensitive('ΚόσμεMiddleEnd', 'Κόσμε'); // 'MiddleEnd'
+UTF8::substrleftInsensitive('ΚόσμεMiddleEnd', 'κόσμε'); // 'MiddleEnd'
 </code>
 
 **Parameters:**
@@ -4877,13 +4877,13 @@ characters long, <b>FALSE</b> will be returned.</p>`
 
 --------
 
-## substr_iright(string $haystack, string $needle): string
+## substrRightInsensitive(string $haystack, string $needle): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Removes a suffix ($needle) from the end of the string ($haystack), case-insensitive.
 
 EXAMPLE: <code>
-UTF8::substr_iright('BeginMiddleΚόσμε', 'Κόσμε'); // 'BeginMiddle'
-UTF8::substr_iright('BeginMiddleΚόσμε', 'κόσμε'); // 'BeginMiddle'
+UTF8::substrRightInsensitive('BeginMiddleΚόσμε', 'Κόσμε'); // 'BeginMiddle'
+UTF8::substrRightInsensitive('BeginMiddleΚόσμε', 'κόσμε'); // 'BeginMiddle'
 </code>
 
 **Parameters:**
@@ -4895,13 +4895,13 @@ UTF8::substr_iright('BeginMiddleΚόσμε', 'κόσμε'); // 'BeginMiddle'
 
 --------
 
-## substr_left(string $haystack, string $needle): string
+## substrLeft(string $haystack, string $needle): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Removes a prefix ($needle) from the beginning of the string ($haystack).
 
 EXAMPLE: <code>
-UTF8::substr_left('ΚόσμεMiddleEnd', 'Κόσμε'); // 'MiddleEnd'
-UTF8::substr_left('ΚόσμεMiddleEnd', 'κόσμε'); // 'ΚόσμεMiddleEnd'
+UTF8::substrLeft('ΚόσμεMiddleEnd', 'Κόσμε'); // 'MiddleEnd'
+UTF8::substrLeft('ΚόσμεMiddleEnd', 'κόσμε'); // 'ΚόσμεMiddleEnd'
 </code>
 
 **Parameters:**
@@ -4917,7 +4917,7 @@ UTF8::substr_left('ΚόσμεMiddleEnd', 'κόσμε'); // 'ΚόσμεMiddleE
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Replace text within a portion of a string.
 
-EXAMPLE: <code>UTF8::substr_replace(array('Iñtërnâtiônàlizætiøn', 'foo'), 'æ', 1); // array('Iæñtërnâtiônàlizætiøn', 'fæoo')</code>
+EXAMPLE: <code>UTF8::substrReplace(array('Iñtërnâtiônàlizætiøn', 'foo'), 'æ', 1); // array('Iæñtërnâtiônàlizætiøn', 'fæoo')</code>
 
 source: https://gist.github.com/stemar/8287074
 
@@ -4945,13 +4945,13 @@ replacement into string at the given start offset.</p>`
 
 --------
 
-## substr_right(string $haystack, string $needle, string $encoding): string
+## substrRight(string $haystack, string $needle, string $encoding): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Removes a suffix ($needle) from the end of the string ($haystack).
 
 EXAMPLE: <code>
-UTF8::substr_right('BeginMiddleΚόσμε', 'Κόσμε'); // 'BeginMiddle'
-UTF8::substr_right('BeginMiddleΚόσμε', 'κόσμε'); // 'BeginMiddleΚόσμε'
+UTF8::substrRight('BeginMiddleΚόσμε', 'Κόσμε'); // 'BeginMiddle'
+UTF8::substrRight('BeginMiddleΚόσμε', 'κόσμε'); // 'BeginMiddleΚόσμε'
 </code>
 
 **Parameters:**
@@ -4992,7 +4992,7 @@ __nothing__
 
 --------
 
-## tabs_to_spaces(string $str, int $tab_length): string
+## tabsToSpaces(string $str, int $tab_length): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -5005,7 +5005,7 @@ __nothing__
 
 --------
 
-## titlecase(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
+## titleCase(string $str, string $encoding, bool $clean_utf8, string|null $lang, bool $try_to_keep_the_string_length): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Converts the first character of each word in the string to uppercase
 and all other chars to lowercase.
@@ -5041,7 +5041,7 @@ performance</p>`
 
 --------
 
-## to_boolean(bool|float|int|string $str): bool
+## toBoolean(bool|float|int|string $str): bool
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 
 
@@ -5053,7 +5053,7 @@ performance</p>`
 
 --------
 
-## to_filename(string $str, bool $use_transliterate, string $fallback_char): string
+## toBoolean(string $str, bool $use_transliterate, string $fallback_char): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Convert given string to safe filename (and keep string case).
 
@@ -5068,7 +5068,7 @@ simply replaced with hyphen.`
 
 --------
 
-## to_int(string $str): int|null
+## toInt(string $str): int|null
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Returns the given string as an integer, or null if the string isn't numeric.
 
@@ -5278,11 +5278,11 @@ as defined in above URL`
 
 --------
 
-## words_limit(string $str, int $limit, string $str_add_on): string
+## wordsLimit(string $str, int $limit, string $str_add_on): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Limit the number of words in a string.
 
-EXAMPLE: <code>UTF8::words_limit('fòô bàř fòô', 2, ''); // 'fòô bàř'</code>
+EXAMPLE: <code>UTF8::wordsLimit('fòô bàř fòô', 2, ''); // 'fòô bàř'</code>
 
 **Parameters:**
 - `string $str <p>The input string.</p>`
@@ -5315,7 +5315,7 @@ a word that is larger than the given width, it is broken apart.
 
 --------
 
-## wordwrap_per_line(string $str, int $width, string $break, bool $cut, bool $add_final_break, string|null $delimiter): string
+## wordwrapPerLine(string $str, int $width, string $break, bool $cut, bool $add_final_break, string|null $delimiter): string
 <a href="#jessegreathouse-php-readme-class-methods">↑</a>
 Line-Wrap the string after $limit, but split the string by "$delimiter" before ...
    ... so that we wrap the per line.

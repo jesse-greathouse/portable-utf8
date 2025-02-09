@@ -6,8 +6,8 @@
 
 ### 6.0.12 (2023-01-11)
 
-- added "UTF8::remove_iright()" 
-- added "UTF8::remove_ileft()"
+- added "UTF8::removeRightInsensitive()" 
+- added "UTF8::removeLeftInsensitive()"
 
 ### 6.0.11 (2022-12-16)
 
@@ -35,7 +35,7 @@
 - optimize phpdocs
 - optimize "from"-encoding in "UTF8::encode()"
 - fix error handling in "UTF8::strSplit()" for PHP >= 8.0
-- fix error handling in "UTF8::str_capitalize_name_helper()" for PHP >= 8.0
+- fix error handling in "UTF8::capitalizeNameHelper()" for PHP >= 8.0
 
 ### 6.0.5 (2022-08-10)
 
@@ -64,7 +64,7 @@ Removed:
 - Bootup::filterRequestInputs();
 - Bootup::filterRequestUri();
 - UTF8::GRAPHEME_CLUSTER_RX
-- UTF8::chr_to_int() (please use UTF8::chrToDecimal())
+- UTF8::chr_toInt() (please use UTF8::chrToDecimal())
 - UTF8::hasBom() (please use UTF8::hasBom())
 - UTF8::html_decode() (please use UTF8htmlEntityDecode())
 - UTF8::int_to_chr() (please use UTF8::decimalToChr())
@@ -82,7 +82,7 @@ Removed:
 - UTF8::normalizeEncoding() (please use UTF8::normalizeEncoding())
 - UTF8::removeBOM() (please use UTF8::removeBom())
 - UTF8::split() (please use UTF8::strSplit())
-- UTF8::str_begins() (please use UTF8::str_starts_with())
+- UTF8::str_begins() (please use UTF8strStartsWith())
 - UTF8::str_ends() (please use UTF8strEndsWith())
 - UTF8::str_ibegins() (please use UTF8::strStartsWithInsensitive())
 - UTF8::str_iends() (please use UTF8::strEndsWithInsensitive())
@@ -108,9 +108,9 @@ Fixed:
 
 ### 5.4.51 (2020-12-02)
 
-- "UTF8::rawurldecode()" -> optimize performance
+- "UTF8::rawUrlDecode()" -> optimize performance
 - "UTF8::urldecode()" -> optimize performance
-- "UTF8::to_boolean() -> fix phpdoc
+- "UTF8::toBoolean() -> fix phpdoc
 
 ### 5.4.50 (2020-11-12)
 
@@ -126,8 +126,8 @@ Fixed:
 - fix "UTF8::chr()" handling of non "int" code points
 - fix "UTF8::htmlEncode()" (parameter mismatch for "mb_encode_numericentity()")
 - fix "UTF8::strReplaceInsensitive()" (TypeError of "preg_replace()")
-- fix "UTF8::strtonatfold()" (TypeError of "preg_replace()")
-- fix "UTF8::substr_count()" return type if "$haystack" is an empty string
+- fix "UTF8::strToNaturalFold()" (TypeError of "preg_replace()")
+- fix "UTF8::substrCount()" return type if "$haystack" is an empty string
 - compatibility with PHP 8.0 behaviour for:
     - UTF::strstr()
     - UTF::stristr()
@@ -146,7 +146,7 @@ Fixed:
 
 ### 5.4.46 (2020-07-18)
 
-- add "UTF8::str_obfuscate()"
+- add "UTF8::strObfuscate()"
 - optimize phpdocs
 
 ### 5.4.45 (2020-05-26)
@@ -194,7 +194,7 @@ Fixed:
 - optimize "UTF8::isUrl()" + fix deprecated php (>= 7.3) constants
 - optimize "UTF8::strLimitAfterWord()" -> optimize the regex
 - optimize "UTF8::substr()" -> combine "if"-statements
-- optimize "UTF8::str_capitalize_name_helper()" -> performance -> use break
+- optimize "UTF8::capitalizeNameHelper()" -> performance -> use break
 - code style: fix for "UTF8::filter()"
 - code style: do not use "=== false" | "=== true" for "bool" types
 
@@ -212,7 +212,7 @@ Fixed:
 
 ### 5.4.35 (2019-12-27)
 
-- add "UTF8::to_int()" && "UTF8::to_string()"
+- add "UTF8::toInt()" && "UTF8::to_string()"
 
 ### 5.4.34 (2019-12-19)
 
@@ -272,7 +272,7 @@ Fixed:
 
 ### 5.4.24 (2019-10-06)
 
-- improve performance from "UTF8::UTF8::str_titleize_for_humans()" (use "array_merge" only if needed)
+- improve performance from "UTF8::UTF8::strTitleizeForHumans()" (use "array_merge" only if needed)
 - improve performance from "UTF8::ucwords()" + "UTF8::lcwords()" (don't use "implode()" if it's not needed)
 
 ### 5.4.23 (2019-09-27)
@@ -303,12 +303,12 @@ Fixed:
 
 ### 5.4.18 (2019-08-21)
 
-- optimize "UTF8::str_titleize()" + clean-up
+- optimize "UTF8::strTitleize()" + clean-up
 
 ### 5.4.17 (2019-08-21)
 
 - fix "UTF8::getFileType()" -> do not add too simple comparisons, because of false-positive results
-- extend "UTF8::str_titleize()" -> allow to add "word"-chars as new parameter
+- extend "UTF8::strTitleize()" -> allow to add "word"-chars as new parameter
 
 ### 5.4.16 (2019-08-15)
 
@@ -326,11 +326,11 @@ Fixed:
 
 ### 5.4.13 (2019-08-01)
 
-- extend "UTF8::wordwrap_per_line()" -> split the input by "$delimiter"
+- extend "UTF8::wordwrapPerLine()" -> split the input by "$delimiter"
 
 ### 5.4.12 (2019-07-31)
 
-- fix "UTF8::wordwrap_per_line()" -> use unicode version of "wordwrap"
+- fix "UTF8::wordwrapPerLine()" -> use unicode version of "wordwrap"
 
 ### 5.4.11 (2019-07-19)
 
@@ -344,7 +344,7 @@ Fixed:
 ### 5.4.9 (2019-06-19)
 
 - sync with "PHP RFC: Add str begin and end functions"
-- fix "UTF8::rawurldecode()" and "UTF8::urldecode()" -> for non multi usage
+- fix "UTF8::rawUrlDecode()" and "UTF8::urldecode()" -> for non multi usage
 
 ### 5.4.8 (2019-06-08)
 
@@ -365,13 +365,13 @@ Fixed:
 
 ### 5.4.4 (2019-04-15)
 
-- optimize performance for UTF8::rawurldecode() and UTF8::urldecode()
-- optimize "UTF8::strSplit_pattern()" with limit usage
+- optimize performance for UTF8::rawUrlDecode() and UTF8::urldecode()
+- optimize "UTF8::strSplitPattern()" with limit usage
 - fix warnings detected by psalm && phpstan && phpstorm
 
 ### 5.4.3 (2019-03-05)
 
-- optimize "UTF8::strrev()" with support for emoji chars
+- optimize "UTF8::strRev()" with support for emoji chars
 - added "UTF8::emojiEncode()" + "UTF8::emojiDecode()"
 
 ### 5.4.2 (2019-02-11)
@@ -390,7 +390,7 @@ Fixed:
 - no more 100% support for "mbstring_func_overload", it's already deprecated in php
 - move "UTF8::checkForSupport()" into "bootstrap.php"
 - fix output from "UTF8::strPad()" + empty input string
-- add more "encoding" parameter e.g. for "UTF8::str_shuffle()"
+- add more "encoding" parameter e.g. for "UTF8::strShuffle()"
 - remove really old fallback for breaking-changes
 - do not use aliases for internal processing
 
@@ -401,7 +401,7 @@ Fixed:
 - update "UTF8::isBase64()" + tests
 
 ### 5.3.1 (2019-01-11)
-- update "UTF8::str_truncate_safe()" + tests
+- update "UTF8::strTruncateSafe()" + tests
 
 ### 5.3.0 (2019-01-10)
 - use autoloader + namespace for "tests/"
@@ -409,7 +409,7 @@ Fixed:
 - fixes suggested by "psalm" 
 - use variable references whenever possible
 - use types for callback functions
-- sync "UTF8::strcspn()" with native "strcspn()"
+- sync "UTF8::strComplementSpan()" with native "strComplementSpan()"
 - sync "UTF8::strtr()" with native "strtr()"
 
 ### 5.2.16 (2019-01-02)
@@ -421,7 +421,7 @@ Fixed:
 - use phpcs fixer
 
 ### 5.2.14 (2018-12-07)
-- optimize "UTF8::str_replace_beginning()" && "UTF8::str_replace_ending()"
+- optimize "UTF8::strReplace_beginning()" && "UTF8::strReplace_ending()"
 - added "UTF8::strReplaceInsensitive_beginning()" && "UTF8::strReplaceEndingInsensitive()"
 
 ### 5.2.13 (2018-11-29)
@@ -431,7 +431,7 @@ Fixed:
 - optimize "UTF8::ord()" performance
 
 ### 5.2.11 (2018-10-19)
-- merge UTF8::titlecase() && UTF8::str_titleize()
+- merge UTF8::titleCase() && UTF8::strTitleize()
 - add new langage + keep-string-length arguments for string functions
 
 ### 5.2.10 (2018-10-19)
@@ -442,7 +442,7 @@ Fixed:
 
 ### 5.2.8 (2018-09-29)
 - "composer.json" -> remove extra alias
-- UTF8::substr_replace() -> optimize performance
+- UTF8::substrReplace() -> optimize performance
 - UTF8::clean() -> add tests with "\00"
 - update "UTF8::getFileType()"
 - fix fallback for "UTF8::encode()"

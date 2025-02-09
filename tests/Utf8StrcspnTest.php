@@ -17,85 +17,85 @@ final class Utf8StrcspnTest extends \PHPUnit\Framework\TestCase
     public function testNoCharlist()
     {
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(20, u::strcspn($str, ''));
+        static::assertSame(20, u::strComplementSpan($str, ''));
     }
 
     public function testEmptyInput()
     {
         $str = '';
-        static::assertSame(0, u::strcspn($str, "\n"));
+        static::assertSame(0, u::strComplementSpan($str, "\n"));
     }
 
     public function testNoMatchSingleByteSearch()
     {
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(2, u::strcspn($str, 't'));
+        static::assertSame(2, u::strComplementSpan($str, 't'));
     }
 
     public function testNoMatchSingleByteSearchAndOffset()
     {
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(6, u::strcspn($str, 't', 10));
+        static::assertSame(6, u::strComplementSpan($str, 't', 10));
     }
 
     public function testNoMatchSingleByteSearchAndOffsetAndLength()
     {
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(1, u::strcspn($str, 'ñ', 0, 5));
+        static::assertSame(1, u::strComplementSpan($str, 'ñ', 0, 5));
 
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(5, u::strcspn($str, 'ø', 1, 5));
+        static::assertSame(5, u::strComplementSpan($str, 'ø', 1, 5));
     }
 
     public function testCompareStrcspn()
     {
         $str = 'aeioustr';
-        static::assertSame(\strcspn($str, 'tr'), u::strcspn($str, 'tr'));
+        static::assertSame(\strComplementSpan($str, 'tr'), u::strComplementSpan($str, 'tr'));
     }
 
     public function testMatchAscii()
     {
         $str = 'internationalization';
-        static::assertSame(\strcspn($str, 'a'), u::strcspn($str, 'a'));
+        static::assertSame(\strComplementSpan($str, 'a'), u::strComplementSpan($str, 'a'));
     }
 
     public function testCompatibleWithPhpNativeFunction()
     {
         $str = '';
-        static::assertSame(\strcspn($str, 'a'), u::strcspn($str, 'a'));
+        static::assertSame(\strComplementSpan($str, 'a'), u::strComplementSpan($str, 'a'));
 
         // ---
 
         $str = 'internationalization';
-        static::assertSame(\strcspn($str, ''), u::strcspn($str, ''));
+        static::assertSame(\strComplementSpan($str, ''), u::strComplementSpan($str, ''));
 
         // ---
 
         $str = 'internationalization';
-        static::assertSame(\strcspn($str, 't', 19), u::strcspn($str, 't', 19));
+        static::assertSame(\strComplementSpan($str, 't', 19), u::strComplementSpan($str, 't', 19));
     }
 
     public function testLinefeed()
     {
         $str = "i\nñtërnâtiônàlizætiøn";
-        static::assertSame(3, u::strcspn($str, 't'));
+        static::assertSame(3, u::strComplementSpan($str, 't'));
     }
 
     public function testLinefeedMask()
     {
         $str = "i\nñtërnâtiônàlizætiøn";
-        static::assertSame(1, u::strcspn($str, "\n"));
+        static::assertSame(1, u::strComplementSpan($str, "\n"));
     }
 
     public function testNoMatchMultiByteSearch()
     {
         $str = 'iñtërnâtiônàlizætiøn';
-        static::assertSame(6, u::strcspn($str, 'â'));
+        static::assertSame(6, u::strComplementSpan($str, 'â'));
     }
 
     public function testCompareStrspn()
     {
         $str = 'aeioustr';
-        static::assertSame(UTF8::strcspn($str, 'tr'), \strcspn($str, 'tr'));
+        static::assertSame(UTF8::strComplementSpan($str, 'tr'), \strComplementSpan($str, 'tr'));
     }
 }

@@ -1731,7 +1731,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_substr_after_first_separator($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrAfterFirstSeparator($testString, 'b'));
         }
     }
 
@@ -1836,8 +1836,8 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_substr_before_first_separator($testString, 'b'));
-            static::assertSame($testResult, UTF8::str_substr_first($testString, 'b', true));
+            static::assertSame($testResult, UTF8::strSubstrBeforeFirstSeparator($testString, 'b'));
+            static::assertSame($testResult, UTF8::strSubstrFirst($testString, 'b', true));
         }
     }
 
@@ -1937,7 +1937,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testCamelize($expected, $str, $encoding = '')
     {
-        $result = UTF8::str_camelize($str, $encoding);
+        $result = UTF8::camelize($str, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -2010,7 +2010,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testCountSubstrInByte($expected, $str, $substring)
     {
-        $result = UTF8::substr_count_in_byte($str, $substring);
+        $result = UTF8::substrCountInByte($str, $substring);
         static::assertSame($expected, $result, 'tested:' . $str);
     }
 
@@ -2704,7 +2704,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
      */
     public function testLines($expected, $str)
     {
-        $result = UTF8::str_to_lines($str);
+        $result = UTF8::strToLines($str);
 
         static::assertTrue(\is_array($result));
         foreach ($result as $line) {
@@ -2733,7 +2733,7 @@ final class Utf8TestsFromStringyTest extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::wordwrap_per_line($testString, 10), 'tested: "' . $testString . '"');
+            static::assertSame($testResult, UTF8::wordwrapPerLine($testString, 10), 'tested: "' . $testString . '"');
         }
 
         // ---
@@ -2747,7 +2747,7 @@ n#
 sdadadadad
 adadadasda
 dadasd';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 10, "\n", true, false));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 10, "\n", true, false));
 
         // ---
 
@@ -2757,7 +2757,7 @@ n#
 #â#
 #t#i#ô#n#à#lizætiøndsdadadadadadadadasdadadasd
 ';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 10, "\n", false, true));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 10, "\n", false, true));
 
         // ---
 
@@ -2780,28 +2780,28 @@ ada
 das
 d
 ';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 3, "\n", true, true, '<br>'));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 3, "\n", true, true, '<br>'));
 
         // ---
 
         $str = 'Iñtër<br>n' . "#\n#" . 'â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadadadadadasdadadasd';
         $wrapped = 'Iñtër<br>n#
 #â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadadadadadasdadadasd';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 3, "\n", false, false, '<br>'));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 3, "\n", false, false, '<br>'));
 
         // ---
 
         $str = 'Iñtër<br>n' . "#\n#" . 'â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadad ada dadasda dadasd';
         $wrapped = 'Iñtër<br>n#
 #â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadad{BREAK}ada{BREAK}dadasda{BREAK}dadasd';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 3, '{BREAK}', false, false, '<br>'));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 3, '{BREAK}', false, false, '<br>'));
 
         // ---
 
         $str = 'Iñtër<br>n' . "#\n#" . 'â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadad ada dadasda dadasd';
         $wrapped = 'Iñtër<br>n#
 #â#<br>#t#i#ô#n#à#lizætiøndsdad<br>adadad ada{BREAK}dadasda{BREAK}dadasd';
-        static::assertSame($wrapped, UTF8::wordwrap_per_line($str, 10, '{BREAK}', false, false, '<br>'));
+        static::assertSame($wrapped, UTF8::wordwrapPerLine($str, 10, '{BREAK}', false, false, '<br>'));
     }
 
     /**
@@ -2970,7 +2970,7 @@ d
      */
     public function testRemoveHtml($expected, $str, $allowableTags = '')
     {
-        $result = UTF8::remove_html($str, $allowableTags);
+        $result = UTF8::removeHtml($str, $allowableTags);
 
         static::assertSame($expected, $result);
     }
@@ -2984,7 +2984,7 @@ d
      */
     public function testRemoveHtmlBreak($expected, $str, $replacement = '')
     {
-        $result = UTF8::remove_html_breaks($str, $replacement);
+        $result = UTF8::removeHtmlBreaks($str, $replacement);
 
         static::assertSame($expected, $result);
     }
@@ -2999,7 +2999,7 @@ d
      */
     public function testRemoveLeft($expected, $str, $substring, $encoding = '')
     {
-        $result = UTF8::remove_left($str, $substring, $encoding);
+        $result = UTF8::removeLeft($str, $substring, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3029,16 +3029,16 @@ d
      */
     public function testRemoveiRight($expected, $str, $substring, $encoding = '')
     {
-        $result = UTF8::remove_iright($str, strtoupper($substring), $encoding);
+        $result = UTF8::removeRightInsensitive($str, strtoupper($substring), $encoding);
         static::assertSame($expected, $result);
 
-        $result = UTF8::remove_iright($str, strtolower($substring), $encoding);
+        $result = UTF8::removeRightInsensitive($str, strtolower($substring), $encoding);
         static::assertSame($expected, $result);
 
-        $result = UTF8::remove_iright(strtoupper($str), $substring, $encoding);
+        $result = UTF8::removeRightInsensitive(strtoupper($str), $substring, $encoding);
         static::assertSame(strtoupper($expected), $result);
 
-        $result = UTF8::remove_iright(strtolower($str), $substring, $encoding);
+        $result = UTF8::removeRightInsensitive(strtolower($str), $substring, $encoding);
         static::assertSame(strtolower($expected), $result);
     }
 
@@ -3052,16 +3052,16 @@ d
      */
     public function testRemoveiLeft($expected, $str, $substring, $encoding = '')
     {
-        $result = UTF8::remove_ileft($str, strtoupper($substring), $encoding);
+        $result = UTF8::removeLeftInsensitive($str, strtoupper($substring), $encoding);
         static::assertSame($expected, $result);
 
-        $result = UTF8::remove_ileft($str, strtolower($substring), $encoding);
+        $result = UTF8::removeLeftInsensitive($str, strtolower($substring), $encoding);
         static::assertSame($expected, $result);
 
-        $result = UTF8::remove_ileft(strtoupper($str), $substring, $encoding);
+        $result = UTF8::removeLeftInsensitive(strtoupper($str), $substring, $encoding);
         static::assertSame(strtoupper($expected), $result);
 
-        $result = UTF8::remove_ileft(strtolower($str), $substring, $encoding);
+        $result = UTF8::removeLeftInsensitive(strtolower($str), $substring, $encoding);
         static::assertSame(strtolower($expected), $result);
     }
 
@@ -3108,7 +3108,7 @@ d
      */
     public function testReplaceAll($expected, $str, $search, $replacement, $encoding = null, $caseSensitive = true)
     {
-        $result = UTF8::replace_all($str, $search, $replacement, $caseSensitive);
+        $result = UTF8::replaceAll($str, $search, $replacement, $caseSensitive);
 
         static::assertSame($expected, $result);
     }
@@ -3123,7 +3123,7 @@ d
      */
     public function testReplaceBeginning($expected, $str, $search, $replacement)
     {
-        $result = UTF8::str_replace_beginning($str, $search, $replacement);
+        $result = UTF8::strReplace_beginning($str, $search, $replacement);
 
         static::assertSame($expected, $result);
     }
@@ -3153,7 +3153,7 @@ d
      */
     public function testReplaceEnding($expected, $str, $search, $replacement)
     {
-        $result = UTF8::str_replace_ending($str, $search, $replacement);
+        $result = UTF8::strReplace_ending($str, $search, $replacement);
 
         static::assertSame($expected, $result);
     }
@@ -3181,7 +3181,7 @@ d
      */
     public function testReverse($expected, $str)
     {
-        $result = UTF8::strrev($str);
+        $result = UTF8::strRev($str);
 
         static::assertSame($expected, $result);
     }
@@ -3197,7 +3197,7 @@ d
      */
     public function testSafeTruncate($expected, $str, $length, $substring = '', $encoding = '')
     {
-        $result = UTF8::str_truncate_safe($str, $length, $substring, $encoding);
+        $result = UTF8::strTruncateSafe($str, $length, $substring, $encoding);
 
         static::assertSame($expected, $result, 'tested: ' . $str . ' | ' . $substring . ' (' . $length . ')');
     }
@@ -3213,7 +3213,7 @@ d
      */
     public function testSafeTruncateIgnoreWords($expected, $str, $length, $substring = '', $encoding = '')
     {
-        $result = UTF8::str_truncate_safe($str, $length, $substring, $encoding, true);
+        $result = UTF8::strTruncateSafe($str, $length, $substring, $encoding, true);
 
         static::assertSame($expected, $result, 'tested: ' . $str . ' | ' . $substring . ' (' . $length . ')');
     }
@@ -3243,7 +3243,7 @@ d
     public function testShuffle($str, $encoding = '')
     {
         $encoding = $encoding ?: \mb_internal_encoding();
-        $result = UTF8::str_shuffle($str);
+        $result = UTF8::strShuffle($str);
 
         static::assertSame(
             UTF8::strlen($str, $encoding),
@@ -3254,8 +3254,8 @@ d
         $length = UTF8::strlen($str, $encoding);
         for ($i = 0; $i < $length; ++$i) {
             $char = UTF8::substr($str, $i, 1, $encoding);
-            $countBefore = UTF8::substr_count($str, $char, 0, null, $encoding);
-            $countAfter = UTF8::substr_count($result, $char, 0, null, $encoding);
+            $countBefore = UTF8::substrCount($str, $char, 0, null, $encoding);
+            $countAfter = UTF8::substrCount($result, $char, 0, null, $encoding);
             static::assertSame($countBefore, $countAfter);
         }
     }
@@ -3271,7 +3271,7 @@ d
      */
     public function testSlice($expected, $str, $start, $end = null, $encoding = '')
     {
-        $result = UTF8::str_slice($str, $start, $end, $encoding);
+        $result = UTF8::strSlice($str, $start, $end, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3285,7 +3285,7 @@ d
      */
     public function testSnakeize($expected, $str, $encoding = '')
     {
-        $result = UTF8::str_snakeize($str, $encoding);
+        $result = UTF8::snakeize($str, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3300,7 +3300,7 @@ d
      */
     public function testSplit($expected, $str, $pattern, $limit = -1)
     {
-        $result = UTF8::strSplit_pattern($str, $pattern, $limit);
+        $result = UTF8::strSplitPattern($str, $pattern, $limit);
 
         static::assertTrue(\is_array($result));
         foreach ($result as $string) {
@@ -3325,7 +3325,7 @@ d
     public function testStartsWith($expected, $str, $substring, $caseSensitive = true)
     {
         if ($caseSensitive) {
-            $result = UTF8::str_starts_with($str, $substring);
+            $result = UTF8strStartsWith($str, $substring);
         } else {
             $result = UTF8::strStartsWithInsensitive($str, $substring);
         }
@@ -3345,7 +3345,7 @@ d
     public function testStartsWithAny($expected, $str, $substring, $caseSensitive = true)
     {
         if ($caseSensitive) {
-            $result = UTF8::str_starts_with_any($str, $substring);
+            $result = UTF8strStartsWith_any($str, $substring);
         } else {
             $result = UTF8::strStartsWithAnyInsensitive($str, $substring);
         }
@@ -3452,7 +3452,7 @@ d
         ];
 
         foreach ($testArray as $testString => $testResult) {
-            static::assertSame($testResult, UTF8::str_substr_first($testString, 'b', false));
+            static::assertSame($testResult, UTF8::strSubstrFirst($testString, 'b', false));
         }
     }
 
@@ -3547,7 +3547,7 @@ d
      */
     public function testTitleize($expected, $str, $ignore = null, $word_define_chars = null, $encoding = '')
     {
-        $result = UTF8::str_titleize(
+        $result = UTF8::strTitleize(
             $str,
             $ignore,
             $encoding,
@@ -3571,7 +3571,7 @@ d
      */
     public function testTitleizeForHumans($str, $expected, $ignore = [], $encoding = '')
     {
-        $result = UTF8::str_titleize_for_humans($str, $ignore, $encoding);
+        $result = UTF8::strTitleizeForHumans($str, $ignore, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3678,7 +3678,7 @@ d
      */
     public function testToBoolean($expected, $str)
     {
-        $result = UTF8::to_boolean($str);
+        $result = UTF8::toBoolean($str);
 
         static::assertTrue(\is_bool($result));
         static::assertSame($expected, $result, 'tested: ' . $str);
@@ -3707,7 +3707,7 @@ d
      */
     public function testToSpaces($expected, $str, $tabLength = 4)
     {
-        $result = UTF8::tabs_to_spaces($str, $tabLength);
+        $result = UTF8::tabsToSpaces($str, $tabLength);
 
         static::assertSame($expected, $result);
     }
@@ -3721,7 +3721,7 @@ d
      */
     public function testToTabs($expected, $str, $tabLength = 4)
     {
-        $result = UTF8::spaces_to_tabs($str, $tabLength);
+        $result = UTF8::spacesToTabs($str, $tabLength);
 
         static::assertSame($expected, $result);
     }
@@ -3735,7 +3735,7 @@ d
      */
     public function testToTitleCase($expected, $str, $encoding = '')
     {
-        $result = UTF8::titlecase($str, $encoding);
+        $result = UTF8::titleCase($str, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3807,7 +3807,7 @@ d
      */
     public function testTruncate($expected, $str, $length, $substring = '', $encoding = '')
     {
-        $result = UTF8::str_truncate($str, $length, $substring, $encoding);
+        $result = UTF8::strTruncate($str, $length, $substring, $encoding);
 
         static::assertSame($expected, $result);
     }
@@ -3816,47 +3816,47 @@ d
     {
         $s = "\u{158}ekn\u{11B}te, jak se (dnes) m\u{E1}te?"; // Řekněte, jak se (dnes) máte?
 
-        static::assertSame('…', UTF8::str_truncate_safe($s, -1, '…', 'UTF-8', true)); // length=-1
-        static::assertSame('…', UTF8::str_truncate_safe($s, 0, '…', 'UTF-8', true)); // length=0
-        static::assertSame('…', UTF8::str_truncate_safe($s, 1, '…', 'UTF-8', true)); // length=1
-        static::assertSame('Ř…', UTF8::str_truncate_safe($s, 2, '…', 'UTF-8', true)); // length=2
-        static::assertSame('Ře…', UTF8::str_truncate_safe($s, 3, '…', 'UTF-8', true)); // length=3
-        static::assertSame('Řek…', UTF8::str_truncate_safe($s, 4, '…', 'UTF-8', true)); // length=4
-        static::assertSame('Řekn…', UTF8::str_truncate_safe($s, 5, '…', 'UTF-8', true)); // length=5
-        static::assertSame('Řekně…', UTF8::str_truncate_safe($s, 6, '…', 'UTF-8', true)); // length=6
-        static::assertSame('Řeknět…', UTF8::str_truncate_safe($s, 7, '…', 'UTF-8', true)); // length=7
-        static::assertSame('Řekněte…', UTF8::str_truncate_safe($s, 8, '…', 'UTF-8', true)); // length=8
-        static::assertSame('Řekněte,…', UTF8::str_truncate_safe($s, 9, '…', 'UTF-8', true)); // length=9
-        static::assertSame('Řekněte,…', UTF8::str_truncate_safe($s, 10, '…', 'UTF-8', true)); // length=10
-        static::assertSame('Řekněte,…', UTF8::str_truncate_safe($s, 11, '…', 'UTF-8', true)); // length=11
-        static::assertSame('Řekněte,…', UTF8::str_truncate_safe($s, 12, '…', 'UTF-8', true)); // length=12
-        static::assertSame('Řekněte, jak…', UTF8::str_truncate_safe($s, 13, '…', 'UTF-8', true)); // length=13
-        static::assertSame('Řekněte, jak…', UTF8::str_truncate_safe($s, 14, '…', 'UTF-8', true)); // length=14
-        static::assertSame('Řekněte, jak…', UTF8::str_truncate_safe($s, 15, '…', 'UTF-8', true)); // length=15
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 16, '…', 'UTF-8', true)); // length=16
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 17, '…', 'UTF-8', true)); // length=17
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 18, '…', 'UTF-8', true)); // length=18
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 19, '…', 'UTF-8', true)); // length=19
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 20, '…', 'UTF-8', true)); // length=20
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 21, '…', 'UTF-8', true)); // length=21
-        static::assertSame('Řekněte, jak se…', UTF8::str_truncate_safe($s, 22, '…', 'UTF-8', true)); // length=22
-        static::assertSame('Řekněte, jak se (dnes)…', UTF8::str_truncate_safe($s, 23, '…', 'UTF-8', true)); // length=23
-        static::assertSame('Řekněte, jak se (dnes)…', UTF8::str_truncate_safe($s, 24, '…', 'UTF-8', true)); // length=24
-        static::assertSame('Řekněte, jak se (dnes)…', UTF8::str_truncate_safe($s, 25, '…', 'UTF-8', true)); // length=25
-        static::assertSame('Řekněte, jak se (dnes)…', UTF8::str_truncate_safe($s, 26, '…', 'UTF-8', true)); // length=26
-        static::assertSame('Řekněte, jak se (dnes)…', UTF8::str_truncate_safe($s, 27, '…', 'UTF-8', true)); // length=27
-        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::str_truncate_safe($s, 28, '…', 'UTF-8', true)); // length=28
-        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::str_truncate_safe($s, 29, '…', 'UTF-8', true)); // length=29
-        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::str_truncate_safe($s, 30, '…', 'UTF-8', true)); // length=30
-        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::str_truncate_safe($s, 31, '…', 'UTF-8', true)); // length=31
-        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::str_truncate_safe($s, 32, '…', 'UTF-8', true)); // length=32
+        static::assertSame('…', UTF8::strTruncateSafe($s, -1, '…', 'UTF-8', true)); // length=-1
+        static::assertSame('…', UTF8::strTruncateSafe($s, 0, '…', 'UTF-8', true)); // length=0
+        static::assertSame('…', UTF8::strTruncateSafe($s, 1, '…', 'UTF-8', true)); // length=1
+        static::assertSame('Ř…', UTF8::strTruncateSafe($s, 2, '…', 'UTF-8', true)); // length=2
+        static::assertSame('Ře…', UTF8::strTruncateSafe($s, 3, '…', 'UTF-8', true)); // length=3
+        static::assertSame('Řek…', UTF8::strTruncateSafe($s, 4, '…', 'UTF-8', true)); // length=4
+        static::assertSame('Řekn…', UTF8::strTruncateSafe($s, 5, '…', 'UTF-8', true)); // length=5
+        static::assertSame('Řekně…', UTF8::strTruncateSafe($s, 6, '…', 'UTF-8', true)); // length=6
+        static::assertSame('Řeknět…', UTF8::strTruncateSafe($s, 7, '…', 'UTF-8', true)); // length=7
+        static::assertSame('Řekněte…', UTF8::strTruncateSafe($s, 8, '…', 'UTF-8', true)); // length=8
+        static::assertSame('Řekněte,…', UTF8::strTruncateSafe($s, 9, '…', 'UTF-8', true)); // length=9
+        static::assertSame('Řekněte,…', UTF8::strTruncateSafe($s, 10, '…', 'UTF-8', true)); // length=10
+        static::assertSame('Řekněte,…', UTF8::strTruncateSafe($s, 11, '…', 'UTF-8', true)); // length=11
+        static::assertSame('Řekněte,…', UTF8::strTruncateSafe($s, 12, '…', 'UTF-8', true)); // length=12
+        static::assertSame('Řekněte, jak…', UTF8::strTruncateSafe($s, 13, '…', 'UTF-8', true)); // length=13
+        static::assertSame('Řekněte, jak…', UTF8::strTruncateSafe($s, 14, '…', 'UTF-8', true)); // length=14
+        static::assertSame('Řekněte, jak…', UTF8::strTruncateSafe($s, 15, '…', 'UTF-8', true)); // length=15
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 16, '…', 'UTF-8', true)); // length=16
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 17, '…', 'UTF-8', true)); // length=17
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 18, '…', 'UTF-8', true)); // length=18
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 19, '…', 'UTF-8', true)); // length=19
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 20, '…', 'UTF-8', true)); // length=20
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 21, '…', 'UTF-8', true)); // length=21
+        static::assertSame('Řekněte, jak se…', UTF8::strTruncateSafe($s, 22, '…', 'UTF-8', true)); // length=22
+        static::assertSame('Řekněte, jak se (dnes)…', UTF8::strTruncateSafe($s, 23, '…', 'UTF-8', true)); // length=23
+        static::assertSame('Řekněte, jak se (dnes)…', UTF8::strTruncateSafe($s, 24, '…', 'UTF-8', true)); // length=24
+        static::assertSame('Řekněte, jak se (dnes)…', UTF8::strTruncateSafe($s, 25, '…', 'UTF-8', true)); // length=25
+        static::assertSame('Řekněte, jak se (dnes)…', UTF8::strTruncateSafe($s, 26, '…', 'UTF-8', true)); // length=26
+        static::assertSame('Řekněte, jak se (dnes)…', UTF8::strTruncateSafe($s, 27, '…', 'UTF-8', true)); // length=27
+        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::strTruncateSafe($s, 28, '…', 'UTF-8', true)); // length=28
+        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::strTruncateSafe($s, 29, '…', 'UTF-8', true)); // length=29
+        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::strTruncateSafe($s, 30, '…', 'UTF-8', true)); // length=30
+        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::strTruncateSafe($s, 31, '…', 'UTF-8', true)); // length=31
+        static::assertSame('Řekněte, jak se (dnes) máte?', UTF8::strTruncateSafe($s, 32, '…', 'UTF-8', true)); // length=32
 
         // mañana, U+006E + U+0303 (combining character)
-        static::assertSame("man\u{303}", UTF8::str_truncate_safe("man\u{303}ana", 4, '', 'UTF-8', true));
-        static::assertSame('man', UTF8::str_truncate_safe("man\u{303}ana", 3, '', 'UTF-8', true));
+        static::assertSame("man\u{303}", UTF8::strTruncateSafe("man\u{303}ana", 4, '', 'UTF-8', true));
+        static::assertSame('man', UTF8::strTruncateSafe("man\u{303}ana", 3, '', 'UTF-8', true));
 
         if (UTF8::mbstring_loaded()) { // only with "mbstring"
-            static::assertSame("κόσμε\xa0", UTF8::str_truncate_safe("κόσμε\xa0\xa1", 6));
+            static::assertSame("κόσμε\xa0", UTF8::strTruncateSafe("κόσμε\xa0\xa1", 6));
         }
     }
 
@@ -3868,7 +3868,7 @@ d
      */
     public function testUnderscored($expected, $str)
     {
-        $result = UTF8::str_underscored($str);
+        $result = UTF8::strUnderscored($str);
 
         static::assertSame($expected, $result);
     }
@@ -3882,7 +3882,7 @@ d
      */
     public function testUpperCamelize($expected, $str, $encoding = '')
     {
-        $result = UTF8::str_upper_camelize($str, $encoding);
+        $result = UTF8::strUpperCamelize($str, $encoding);
 
         static::assertSame($expected, $result);
     }

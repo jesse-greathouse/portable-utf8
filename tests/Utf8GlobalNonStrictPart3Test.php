@@ -789,28 +789,28 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::str_word_count($actual));
+            static::assertSame($expected, UTF8::strWordCount($actual));
         }
 
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü'));
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü', 0));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü'));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü', 0));
         static::assertSame(
             [
                 0 => '中文空白',
                 1 => 'foo',
                 2 => 'öäü',
             ],
-            UTF8::str_word_count('中文空白 foo öäü', 1)
+            UTF8::strWordCount('中文空白 foo öäü', 1)
         );
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü#s', 0, '#'));
-        static::assertSame(4, UTF8::str_word_count('中文空白 foo öäü#s', 0, ''));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü#s', 0, '#'));
+        static::assertSame(4, UTF8::strWordCount('中文空白 foo öäü#s', 0, ''));
         static::assertSame(
             [
                 '中文空白',
                 'foo',
                 'öäü#s',
             ],
-            UTF8::str_word_count('中文空白 foo öäü#s', 1, '#')
+            UTF8::strWordCount('中文空白 foo öäü#s', 1, '#')
         );
         static::assertSame(
             [
@@ -818,7 +818,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
                 5 => 'foo',
                 9 => 'öäü#s',
             ],
-            UTF8::str_word_count('中文空白 foo öäü#s', 2, '#')
+            UTF8::strWordCount('中文空白 foo öäü#s', 2, '#')
         );
         static::assertSame(
             [
@@ -826,7 +826,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
                 5 => 'foo',
                 9 => 'öäü',
             ],
-            UTF8::str_word_count('中文空白 foo öäü', 2)
+            UTF8::strWordCount('中文空白 foo öäü', 2)
         );
         static::assertSame(
             [
@@ -840,7 +840,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
                 'test’s',
                 'test#s',
             ],
-            UTF8::str_word_count('test,foo test test-test test_test test\'s test’s test#s', 1, '#')
+            UTF8::strWordCount('test,foo test test-test test_test test\'s test’s test#s', 1, '#')
         );
         static::assertSame(
             [
@@ -855,7 +855,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
                 'test',
                 's',
             ],
-            UTF8::str_word_count('test,foo test test-test test_test test\'s test’s test#s', 1)
+            UTF8::strWordCount('test,foo test test-test test_test test\'s test’s test#s', 1)
         );
     }
 
@@ -874,7 +874,7 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $test) {
-            static::assertSame($test[0], UTF8::words_limit($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
+            static::assertSame($test[0], UTF8::wordsLimit($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
         }
     }
 
@@ -911,9 +911,9 @@ final class Utf8GlobalNonStrictPart3Test extends \PHPUnit\Framework\TestCase
     public function testUrlencodedString()
     {
         static::assertSame(' ', UTF8::urldecode(UTF8::urldecode('&nbsp;')));
-        static::assertSame(' ', UTF8::rawurldecode(UTF8::rawurldecode('&nbsp;')));
+        static::assertSame(' ', UTF8::rawUrlDecode(UTF8::rawUrlDecode('&nbsp;')));
         static::assertSame('product/category¿\'', UTF8::urldecode('product/category%bf%27'));
-        static::assertSame('product/category¿\'', UTF8::rawurldecode('product/category%bf%27'));
+        static::assertSame('product/category¿\'', UTF8::rawUrlDecode('product/category%bf%27'));
         static::assertSame('&#112;&#114;&#111;&#100;&#117;&#99;&#116;&#47;&#99;&#97;&#116;&#101;&#103;&#111;&#114;&#121;&#37;&#98;&#102;&#37;&#50;&#55;', UTF8::htmlEncode('product/category%bf%27'));
         static::assertSame('product/category%bf%27', UTF8htmlEntityDecode('product/category%bf%27'));
         static::assertSame('product/category%bf%27', UTF8::clean('product/category%bf%27'));

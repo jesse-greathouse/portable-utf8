@@ -920,7 +920,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::to_filename($before, false));
+            static::assertSame($after, UTF8::toBoolean($before, false));
         }
 
         // ---
@@ -938,7 +938,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::to_filename($before, true));
+            static::assertSame($after, UTF8::toBoolean($before, true));
         }
     }
 
@@ -2846,7 +2846,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::rawurldecode($before), 'testing: ' . $before);
+            static::assertSame($after, UTF8::rawUrlDecode($before), 'testing: ' . $before);
         }
     }
 
@@ -2891,7 +2891,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
 
         foreach ($testArray as $actual => $data) {
             foreach ($data as $expected => $filter) {
-                static::assertSame($expected, UTF8::remove_duplicates($actual, $filter));
+                static::assertSame($expected, UTF8::removeDuplicates($actual, $filter));
             }
         }
     }
@@ -3421,7 +3421,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $after => $test) {
-            static::assertSame($after, UTF8::str_replace_first($test[0], $test[1], $test[2]));
+            static::assertSame($after, UTF8::strReplace_first($test[0], $test[1], $test[2]));
         }
     }
 
@@ -3435,7 +3435,7 @@ final class Utf8GlobalPart1Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $after => $test) {
-            static::assertSame($after, UTF8::str_replace_last($test[0], $test[1], $test[2]));
+            static::assertSame($after, UTF8::strReplace_last($test[0], $test[1], $test[2]));
         }
     }
 
@@ -3464,7 +3464,7 @@ abc	áßç	क際👽 	क際👽
         js/rust/ruby	çखी國👽
         ';
 
-        static::assertSame($expected, UTF8::rawurldecode(UTF8::toUtf8($testStr, true)));
+        static::assertSame($expected, UTF8::rawUrlDecode(UTF8::toUtf8($testStr, true)));
     }
 
     public function testStrShuffle()
@@ -3483,7 +3483,7 @@ abc	áßç	क際👽 	क際👽
                 [],
                 \array_diff(
                     UTF8::strSplit($test),
-                    UTF8::strSplit(UTF8::str_shuffle($test))
+                    UTF8::strSplit(UTF8::strShuffle($test))
                 ),
                 'tested: ' . $test
             );
@@ -3501,7 +3501,7 @@ abc	áßç	क際👽 	क際👽
             ];
 
             foreach ($tests as $before => $after) {
-                static::assertSame($after, UTF8::str_sort($before));
+                static::assertSame($after, UTF8::strSort($before));
             }
         }
 
@@ -3512,7 +3512,7 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::str_sort($before, false, true));
+            static::assertSame($after, UTF8::strSort($before, false, true));
         }
 
         $tests = [
@@ -3523,7 +3523,7 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::str_sort($before, true));
+            static::assertSame($after, UTF8::strSort($before, true));
         }
 
         $tests = [
@@ -3533,7 +3533,7 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::str_sort($before, true, true));
+            static::assertSame($after, UTF8::strSort($before, true, true));
         }
     }
 
@@ -3558,7 +3558,7 @@ abc	áßç	क際👽 	क際👽
 
         for ($i = 0; $i <= $loops; ++$i) { // keep this loop for simple performance tests
             foreach ($tests as $test => $result) {
-                static::assertSame($result, UTF8::str_starts_with($str, $test), 'tested: ' . $test);
+                static::assertSame($result, UTF8strStartsWith($str, $test), 'tested: ' . $test);
             }
         }
 
@@ -3579,23 +3579,23 @@ abc	áßç	क際👽 	क際👽
 
         for ($i = 0; $i <= $loops; ++$i) { // keep this loop for simple performance tests
             foreach ($tests as $test => $result) {
-                static::assertSame($result, UTF8::str_starts_with($str, $test), 'tested: ' . $test);
+                static::assertSame($result, UTF8strStartsWith($str, $test), 'tested: ' . $test);
             }
         }
 
         if (\PHP_VERSION_ID >= 80000) {
-            static::assertSame(str_starts_with('', ''), UTF8::str_starts_with('', ''));
-            static::assertSame(str_starts_with(' ', ''), UTF8::str_starts_with(' ', ''));
-            static::assertSame(str_starts_with('', ' '), UTF8::str_starts_with('', ' '));
-            static::assertSame(str_starts_with(' ', ' '), UTF8::str_starts_with(' ', ' '));
-            static::assertSame(str_starts_with('DJ', ''), UTF8::str_starts_with('DJ', ''));
-            static::assertSame(str_starts_with('DJ', ' '), UTF8::str_starts_with('DJ', ' '));
-            static::assertSame(str_starts_with('', 'Σ'), UTF8::str_starts_with('', 'Σ'));
-            static::assertSame(str_starts_with(' ', 'Σ'), UTF8::str_starts_with(' ', 'Σ'));
-            static::assertSame(str_starts_with('DJ', ''), UTF8::str_starts_with('DJ', ''));
-            static::assertSame(str_starts_with('DJ', ' '), UTF8::str_starts_with('DJ', ' '));
-            static::assertSame(str_starts_with('', 'Σ'), UTF8::str_starts_with('', 'Σ'));
-            static::assertSame(str_starts_with(' ', 'Σ'), UTF8::str_starts_with(' ', 'Σ'));
+            static::assertSame(str_starts_with('', ''), UTF8strStartsWith('', ''));
+            static::assertSame(str_starts_with(' ', ''), UTF8strStartsWith(' ', ''));
+            static::assertSame(str_starts_with('', ' '), UTF8strStartsWith('', ' '));
+            static::assertSame(str_starts_with(' ', ' '), UTF8strStartsWith(' ', ' '));
+            static::assertSame(str_starts_with('DJ', ''), UTF8strStartsWith('DJ', ''));
+            static::assertSame(str_starts_with('DJ', ' '), UTF8strStartsWith('DJ', ' '));
+            static::assertSame(str_starts_with('', 'Σ'), UTF8strStartsWith('', 'Σ'));
+            static::assertSame(str_starts_with(' ', 'Σ'), UTF8strStartsWith(' ', 'Σ'));
+            static::assertSame(str_starts_with('DJ', ''), UTF8strStartsWith('DJ', ''));
+            static::assertSame(str_starts_with('DJ', ' '), UTF8strStartsWith('DJ', ' '));
+            static::assertSame(str_starts_with('', 'Σ'), UTF8strStartsWith('', 'Σ'));
+            static::assertSame(str_starts_with(' ', 'Σ'), UTF8strStartsWith(' ', 'Σ'));
         }
     }
 
@@ -3613,11 +3613,11 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::str_to_binary($before), 'tested: ' . $before);
+            static::assertSame($after, UTF8::strToBinary($before), 'tested: ' . $before);
         }
 
         foreach ($tests as $before => $after) {
-            static::assertSame((string) $before, UTF8::binaryToString(UTF8::str_to_binary($before)), 'tested: ' . $before);
+            static::assertSame((string) $before, UTF8::binaryToString(UTF8::strToBinary($before)), 'tested: ' . $before);
         }
     }
 
@@ -3812,7 +3812,7 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::strip_tags($before, null, true));
+            static::assertSame($after, UTF8::stripTags($before, null, true));
         }
 
         // ---
@@ -3831,7 +3831,7 @@ abc	áßç	क際👽 	क際👽
         ];
 
         foreach ($tests as $before => $after) {
-            static::assertSame($after, UTF8::strip_tags($before, '<span>', false));
+            static::assertSame($after, UTF8::stripTags($before, '<span>', false));
         }
     }
 
@@ -3903,7 +3903,7 @@ abc	áßç	क際👽 	क際👽
 
     public function testStrstrInByte()
     {
-        static::assertSame('ello', UTF8::strstr_in_byte('Hello', 'e'));
+        static::assertSame('ello', UTF8::strstrInByte('Hello', 'e'));
     }
 
     public function testStrrirpos()

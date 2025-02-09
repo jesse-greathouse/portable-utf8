@@ -694,148 +694,145 @@ final class ASCII
         return [$str1, $str2];
     }
 
-/**
- * Returns an ASCII version of the string. A set of non-ASCII characters are
- * replaced with their closest ASCII counterparts, and the rest are removed
- * by default. The language or locale of the source string can be supplied
- * for language-specific transliteration in any of the following formats:
- * en, en_GB, or en-GB. For example, passing "de" results in "äöü" mapping
- * to "aeoeue" rather than "aou" as in other languages.
- *
- * EXAMPLE: <code>
- * ASCII::toAscii('�Düsseldorf�', 'en'); // Dusseldorf
- * </code>
- *
- * @param string $str                      The input string.
- * @param string $language                 [optional] Language of the source string. (default is 'en') | ASCII::*_LANGUAGE_CODE
- * @param bool   $removeUnsupportedChars   [optional] Whether to remove unsupported characters.
- * @param bool   $replaceExtraSymbols      [optional] Add some more replacements e.g. "£" with " pound".
- * @param bool   $useTransliterate         [optional] Use ASCII::toTransliterate() for unknown chars.
- * @param bool   $replaceSingleCharsOnly   [optional] Single char replacement is better for performance, but some languages need to replace more than one char.
- *
- * @psalm-pure
- *
- * @return string A string that contains only ASCII characters.
- *
- * @phpstan-param ASCII::*_LANGUAGE_CODE $language
- */
-public static function toAscii(
-    string $str,
-    string $language = self::ENGLISH_LANGUAGE_CODE,
-    bool $removeUnsupportedChars = true,
-    bool $replaceExtraSymbols = false,
-    bool $useTransliterate = false,
-    bool $replaceSingleCharsOnly = false
-): string {
-    if ($str === '') {
-        return '';
-    }
+    /**
+     * Returns an ASCII version of the string. A set of non-ASCII characters are
+     * replaced with their closest ASCII counterparts, and the rest are removed
+     * by default. The language or locale of the source string can be supplied
+     * for language-specific transliteration in any of the following formats:
+     * en, en_GB, or en-GB. For example, passing "de" results in "äöü" mapping
+     * to "aeoeue" rather than "aou" as in other languages.
+     *
+     * EXAMPLE: <code>
+     * ASCII::toAscii('�Düsseldorf�', 'en'); // Dusseldorf
+     * </code>
+     *
+     * @param string $str                      The input string.
+     * @param string $language                 [optional] Language of the source string. (default is 'en') | ASCII::*_LANGUAGE_CODE
+     * @param bool   $removeUnsupportedChars   [optional] Whether to remove unsupported characters.
+     * @param bool   $replaceExtraSymbols      [optional] Add some more replacements e.g. "£" with " pound".
+     * @param bool   $useTransliterate         [optional] Use ASCII::toTransliterate() for unknown chars.
+     * @param bool   $replaceSingleCharsOnly   [optional] Single char replacement is better for performance, but some languages need to replace more than one char.
+     *
+     * @psalm-pure
+     *
+     * @return string A string that contains only ASCII characters.
+     *
+     * @phpstan-param ASCII::*_LANGUAGE_CODE $language
+     */
+    public static function toAscii(
+        string $str,
+        string $language = self::ENGLISH_LANGUAGE_CODE,
+        bool $removeUnsupportedChars = true,
+        bool $replaceExtraSymbols = false,
+        bool $useTransliterate = false,
+        bool $replaceSingleCharsOnly = false
+    ): string {
+        if ($str === '') {
+            return '';
+        }
 
-    // Resolve language
-    $language = self::getLanguage($language);
+        // Resolve language
+        $language = self::getLanguage($language);
 
-    static $extraSymbolsCache = null;
-    static $replaceHelperCache = [];
-    $cacheKey = $language . '-' . $replaceExtraSymbols;
+        static $extraSymbolsCache = null;
+        static $replaceHelperCache = [];
+        $cacheKey = $language . '-' . $replaceExtraSymbols;
 
-    if (!isset($replaceHelperCache[$cacheKey])) {
-        $langAll = self::charsArrayWithSingleLanguageValues($replaceExtraSymbols, false);
-        $langSpecific = self::charsArrayWithOneLanguage($language, $replaceExtraSymbols, false);
+        if (!isset($replaceHelperCache[$cacheKey])) {
+            $langAll = self::charsArrayWithSingleLanguageValues($replaceExtraSymbols, false);
+            $langSpecific = self::charsArrayWithOneLanguage($language, $replaceExtraSymbols, false);
 
-        $replaceHelperCache[$cacheKey] = $langSpecific ? array_merge([], $langAll, $langSpecific) : $langAll;
-    }
+            $replaceHelperCache[$cacheKey] = $langSpecific ? array_merge([], $langAll, $langSpecific) : $langAll;
+        }
 
-    if ($replaceExtraSymbols && $extraSymbolsCache === null) {
-        $extraSymbolsCache = array_reduce(self::$ASCII_EXTRAS ?? [], function ($cache, $extrasData) {
-            return $cache . implode('', array_keys($extrasData));
-        }, '');
-    }
+        if ($replaceExtraSymbols && $extraSymbolsCache === null) {
+            $extraSymbolsCache = array_reduce(self::$ASCII_EXTRAS ?? [], function ($cache, $extrasData) {
+                return $cache . implode('', array_keys($extrasData));
+            }, '');
+        }
 
-    $charDone = [];
-    if (preg_match_all('/' . self::$REGEX_ASCII . ($replaceExtraSymbols ? '|[' . $extraSymbolsCache . ']' : '') . '/u', $str, $matches)) {
-        if (!$replaceSingleCharsOnly) {
-            $maxKeyLength = self::$LANGUAGE_MAX_KEY[$language] ?? 0;
+        $charDone = [];
+        if (preg_match_all('/' . self::$REGEX_ASCII . ($replaceExtraSymbols ? '|[' . $extraSymbolsCache . ']' : '') . '/u', $str, $matches)) {
+            if (!$replaceSingleCharsOnly) {
+                $maxKeyLength = self::$LANGUAGE_MAX_KEY[$language] ?? 0;
 
-            foreach ([5, 4, 3, 2] as $length) {
-                foreach ($matches[0] as $keyTmp => $char) {
-                    $chars = implode('', array_slice($matches[0], $keyTmp, $length));
-                    if ($chars && !isset($charDone[$chars]) && isset($replaceHelperCache[$cacheKey][$chars]) && strpos($str, $chars) !== false) {
-                        $charDone[$chars] = true;
-                        $str = str_replace($chars, $replaceHelperCache[$cacheKey][$chars], $str);
+                foreach ([5, 4, 3, 2] as $length) {
+                    foreach ($matches[0] as $keyTmp => $char) {
+                        $chars = implode('', array_slice($matches[0], $keyTmp, $length));
+                        if ($chars && !isset($charDone[$chars]) && isset($replaceHelperCache[$cacheKey][$chars]) && strpos($str, $chars) !== false) {
+                            $charDone[$chars] = true;
+                            $str = str_replace($chars, $replaceHelperCache[$cacheKey][$chars], $str);
+                        }
                     }
+                }
+            }
+
+            foreach ($matches[0] as $char) {
+                if (!isset($charDone[$char]) && isset($replaceHelperCache[$cacheKey][$char]) && strpos($str, $char) !== false) {
+                    $charDone[$char] = true;
+                    $str = str_replace($char, $replaceHelperCache[$cacheKey][$char], $str);
                 }
             }
         }
 
-        foreach ($matches[0] as $char) {
-            if (!isset($charDone[$char]) && isset($replaceHelperCache[$cacheKey][$char]) && strpos($str, $char) !== false) {
-                $charDone[$char] = true;
-                $str = str_replace($char, $replaceHelperCache[$cacheKey][$char], $str);
-            }
+        // Apply transliteration if necessary
+        if (!isset(self::$ASCII_MAPS[$language])) {
+            $useTransliterate = true;
         }
-    }
 
-    // Apply transliteration if necessary
-    if (!isset(self::$ASCII_MAPS[$language])) {
-        $useTransliterate = true;
-    }
+        if ($useTransliterate) {
+            $str = self::toTransliterate($str, null, false);
+        }
 
-    if ($useTransliterate) {
-        $str = self::toTransliterate($str, null, false);
-    }
+        // Remove unsupported characters
+        if ($removeUnsupportedChars) {
+            $str = str_replace(["\n\r", "\n", "\r", "\t"], ' ', $str);
+            $str = preg_replace('/' . self::$REGEX_ASCII . '/', '', $str);
+        }
 
-    // Remove unsupported characters
-    if ($removeUnsupportedChars) {
-        $str = str_replace(["\n\r", "\n", "\r", "\t"], ' ', $str);
-        $str = preg_replace('/' . self::$REGEX_ASCII . '/', '', $str);
+        return $str;
     }
-
-    return $str;
-}
 
     /**
-     * Convert given string to safe filename (and keep string case).
+     * Convert the given string to a safe filename while preserving the string case.
      *
      * EXAMPLE: <code>
-     * ASCII::to_filename('שדגשדג.png', true)); // 'shdgshdg.png'
+     * ASCII::toFilename('שדגשדג.png', true); // 'shdgshdg.png'
      * </code>
      *
-     * @param string $str               <p>The string input.</p>
-     * @param bool   $use_transliterate <p>ASCII::toTransliterate() is used by default - unsafe characters are
-     *                                  simply replaced with hyphen otherwise.</p>
-     * @param string $fallback_char     <p>The fallback character. - "-" is the default</p>
+     * @param string $str The input string.
+     * @param bool $useTransliterate If true, transliteration is applied to unsafe characters.
+     * @param string $fallbackChar The character to replace unsafe characters. Default is '-'.
      *
-     * @psalm-pure
-     *
-     * @return string
-     *                <p>A string that contains only safe characters for a filename.</p>
+     * @return string A string that contains only safe characters for a filename.
      */
-    public static function to_filename(
+    public static function toFilename(
         string $str,
-        bool $use_transliterate = true,
-        string $fallback_char = '-'
+        bool $useTransliterate = true,
+        string $fallbackChar = '-'
     ): string {
-        if ($use_transliterate) {
-            $str = self::toTransliterate($str, $fallback_char);
+        if ($useTransliterate) {
+            $str = self::toTransliterate($str, $fallbackChar);
         }
 
-        $fallback_char_escaped = \preg_quote($fallback_char, '/');
+        $escapedFallbackChar = preg_quote($fallbackChar, '/');
 
-        $str = (string) \preg_replace(
+        // Use preg_replace only once to handle all replacements
+        $str = (string) preg_replace(
             [
-                '/[^' . $fallback_char_escaped . '.\\-a-zA-Z\d\\s]/', // 1) remove un-needed chars
-                '/\s+/u',                                             // 2) convert spaces to $fallback_char
-                '/[' . $fallback_char_escaped . ']+/u',               // 3) remove double $fallback_char's
+                '/[^' . $escapedFallbackChar . '.\\-a-zA-Z\d\\s]/', // Remove unneeded chars
+                '/\s+/u',                                            // Convert spaces to fallbackChar
+                '/[' . $escapedFallbackChar . ']+/u',                // Remove consecutive fallbackChars
             ],
             [
                 '',
-                $fallback_char,
-                $fallback_char,
+                $fallbackChar,
+                $fallbackChar,
             ],
             $str
         );
 
-        return \trim($str, $fallback_char);
+        return trim($str, $fallbackChar);
     }
 
     /**

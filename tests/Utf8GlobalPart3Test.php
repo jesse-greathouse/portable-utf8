@@ -638,7 +638,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::rawurldecode($before), 'testing: ' . $before);
+            static::assertSame($after, UTF8::rawUrlDecode($before), 'testing: ' . $before);
         }
     }
 
@@ -687,7 +687,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $before => $after) {
-            static::assertSame($after, UTF8::rawurldecode($before, false), 'testing: ' . $before);
+            static::assertSame($after, UTF8::rawUrlDecode($before, false), 'testing: ' . $before);
         }
     }
 
@@ -830,7 +830,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         foreach ($tests as $before => $after) {
             static::assertSame(
                 $after,
-                UTF8::str_obfuscate(
+                UTF8::strObfuscate(
                     $before,
                     1.0
                 ),
@@ -851,7 +851,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         foreach ($tests as $before => $after) {
             static::assertSame(
                 $after,
-                UTF8::str_obfuscate(
+                UTF8::strObfuscate(
                     $before,
                     1.0,
                     '#',
@@ -870,7 +870,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         foreach ($tests as $before => $after) {
             static::assertSame(
                 $after,
-                UTF8::str_obfuscate(
+                UTF8::strObfuscate(
                     $before,
                     1.0,
                     '*',
@@ -1020,28 +1020,28 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::str_word_count($actual));
+            static::assertSame($expected, UTF8::strWordCount($actual));
         }
 
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü'));
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü', 0));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü'));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü', 0));
         static::assertSame(
             [
                 0 => '中文空白',
                 1 => 'foo',
                 2 => 'öäü',
             ],
-            UTF8::str_word_count('中文空白 foo öäü', 1)
+            UTF8::strWordCount('中文空白 foo öäü', 1)
         );
-        static::assertSame(3, UTF8::str_word_count('中文空白 foo öäü#s', 0, '#'));
-        static::assertSame(4, UTF8::str_word_count('中文空白 foo öäü#s', 0, ''));
+        static::assertSame(3, UTF8::strWordCount('中文空白 foo öäü#s', 0, '#'));
+        static::assertSame(4, UTF8::strWordCount('中文空白 foo öäü#s', 0, ''));
         static::assertSame(
             [
                 '中文空白',
                 'foo',
                 'öäü#s',
             ],
-            UTF8::str_word_count('中文空白 foo öäü#s', 1, '#')
+            UTF8::strWordCount('中文空白 foo öäü#s', 1, '#')
         );
         static::assertSame(
             [
@@ -1049,7 +1049,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
                 5 => 'foo',
                 9 => 'öäü#s',
             ],
-            UTF8::str_word_count('中文空白 foo öäü#s', 2, '#')
+            UTF8::strWordCount('中文空白 foo öäü#s', 2, '#')
         );
         static::assertSame(
             [
@@ -1057,7 +1057,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
                 5 => 'foo',
                 9 => 'öäü',
             ],
-            UTF8::str_word_count('中文空白 foo öäü', 2)
+            UTF8::strWordCount('中文空白 foo öäü', 2)
         );
         static::assertSame(
             [
@@ -1071,7 +1071,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
                 'test’s',
                 'test#s',
             ],
-            UTF8::str_word_count('test,foo test test-test test_test test\'s test’s test#s', 1, '#')
+            UTF8::strWordCount('test,foo test test-test test_test test\'s test’s test#s', 1, '#')
         );
         static::assertSame(
             [
@@ -1086,7 +1086,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
                 'test',
                 's',
             ],
-            UTF8::str_word_count('test,foo test test-test test_test test\'s test’s test#s', 1)
+            UTF8::strWordCount('test,foo test test-test test_test test\'s test’s test#s', 1)
         );
     }
 
@@ -1106,7 +1106,7 @@ final class Utf8GlobalPart3Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $test) {
-            static::assertSame($test[0], UTF8::words_limit($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
+            static::assertSame($test[0], UTF8::wordsLimit($test[1], $test[2], $test[3]), 'tested: ' . $test[1]);
         }
     }
 

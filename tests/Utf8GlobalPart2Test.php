@@ -54,7 +54,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         }
 
         $string_test1 = \strip_tags($string);
-        $string_test2 = UTF8::strip_tags($string);
+        $string_test2 = UTF8::stripTags($string);
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
             static::assertSame(54, \strlen($string_test1));
@@ -115,9 +115,9 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         static::assertSame(1, UTF8::strnatcasecmp('Hello world 中文空白!', 'Hello WORLD 中文空白'));
         static::assertSame(-1, UTF8::strnatcasecmp('Hello world 中文空白', 'Hello WORLD 中文空白!'));
         static::assertSame(-1, UTF8::strnatcasecmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!'));
-        static::assertSame(1, UTF8::strcasecmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!')); // strcasecmp
+        static::assertSame(1, UTF8::strCompareInsensitive('2Hello world 中文空白!', '10Hello WORLD 中文空白!')); // strCompareInsensitive
         static::assertSame(1, UTF8::strnatcasecmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'));
-        static::assertSame(-1, UTF8::strcasecmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!')); // strcasecmp
+        static::assertSame(-1, UTF8::strCompareInsensitive('10Hello world 中文空白!', '2Hello WORLD 中文空白!')); // strCompareInsensitive
         static::assertSame(0, UTF8::strnatcasecmp('10Hello world 中文空白!', '10Hello world 中文空白!'));
         static::assertSame(0, UTF8::strnatcasecmp('Hello world 中文空白!', 'Hello WORLD 中文空白!'));
 
@@ -132,15 +132,15 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testStrnatcmp()
     {
-        static::assertSame(1, UTF8::strnatcmp('Hello world 中文空白!', 'Hello WORLD 中文空白!'));
-        static::assertSame(1, UTF8::strnatcmp('Hello world 中文空白!', 'Hello WORLD 中文空白'));
-        static::assertSame(1, UTF8::strnatcmp('Hello world 中文空白', 'Hello WORLD 中文空白!'));
-        static::assertSame(-1, UTF8::strnatcmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!'));
-        static::assertSame(1, UTF8::strcmp('2Hello world 中文空白!', '10Hello WORLD 中文空白!')); // strcmp
-        static::assertSame(1, UTF8::strnatcmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!'));
-        static::assertSame(-1, UTF8::strcmp('10Hello world 中文空白!', '2Hello WORLD 中文空白!')); // strcmp
-        static::assertSame(0, UTF8::strnatcmp('10Hello world 中文空白!', '10Hello world 中文空白!'));
-        static::assertSame(1, UTF8::strnatcmp('Hello world 中文空白!', 'Hello WORLD 中文空白!'));
+        static::assertSame(1, UTF8::strNatrualCompare('Hello world 中文空白!', 'Hello WORLD 中文空白!'));
+        static::assertSame(1, UTF8::strNatrualCompare('Hello world 中文空白!', 'Hello WORLD 中文空白'));
+        static::assertSame(1, UTF8::strNatrualCompare('Hello world 中文空白', 'Hello WORLD 中文空白!'));
+        static::assertSame(-1, UTF8::strNatrualCompare('2Hello world 中文空白!', '10Hello WORLD 中文空白!'));
+        static::assertSame(1, UTF8::strCompare('2Hello world 中文空白!', '10Hello WORLD 中文空白!')); // strCompare
+        static::assertSame(1, UTF8::strNatrualCompare('10Hello world 中文空白!', '2Hello WORLD 中文空白!'));
+        static::assertSame(-1, UTF8::strCompare('10Hello world 中文空白!', '2Hello WORLD 中文空白!')); // strCompare
+        static::assertSame(0, UTF8::strNatrualCompare('10Hello world 中文空白!', '10Hello world 中文空白!'));
+        static::assertSame(1, UTF8::strNatrualCompare('Hello world 中文空白!', 'Hello WORLD 中文空白!'));
     }
 
     public function testStrncasecmp()
@@ -162,11 +162,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         foreach ($tests as $before => $after) {
             if ($after < 0) {
-                static::assertTrue(UTF8::strncasecmp($before, 'ü', 10) < 0, 'tested: ' . $before);
+                static::assertTrue(UTF8::strNatrualCompareInsensitive($before, 'ü', 10) < 0, 'tested: ' . $before);
             } elseif ($after > 0) {
-                static::assertTrue(UTF8::strncasecmp($before, 'ü', 10) > 0, 'tested: ' . $before);
+                static::assertTrue(UTF8::strNatrualCompareInsensitive($before, 'ü', 10) > 0, 'tested: ' . $before);
             } else {
-                static::assertSame(UTF8::strncasecmp($before, 'ü', 10), 0, 'tested: ' . $before);
+                static::assertSame(UTF8::strNatrualCompareInsensitive($before, 'ü', 10), 0, 'tested: ' . $before);
             }
         }
     }
@@ -190,11 +190,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         foreach ($tests as $before => $after) {
             if ($after < 0) {
-                static::assertTrue(UTF8::strncmp($before, 'ü', 10) < 0, 'tested: ' . $before);
+                static::assertTrue(UTF8::strCompareN($before, 'ü', 10) < 0, 'tested: ' . $before);
             } elseif ($after > 0) {
-                static::assertTrue(UTF8::strncmp($before, 'ü', 10) > 0, 'tested: ' . $before);
+                static::assertTrue(UTF8::strCompareN($before, 'ü', 10) > 0, 'tested: ' . $before);
             } else {
-                static::assertSame(UTF8::strncmp($before, 'ü', 10), 0, 'tested: ' . $before);
+                static::assertSame(UTF8::strCompareN($before, 'ü', 10), 0, 'tested: ' . $before);
             }
         }
     }
@@ -244,11 +244,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testStrrposInByte()
     {
-        static::assertSame(40, UTF8::strrpos_in_byte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白'));
-        static::assertSame(40, UTF8::strrpos_in_byte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白', 0));
-        static::assertSame(0, UTF8::strrpos_in_byte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 0));
-        static::assertFalse(UTF8::strrpos_in_byte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'z', 0));
-        static::assertFalse(UTF8::strrpos_in_byte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 1));
+        static::assertSame(40, UTF8::strrposInByte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白'));
+        static::assertSame(40, UTF8::strrposInByte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白', 0));
+        static::assertSame(0, UTF8::strrposInByte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 0));
+        static::assertFalse(UTF8::strrposInByte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'z', 0));
+        static::assertFalse(UTF8::strrposInByte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 1));
     }
 
     public function testStrriposInByte()
@@ -271,11 +271,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testStrposInByte()
     {
-        static::assertSame(27, UTF8::strpos_in_byte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白'));
-        static::assertSame(27, UTF8::strpos_in_byte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白', 0));
-        static::assertSame(0, UTF8::strpos_in_byte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 0));
-        static::assertFalse(UTF8::strpos_in_byte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'z', 0));
-        static::assertFalse(UTF8::strpos_in_byte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'A', 1));
+        static::assertSame(27, UTF8::strposInByte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白'));
+        static::assertSame(27, UTF8::strposInByte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', '白', 0));
+        static::assertSame(0, UTF8::strposInByte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'Z', 0));
+        static::assertFalse(UTF8::strposInByte('ZBC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'z', 0));
+        static::assertFalse(UTF8::strposInByte('ABC-ÖÄÜ-💩-' . "\xc3\x28" . '中文空白-中文空白' . "\xf0\x28\x8c\x28" . 'abc', 'A', 1));
     }
 
     public function testStrpos()
@@ -434,7 +434,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($testArray as $actual => $expected) {
-            static::assertSame($expected, UTF8::strrev($actual), 'error by ' . $actual);
+            static::assertSame($expected, UTF8::strRev($actual), 'error by ' . $actual);
         }
     }
 
@@ -529,22 +529,22 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
     public function testStrtocasefold()
     {
-        static::assertSame(UTF8::strtocasefold('J̌̌◌̱', true), UTF8::strtocasefold('ǰ◌̱', true)); // Original (NFC)
-        static::assertSame('ǰ◌̱', UTF8::strtocasefold('ǰ◌̱', true)); // Original (NFC)
-        static::assertSame('j◌̌◌', UTF8::strtocasefold('J◌̌◌')); // Uppercased
-        static::assertSame('j◌̱◌̌', UTF8::strtocasefold('J◌̱◌̌')); // Uppercased NFC
+        static::assertSame(UTF8::strToCaseFold('J̌̌◌̱', true), UTF8::strToCaseFold('ǰ◌̱', true)); // Original (NFC)
+        static::assertSame('ǰ◌̱', UTF8::strToCaseFold('ǰ◌̱', true)); // Original (NFC)
+        static::assertSame('j◌̌◌', UTF8::strToCaseFold('J◌̌◌')); // Uppercased
+        static::assertSame('j◌̱◌̌', UTF8::strToCaseFold('J◌̱◌̌')); // Uppercased NFC
 
         // valid utf-8
-        static::assertSame('hello world 中文空白', UTF8::strtocasefold('Hello world 中文空白'));
+        static::assertSame('hello world 中文空白', UTF8::strToCaseFold('Hello world 中文空白'));
 
         // invalid utf-8
 
         if (UTF8::mbstring_loaded()) { // only with "mbstring"
-            static::assertSame('iñtërnâtiôn?àlizætiøn', UTF8::strtocasefold("Iñtërnâtiôn\xE9àlizætiøn"));
-            static::assertSame('iñtërnâtiôn?àlizætiøn', UTF8::strtocasefold("Iñtërnâtiôn\xE9àlizætiøn", true));
+            static::assertSame('iñtërnâtiôn?àlizætiøn', UTF8::strToCaseFold("Iñtërnâtiôn\xE9àlizætiøn"));
+            static::assertSame('iñtërnâtiôn?àlizætiøn', UTF8::strToCaseFold("Iñtërnâtiôn\xE9àlizætiøn", true));
         }
 
-        static::assertSame('iñtërnâtiônàlizætiøn', UTF8::strtocasefold("Iñtërnâtiôn\xE9àlizætiøn", true, true));
+        static::assertSame('iñtërnâtiônàlizætiøn', UTF8::strToCaseFold("Iñtërnâtiôn\xE9àlizætiøn", true, true));
     }
 
     public function testStrtolower()
@@ -654,11 +654,11 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         $utf8 = new UTF8();
 
         // valid utf-8
-        $string = $this->invokeMethod($utf8, 'strtonatfold', ['Hello world 中文空白']);
+        $string = $this->invokeMethod($utf8, 'strToNaturalFold', ['Hello world 中文空白']);
         static::assertSame('Hello world 中文空白', $string);
 
         // invalid utf-8
-        $string = $this->invokeMethod($utf8, 'strtonatfold', ["Iñtërnâtiôn\xE9àlizætiøn"]);
+        $string = $this->invokeMethod($utf8, 'strToNaturalFold', ["Iñtërnâtiôn\xE9àlizætiøn"]);
         static::assertSame('', $string);
     }
 
@@ -865,40 +865,40 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
     {
         // php compatible tests
 
-        static::assertSame(0, \substr_compare((string) 12345, (string) 23, 1, 2));
-        static::assertSame(0, UTF8::substr_compare((string) 12345, (string) 23, 1, 2));
+        static::assertSame(0, \substrCompare((string) 12345, (string) 23, 1, 2));
+        static::assertSame(0, UTF8::substrCompare((string) 12345, (string) 23, 1, 2));
 
-        static::assertSame(0, \substr_compare('abcde', 'bc', 1, 2));
-        static::assertSame(0, UTF8::substr_compare('abcde', 'bc', 1, 2));
+        static::assertSame(0, \substrCompare('abcde', 'bc', 1, 2));
+        static::assertSame(0, UTF8::substrCompare('abcde', 'bc', 1, 2));
 
-        static::assertSame(0, \substr_compare('abcde', 'de', -2, 2));
-        static::assertSame(0, UTF8::substr_compare('abcde', 'de', -2, 2));
+        static::assertSame(0, \substrCompare('abcde', 'de', -2, 2));
+        static::assertSame(0, UTF8::substrCompare('abcde', 'de', -2, 2));
 
-        static::assertSame(0, \substr_compare('abcde', 'bcg', 1, 2));
-        static::assertSame(0, UTF8::substr_compare('abcde', 'bcg', 1, 2));
+        static::assertSame(0, \substrCompare('abcde', 'bcg', 1, 2));
+        static::assertSame(0, UTF8::substrCompare('abcde', 'bcg', 1, 2));
 
-        static::assertSame(0, \substr_compare('abcde', 'BC', 1, 2, true));
-        static::assertSame(0, UTF8::substr_compare('abcde', 'BC', 1, 2, true));
+        static::assertSame(0, \substrCompare('abcde', 'BC', 1, 2, true));
+        static::assertSame(0, UTF8::substrCompare('abcde', 'BC', 1, 2, true));
 
-        static::assertSame(1, \substr_compare('abcde', 'bc', 1, 3));
-        static::assertSame(1, UTF8::substr_compare('abcde', 'bc', 1, 3));
+        static::assertSame(1, \substrCompare('abcde', 'bc', 1, 3));
+        static::assertSame(1, UTF8::substrCompare('abcde', 'bc', 1, 3));
 
-        static::assertSame(-1, \substr_compare('abcde', 'cd', 1, 2));
-        static::assertSame(-1, UTF8::substr_compare('abcde', 'cd', 1, 2));
+        static::assertSame(-1, \substrCompare('abcde', 'cd', 1, 2));
+        static::assertSame(-1, UTF8::substrCompare('abcde', 'cd', 1, 2));
 
         // UTF-8 tests
 
-        static::assertTrue(UTF8::substr_compare("○●◎\r", '●◎') < 0);
-        static::assertTrue(UTF8::substr_compare("○●◎\r", '●◎', -1) < 0);
-        static::assertTrue(UTF8::substr_compare("○●◎\r", '●◎', -1, 2) < 0);
-        static::assertTrue(UTF8::substr_compare("○●◎\r", '●◎', 0, 2) < 0);
+        static::assertTrue(UTF8::substrCompare("○●◎\r", '●◎') < 0);
+        static::assertTrue(UTF8::substrCompare("○●◎\r", '●◎', -1) < 0);
+        static::assertTrue(UTF8::substrCompare("○●◎\r", '●◎', -1, 2) < 0);
+        static::assertTrue(UTF8::substrCompare("○●◎\r", '●◎', 0, 2) < 0);
 
-        static::assertSame(1, UTF8::substr_compare("○●◎\r", '◎●', 1, 2));
+        static::assertSame(1, UTF8::substrCompare("○●◎\r", '◎●', 1, 2));
 
-        static::assertSame(0, UTF8::substr_compare("○●◎\r", '●◎', 1, 2, false));
-        static::assertSame(0, UTF8::substr_compare("○●◎\r", '●◎', 1, 2));
-        static::assertSame(0, UTF8::substr_compare('中文空白', '文空', 1, 2, true));
-        static::assertSame(0, UTF8::substr_compare('中文空白', '文空', 1, 2));
+        static::assertSame(0, UTF8::substrCompare("○●◎\r", '●◎', 1, 2, false));
+        static::assertSame(0, UTF8::substrCompare("○●◎\r", '●◎', 1, 2));
+        static::assertSame(0, UTF8::substrCompare('中文空白', '文空', 1, 2, true));
+        static::assertSame(0, UTF8::substrCompare('中文空白', '文空', 1, 2));
     }
 
     public function testSubstrCount()
@@ -907,149 +907,149 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             /** @noinspection PhpUsageOfSilenceOperatorInspection */
-            static::assertFalse(@\substr_count('', ''));
-            static::assertFalse(UTF8::substr_count('', ''));
+            static::assertFalse(@\substrCount('', ''));
+            static::assertFalse(UTF8::substrCount('', ''));
         }
 
         if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', '', '1')); // offset (int) is encoding (string) :/
+                static::assertFalse(@\substrCount('', '', '1')); // offset (int) is encoding (string) :/
             } else {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', '', 1));
+                static::assertFalse(@\substrCount('', '', 1));
             }
         }
 
-        static::assertFalse(UTF8::substr_count('', '', 1));
+        static::assertFalse(UTF8::substrCount('', '', 1));
 
         if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', '', ''));  // offset (int) is encoding (string) :/
+                static::assertFalse(@\substrCount('', '', ''));  // offset (int) is encoding (string) :/
             } else {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', '', 1, 1));
+                static::assertFalse(@\substrCount('', '', 1, 1));
             }
         }
 
-        static::assertFalse(UTF8::substr_count('', '', 1, 1));
+        static::assertFalse(UTF8::substrCount('', '', 1, 1));
 
         if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', 'test', '1')); // offset (int) is encoding (string) + last parameter is not available :/
+                static::assertFalse(@\substrCount('', 'test', '1')); // offset (int) is encoding (string) + last parameter is not available :/
             } else {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('', 'test', 1, 1));
+                static::assertFalse(@\substrCount('', 'test', 1, 1));
             }
         }
 
-        static::assertSame(0, UTF8::substr_count('', 'test', 1, 1));
+        static::assertSame(0, UTF8::substrCount('', 'test', 1, 1));
 
         if (!\jessegreathouse\helper\Bootup::is_php('8.0')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('test', '', '1')); // offset (int) is encoding (string) + last parameter is not available :/
+                static::assertFalse(@\substrCount('test', '', '1')); // offset (int) is encoding (string) + last parameter is not available :/
             } else {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('test', '', 1, 1));
+                static::assertFalse(@\substrCount('test', '', 1, 1));
             }
         }
 
-        static::assertFalse(UTF8::substr_count('test', '', 1, 1));
+        static::assertFalse(UTF8::substrCount('test', '', 1, 1));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count('test', 'test', '1')); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount('test', 'test', '1')); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(0, \substr_count('test', 'test', 1, 1));
+            static::assertSame(0, \substrCount('test', 'test', 1, 1));
         }
 
-        static::assertSame(0, UTF8::substr_count('test', 'test', 1, 1));
+        static::assertSame(0, UTF8::substrCount('test', 'test', 1, 1));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count((string) 12345, (string) 23, (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount((string) 12345, (string) 23, (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(1, \substr_count((string) 12345, (string) 23, 1, 2));
+            static::assertSame(1, \substrCount((string) 12345, (string) 23, 1, 2));
         }
 
-        static::assertSame(1, UTF8::substr_count((string) 12345, (string) 23, 1, 2));
+        static::assertSame(1, UTF8::substrCount((string) 12345, (string) 23, 1, 2));
 
-        static::assertSame(2, \substr_count('abcdebc', 'bc'));
-        static::assertSame(2, UTF8::substr_count('abcdebc', 'bc'));
+        static::assertSame(2, \substrCount('abcdebc', 'bc'));
+        static::assertSame(2, UTF8::substrCount('abcdebc', 'bc'));
 
         if (Bootup::is_php('7.1')) {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-                static::assertFalse(\substr_count('abcde', 'de', (string) -2)); // offset (int) is encoding (string) + last parameter is not available :/
+                static::assertFalse(\substrCount('abcde', 'de', (string) -2)); // offset (int) is encoding (string) + last parameter is not available :/
             } else {
-                static::assertSame(1, \substr_count('abcde', 'de', -2, 2));
+                static::assertSame(1, \substrCount('abcde', 'de', -2, 2));
             }
         } else {
             if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('abcde', 'de', (string) -2)); // offset (int) is encoding (string) + last parameter is not available :/
+                static::assertFalse(@\substrCount('abcde', 'de', (string) -2)); // offset (int) is encoding (string) + last parameter is not available :/
             } else {
                 /** @noinspection PhpUsageOfSilenceOperatorInspection */
-                static::assertFalse(@\substr_count('abcde', 'de', -2, 2));
+                static::assertFalse(@\substrCount('abcde', 'de', -2, 2));
             }
         }
 
-        static::assertSame(1, UTF8::substr_count('abcde', 'de', -2, 2));
+        static::assertSame(1, UTF8::substrCount('abcde', 'de', -2, 2));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count('abcde', 'bcg', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount('abcde', 'bcg', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(0, \substr_count('abcde', 'bcg', 1, 2));
+            static::assertSame(0, \substrCount('abcde', 'bcg', 1, 2));
         }
 
-        static::assertSame(0, UTF8::substr_count('abcde', 'bcg', 1, 2));
+        static::assertSame(0, UTF8::substrCount('abcde', 'bcg', 1, 2));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count('abcde', 'BC', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount('abcde', 'BC', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(0, \substr_count('abcde', 'BC', 1, 2));
+            static::assertSame(0, \substrCount('abcde', 'BC', 1, 2));
         }
 
-        static::assertSame(0, UTF8::substr_count('abcde', 'BC', 1, 2));
+        static::assertSame(0, UTF8::substrCount('abcde', 'BC', 1, 2));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count('abcde', 'bc', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount('abcde', 'bc', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(1, \substr_count('abcde', 'bc', 1, 3));
+            static::assertSame(1, \substrCount('abcde', 'bc', 1, 3));
         }
 
-        static::assertSame(1, UTF8::substr_count('abcde', 'bc', 1, 3));
+        static::assertSame(1, UTF8::substrCount('abcde', 'bc', 1, 3));
 
         if (UTF8::getSupportInfo('mbstring_func_overload') === true) {
-            static::assertFalse(\substr_count('abcde', 'cd', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
+            static::assertFalse(\substrCount('abcde', 'cd', (string) 1)); // offset (int) is encoding (string) + last parameter is not available :/
         } else {
-            static::assertSame(0, \substr_count('abcde', 'cd', 1, 2));
+            static::assertSame(0, \substrCount('abcde', 'cd', 1, 2));
         }
 
-        static::assertSame(0, UTF8::substr_count('abcde', 'cd', 1, 2));
+        static::assertSame(0, UTF8::substrCount('abcde', 'cd', 1, 2));
 
         // UTF-8 tests
 
-        static::assertSame(0, UTF8::substr_count('', '文空'));
-        static::assertFalse(UTF8::substr_count('中文空白', ''));
-        static::assertFalse(UTF8::substr_count('', ''));
+        static::assertSame(0, UTF8::substrCount('', '文空'));
+        static::assertFalse(UTF8::substrCount('中文空白', ''));
+        static::assertFalse(UTF8::substrCount('', ''));
 
-        static::assertSame(0, UTF8::substr_count('中文空白', '文空', 0, 0));
+        static::assertSame(0, UTF8::substrCount('中文空白', '文空', 0, 0));
 
-        static::assertSame(0, UTF8::substr_count('中文空白', '文空', 0, 1));
-        static::assertSame(1, UTF8::substr_count("○●◎\r", '●◎', 1, 2));
-        static::assertSame(1, UTF8::substr_count('中文空白', '文空', 1, 2));
-        static::assertSame(1, UTF8::substr_count('中文空白', '文空', 1));
-        static::assertSame(2, UTF8::substr_count('Можам да јадам стакло, а не ме штета.', 'д'));
-        static::assertSame(2, UTF8::substr_count("○●◎\r◎", '◎'));
-        static::assertSame(2, UTF8::substr_count('中文空白 文空 文空', '文空', 0, 7));
-        static::assertSame(3, UTF8::substr_count('中文空白 文空 文空', '文空', 1));
+        static::assertSame(0, UTF8::substrCount('中文空白', '文空', 0, 1));
+        static::assertSame(1, UTF8::substrCount("○●◎\r", '●◎', 1, 2));
+        static::assertSame(1, UTF8::substrCount('中文空白', '文空', 1, 2));
+        static::assertSame(1, UTF8::substrCount('中文空白', '文空', 1));
+        static::assertSame(2, UTF8::substrCount('Можам да јадам стакло, а не ме штета.', 'д'));
+        static::assertSame(2, UTF8::substrCount("○●◎\r◎", '◎'));
+        static::assertSame(2, UTF8::substrCount('中文空白 文空 文空', '文空', 0, 7));
+        static::assertSame(3, UTF8::substrCount('中文空白 文空 文空', '文空', 1));
 
         // ISO
 
         if (UTF8::getSupportInfo('mbstring') === true) { // only with "mbstring"
-            static::assertSame(0, UTF8::substr_count('中文空白', '文空', 1, 2, 'ISO'));
-            static::assertSame(1, UTF8::substr_count('abcde', 'bc', 1, 2, 'ISO'));
+            static::assertSame(0, UTF8::substrCount('中文空白', '文空', 1, 2, 'ISO'));
+            static::assertSame(1, UTF8::substrCount('abcde', 'bc', 1, 2, 'ISO'));
         }
     }
 
@@ -1071,7 +1071,7 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
 
         $counter = 0;
         foreach ($examples as $testString => $testResults) {
-            static::assertSame($testResults, UTF8::to_int((string) $testString), $counter . ' - ' . $testString);
+            static::assertSame($testResults, UTF8::toInt((string) $testString), $counter . ' - ' . $testString);
             ++$counter;
         }
     }
@@ -1123,20 +1123,20 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::substr_ileft($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::substrleftInsensitive($str, $test), 'tested: ' . $test);
         }
 
         // ---
 
-        static::assertSame('MiddleEndΚόσμε', UTF8::substr_ileft('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
+        static::assertSame('MiddleEndΚόσμε', UTF8::substrleftInsensitive('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substr_ileft('ΚόσμεMiddleEndΚόσμε', ''));
+        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substrleftInsensitive('ΚόσμεMiddleEndΚόσμε', ''));
 
         // ---
 
-        static::assertSame('', UTF8::substr_ileft('', 'Κόσμε'));
+        static::assertSame('', UTF8::substrleftInsensitive('', 'Κόσμε'));
     }
 
     public function testSubstrIRight()
@@ -1155,20 +1155,20 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::substr_iright($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::substrRightInsensitive($str, $test), 'tested: ' . $test);
         }
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEnd', UTF8::substr_iright('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
+        static::assertSame('ΚόσμεMiddleEnd', UTF8::substrRightInsensitive('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substr_iright('ΚόσμεMiddleEndΚόσμε', ''));
+        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substrRightInsensitive('ΚόσμεMiddleEndΚόσμε', ''));
 
         // ---
 
-        static::assertSame('', UTF8::substr_iright('', 'Κόσμε'));
+        static::assertSame('', UTF8::substrRightInsensitive('', 'Κόσμε'));
     }
 
     public function testSubstrLeft()
@@ -1187,20 +1187,20 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::substr_left($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::substrLeft($str, $test), 'tested: ' . $test);
         }
 
         // ---
 
-        static::assertSame('MiddleEndΚόσμε', UTF8::substr_left('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
+        static::assertSame('MiddleEndΚόσμε', UTF8::substrLeft('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substr_left('ΚόσμεMiddleEndΚόσμε', ''));
+        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substrLeft('ΚόσμεMiddleEndΚόσμε', ''));
 
         // ---
 
-        static::assertSame('', UTF8::substr_left('', 'Κόσμε'));
+        static::assertSame('', UTF8::substrLeft('', 'Κόσμε'));
     }
 
     public function testSubstrRight()
@@ -1219,20 +1219,20 @@ final class Utf8GlobalPart2Test extends \PHPUnit\Framework\TestCase
         ];
 
         foreach ($tests as $test => $result) {
-            static::assertSame($result, UTF8::substr_right($str, $test), 'tested: ' . $test);
+            static::assertSame($result, UTF8::substrRight($str, $test), 'tested: ' . $test);
         }
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEnd', UTF8::substr_right('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
+        static::assertSame('ΚόσμεMiddleEnd', UTF8::substrRight('ΚόσμεMiddleEndΚόσμε', 'Κόσμε'));
 
         // ---
 
-        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substr_right('ΚόσμεMiddleEndΚόσμε', ''));
+        static::assertSame('ΚόσμεMiddleEndΚόσμε', UTF8::substrRight('ΚόσμεMiddleEndΚόσμε', ''));
 
         // ---
 
-        static::assertSame('', UTF8::substr_right('', 'Κόσμε'));
+        static::assertSame('', UTF8::substrRight('', 'Κόσμε'));
     }
 
     public function testSwapCase()

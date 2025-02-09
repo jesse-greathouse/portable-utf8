@@ -132,7 +132,7 @@ Example 2: UTF8::strlen()
   // 67
 
   $string_test1 = strip_tags($string);
-  $string_test2 = UTF8::strip_tags($string);
+  $string_test2 = UTF8::stripTags($string);
 
   echo strlen($string_test1) . "\n<br />";
   echo UTF8::strlen($string_test2) . "\n<br />";
